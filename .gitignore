@@ -1,4 +1,7 @@
 images/
+
+#
+senhas.py
 # Editors
 .vscode/
 .idea/

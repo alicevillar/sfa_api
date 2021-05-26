@@ -1,11 +1,8 @@
 import pyodbc as p
 import json as js
 import os
+from senhas import *
 
-server = 'ALICE-PC'
-database = 'SFA_DB'
-username = 'sa'
-password = 'Anandamayi2018'
 cnxn = p.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
 cursor = cnxn.cursor()
 
