@@ -18,7 +18,7 @@ print(data[0].keys())
 from requests import get
 import json
 
-PATH = os.path.abspath(os.path.dirname(__file__)) #ESSA função recebe um caminho e retorna o caminho absoluto na máquina
+PATH = os.path.abspath(os.path.dirname(__file__)) # This function receives a path and returns the absolute path on the pc
 print(PATH)
 
 for line in data:
@@ -35,15 +35,16 @@ for line in data:
     print(line['path_image'])
 
 
-# hoje para cada imagen, obter o caminho absoluto (importar bibl os) /
-
-#populando o bd
+# Populating the database tables
 for line in data:
     print(line)
     sql=f"""
         INSERT INTO TB_SFA_Images (Ima_Date,Ima_Explanation,Ima_Title,Ima_Url) 
         values (?,?,?,?)"""
-    cursor.execute(sql,(line['date'], line['explanation'], line['title'], line['path_image'])) # no ultimo argumento não colocarei a url mas a imagem em si. Assim, o usuário nao receberá um link, mas a imagem de verdade :)
+    cursor.execute(sql,(line['date'], line['explanation'], line['title'], line['path_image']))
+
+# NOTE -> The last argument is not the url but the image itself.
+# Thus, the user will not receive a link, but the real image :)
 
 cursor.commit()
 
