@@ -1,11 +1,11 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import send_from_directory, request
 from flask_restplus import Api, Resource, fields, inputs
 from minimal import sfa_app
 import pyodbc as p
-import json as js
 import os
 from werkzeug.datastructures import FileStorage #importando uma abstração de arquivo
 from senhas import *
+from decorators import *
 
 #####################################################################################################################
 #
@@ -17,6 +17,8 @@ from senhas import *
 image_directory="images"
 # Importing and storing in local variables
 APP, SFA = sfa_app.app,sfa_app.api
+
+#aqui dentro det o q acontecerá qdo receber uma request:
 
 # Namespaces are intended for organizing REST endpoints within the API.
 # The main idea is to split the app into reusable namespaces.
@@ -31,11 +33,11 @@ class Downloading(Resource):
     @picture_namespace.response(200, 'Success')
     @picture_namespace.response(400, 'Request Error')
     @picture_namespace.response(500, 'Server Error')
-    #The .expect declares the parameters (mandatory or not) that the endpoint expects
-    # @namespace.expect(create_producer_request, validate=True)
-    # o .marshal_with declara a estrutura da resposta com base no model recebido como parâmetro
-    # @namespace.marshal_with(create_producer_response)
 
+    @picture_namespace.doc(security='apikey') #avisando para o swagger q esse endpoint precisa de api key
+
+
+    @api_key_required #a função aqui é chamada. Para isso é transformada em decorando a função get q baixa uma imagem
     def get(self):
         """Downloads a picture"""
         cnxn = p.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
@@ -46,7 +48,6 @@ class Downloading(Resource):
         print(result[0])
         return send_from_directory(directory="\\".join(result[0].split("\\")[0:-1]),filename=result[0].split("\\")[-1],as_attachment=True)
 
-
 #####################################################################################################################
 #
 #   VERSION 2 - contains one endpoint that allows authenticated users to upload an image (HTTP Request Type -> POST)
@@ -54,14 +55,14 @@ class Downloading(Resource):
 #####################################################################################################################
 
 # Parse() method parses arguments from an incoming request and uses them as inputs to invoke the corresponding controller method
-# The method .add_argument() is used to specify locations to pull the values from the API
+# The method .add_argument() is used to specify locations (as well as expected data type and whether or not the parameter is mandatory) to pull the values from the API
 # In other words, it defines what information I'm going to get and where I'll get it from
 
 upload_parser = SFA.parser() # NOTE -> Parser will be defined for the API as a whole
 upload_parser.add_argument('file', location='files', type=FileStorage, required=True)
 upload_parser.add_argument('title', location='form', required=True)
 upload_parser.add_argument('explanation', location='form', required=True)
-upload_parser.add_argument('date',type = inputs.date_from_iso8601, location='form', required=True)
+upload_parser.add_argument('date',type = inputs.date_from_iso8601, location='form', required=True, help = "We expect data format of ISO 8601. Example: the date “September 7, 2019” is written as follows: “20190907”, or when expressed with delimiters: “2019-09-20”.")
 upload_parser.add_argument('copyright', location='form', required=False)
 
 # NOTE - > if parameter "required" is True, so if in the swagger I try to make the request without it I won't be able to
@@ -72,17 +73,20 @@ upload_parser.add_argument('copyright', location='form', required=False)
 
 # The .expect method declares the parameters (mandatory or not) that the endpoint expects
 @picture_namespace.expect(upload_parser) # Note -> It will show in swagger the file it is expecting to receive
-
+#Note - antes de rodar a classe verifica-se se a request recebida está de acordo com o esperado (para isso é esse decorator expect)
 
 class Uploading(Resource):
-    # The response method defined possible responses in the documentation
+    # The response method defines possible responses in the documentation
     @picture_namespace.response(200, 'Success')
     @picture_namespace.response(400, 'Request Error')
     @picture_namespace.response(500, 'Server Error')
-     # @picture_namespace.expect(create_producer_request, validate=True)
-    # o .marshal_with declara a estrutura da resposta com base no model recebido como parâmetro
-    # @namespace.marshal_with(create_producer_response)
+    #@api_key_required
+    #esse decorator vai adicionar uma documentação para essa rota. Esse decorator det q o endpoint upload depende do endpoint de autenticação
+    @picture_namespace.doc(security='apikey') #avisando para o swagger q esse endpoint precisa de api key
 
+
+
+    @api_key_required #a função aqui é chamada. Para isso é transformada em decorando a função get q sobe uma imagem
     def post(self):
         """Uploads a picture"""
         # The function parse_args() will execute parser inside the request. It extracts data from the file.
@@ -119,3 +123,19 @@ class Uploading(Resource):
         return {'Info': "Your file has been received!"}, 201
 
         # NOTE -> The library already has a syntax that protects against SQL injection.
+
+
+
+#####################################################################################################################
+#
+#   VERSION 3 - contains one endpoint for authentication (HTTP Request Type ->  )
+#
+#####################################################################################################################
+
+
+
+   # o .marshal_with = será uma segunda camada de verificação (além do parser)
+     # vai verificar se o modelo de dados recebido está de acordo o com o esperado
+     # (antes de usá-lo eh preciso deifinir o tipo de dados esperado)
+     # O que o .marshal_with pode fazer a mais eh mostrar para o usuário lá no swagger um modelo de dados esperado
+     # @namespace.marshal_with(create_producer_response)

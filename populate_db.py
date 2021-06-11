@@ -46,5 +46,5 @@ for line in data:
 # NOTE -> The last argument is not the url but the image itself.
 # Thus, the user will not receive a link, but the real image :)
 
-cursor.commit()
+cursor.commit() # para de fato executar o comando
 
