@@ -56,7 +56,7 @@ def api_key_required(func):
                         return {'Info': 'Error: You API Key is invalid because does not match your current IP. Please regiser again to create a new API Key.'}, 401
 
                     else:
-                        return {'Info': 'Error: You API Key has expired or is blocked. Please regiser again to create a new API Key.'}, 401  
+                        return {'Info': 'Error: You API Key has expired or is blocked. Please regiser again to create a new API Key.'}, 401
                 else:
                     return func(*args, **kwargs)  # aqui roda a funçao decorada - sucesso
 
