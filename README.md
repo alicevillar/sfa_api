@@ -20,8 +20,11 @@ Space Fan Art is an API tailored using Flask REST-Plus to automatically put a fa
 - [3. Project Structure](#3-project-structure)
     - [3.1. Chapter 1](#31-chapter-1)
     - [3.2. Chapter 2](#32-chapter-2)
-- [4. Dependencies](#4-dependencies)
-- [5. Results](#5-results)
+- [4. Dependencies](#4-dependencies) 
+- [5. Installation](#5-results)
+- [5. Quick Start](#5-results)
+- [5. Authentication Details](#5-results)
+ 
 
  
 <!-- /TOC -->
@@ -37,39 +40,48 @@ This paper describes a design proposal report for two versions:
 
 ## 2. Project Approach
 
-> Version 1 - This is the first version of SFA-API. It contains one endpoint that allows you to download an image.
+#### Version 1 
 
+This is the first version of SFA-API. It contains one endpoint that allows you to download an image.
+```
 * Description:
 * HTTP Request Type -> GET
 * Response -> Download file
 * URL GET Parameters -> N/A
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/download
+```
+#### Version 2
 
-> Version 2 - This is the second version of SFA-API. It contains one more endpoint that allows you to upload an image.
-
+This is the second version of SFA-API. It contains one more endpoint that allows you to upload an image.
+```
 * Description:
 * HTTP Request Type -> POST
 * Response -> Upload file
 * URL GET Parameters -> file / title / explanation / date / copyright
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/upload
+```
+#### Version 3
 
-> Version 3 - This is the first version of SFA-API. It contains one more endpoint that allows you to register a new user.
+This is the first version of SFA-API. It contains one more endpoint that allows you to register a new user.
 
+```
 * Description:
 * HTTP Request Type -> POST
 * Response -> Register user
 * URL POST Parameters -> First name / Last name / email / password
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/register
+```
+#### Version 4 
 
-> Version 4 - This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key.
+This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key.
 
+```
 * Description:
 * HTTP Request Type -> GET
 * Response -> Get demo key
 * URL GET Parameters -> N/A
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/demo_key
-
-
+```
 ## 3. Project Structure
 
 
@@ -82,12 +94,8 @@ This paper describes a design proposal report for two versions:
 * `users_controller.py` [users_controller.py] - This is a config file with one endpoint for user registration (HTTP Request Type -> POST)
 * `picture_controller.py` [picture_controller.py] - This is a config file with two endpoints which allows registrated users to download an image (HTTP Request Type -> GET) and to upload an image (HTTP Request Type -> POST)
 * `limiters_controller.py` [limiters_controller.py] - This is a config file for counting the use of the API (through user's IP address)
-
 * `demo_key_controller.py` [demo_key_controller.py] - This is the config file of the demo key.
-
-
 * `decorators.py` [decorators.py] - This file contains the decorators for the api key and the demo key  
-
 * `Dockerfile` - Docker config file which is used to build a Docker image
   running this RESTful API Server example.
 * `minimal.py` [minimal.py] - This is a config file containing the class API  
@@ -95,24 +103,16 @@ This paper describes a design proposal report for two versions:
 * `senhas.py` [senhas.py] - This file contains all the passwords of the database.
 * `server.py` [server.py] - This file contains the driver code. 
 * `docker-compose.yaml` [docker-compose.yaml] - This is a config file to deploy, combine and configure multiple docker-container at the same time. 
-   
 * `.dockerignore` - Lists files and file masks of the files which should be
   ignored while Docker build process.
-  
-  
 * `.gitignore` - Lists files and file masks of the files which should not be added to git repository.
 * `.requirements.txt` - The list of Python (PyPi) requirements.
  
-
-
-
 ## 4 Project Dependencies
 
 * [**Python**](https://www.python.org/) pypy3 (2.5.0)
 * [**flask-restplus**](https://github.com/noirbizarre/flask-restplus) (+
-  [*flask*](http://flask.pocoo.org/)) 
-  introspection. (*integrated into the patched Flask-RESTplus*) 
-  [*flask-oauthlib*](http://flask-oauthlib.rtfd.org/)) - for authentication. 
+  [*flask*](http://flask.pocoo.org/))  
 * [**Werkzeug**](https://pypi.org/project/Werkzeug/) - for password hashing  
 * [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - for interactive
   RESTful API documentation.
@@ -145,8 +145,8 @@ That is it!
 
 After regitration, the system will generate the API Key: 
 
-* Response Body 
-* 
+#### Response Body 
+
 ```
  
 {
@@ -155,7 +155,7 @@ After regitration, the system will generate the API Key:
 }
 ```
 
-* Response headers
+#### Response headers
 
 ```
 {
