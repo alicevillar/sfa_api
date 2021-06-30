@@ -102,8 +102,8 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * `senhas.py` - This file contains all the passwords of the database.
 * `server.py` [server.py](https://github.com/alicevillar/sfa_api/blob/main/server.py) - This file contains the driver code. 
 * `docker-compose.yaml` [docker-compose.yaml](https://github.com/alicevillar/sfa_api/blob/main/docker-compose.yaml) - This is a config file to deploy, combine and configure multiple docker-container at the same time. 
-* `.gitignore` [gitignore](https://github.com/alicevillar/sfa_api/blob/main/.gitignore)- Lists files and file masks of the files which should not be added to git repository.
-* `.requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements.
+* `gitignore` [gitignore](https://github.com/alicevillar/sfa_api/blob/main/.gitignore)- Lists files and file masks of the files which should not be added to git repository.
+* `requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements.
  
 ## 4 Project Dependencies
 
