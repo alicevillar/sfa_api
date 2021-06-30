@@ -47,7 +47,7 @@ This paper describes a design proposal report for two versions:
 * WEBSERVICE PAGE
 
 
-## 2. Project Approach
+## 2. Roadmap: development timeline 
 
 #### Version 1 
 
