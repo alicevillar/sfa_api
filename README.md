@@ -124,6 +124,11 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * [**Pyodbc**](https://pypi.org/project/pyodbc/) - for accessing the database and carry our user registration.
 * [**Requests**](https://pypi.org/project/requests/) - for making HTTP requests in Python. 
  
+ * flask-login 
+* flask-cors
+* flask-limiter
+ 
+ 
 ## Tools
 
 * [**Docker**](https://www.docker.com/) - for storing the database (of the monolothic architecture) in a container.
