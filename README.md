@@ -99,33 +99,40 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 ## 3. Project Files 
 
 * `README.md` [README.md](https://github.com/alicevillar/sfa_api/blob/main/README.md)- Contains the description and documentation of the project. 
-* `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - This is a config file with one endpoint for user registration (HTTP Request Type -> POST)
-* `picture_controller.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py) - This is a config file with two endpoints which allows registrated users to download an image (HTTP Request Type -> GET) and to upload an image (HTTP Request Type -> POST)
-* `limiters_controller.py` [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py) - This is a config file for counting the use of the API (through user's IP address)
-* `demo_key_controller.py` [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py) - This is the config file of the demo key.
-* `decorators.py` [decorators.py](https://github.com/alicevillar/sfa_api/blob/main/decorators.py) - This file contains the decorators for the api key and the demo key  
-* `Dockerfile`[Dockerfile](https://github.com/alicevillar/sfa_api/blob/main/Dockerfile) - Docker config file which is used to build a Docker image
-  running this RESTful API Server example.
-* `minimal.py` [minimal.py](https://github.com/alicevillar/sfa_api/blob/main/minimal.py) - This is a config file containing the class API  
-* `populate_db.py` [populate_db.py](https://github.com/alicevillar/sfa_api/blob/main/populate_db.py) - This is a config file to populate the database.
-* `senhas.py` - This file contains all the passwords of the database.
-* `server.py` [server.py](https://github.com/alicevillar/sfa_api/blob/main/server.py) - This file contains the driver code. 
-* `docker-compose.yaml` [docker-compose.yaml](https://github.com/alicevillar/sfa_api/blob/main/docker-compose.yaml) - This is a config file to deploy, combine and configure multiple docker-container at the same time. 
+* `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - defines operations/endpoints with users (user registration).
+* `picture_controller.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py) - defines operations/endpoints with pictures (download and upload).
+* `limiters_controller.py` [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py) - This is file implements the counting to limit the use of the API (through user's IP address) and demo key. 
+* `demo_key_controller.py` [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py) - This file implements the demo key.
+* `decorators.py` [decorators.py](https://github.com/alicevillar/sfa_api/blob/main/decorators.py) - This file contains the decorators for the api key and the demo key (to verify the existence and authenticity of the key).   
+* `Dockerfile`[Dockerfile](https://github.com/alicevillar/sfa_api/blob/main/Dockerfile) - Docker config file is a recipe to build a Docker image
+  running this RESTful API Server.
+* `docker-compose.yaml` [docker-compose.yaml](https://github.com/alicevillar/sfa_api/blob/main/docker-compose.yaml) - This is a config file to deploy and configure the docker-container to run. 
+* `minimal.py` [minimal.py](https://github.com/alicevillar/sfa_api/blob/main/minimal.py) - This is a config file containing the class API.  
+* `populate_db.py` [populate_db.py](https://github.com/alicevillar/sfa_api/blob/main/populate_db.py) - This file is aimed to populate the database.
+* `senhas.py` - This file contains the passwords of the database.
+* `server.py` [server.py](https://github.com/alicevillar/sfa_api/blob/main/server.py) - This file imports controllers and runs the API. 
 * `gitignore` [gitignore](https://github.com/alicevillar/sfa_api/blob/main/.gitignore)- Lists files and file masks of the files which should not be added to git repository.
 * `requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements.
  
-## 4 Project Dependencies
+## 4 Python Dependencies
 
-* [**Python**](https://www.python.org/) pypy3 (2.5.0)
 * [**flask-restplus**](https://github.com/noirbizarre/flask-restplus) (+
   [*flask*](http://flask.pocoo.org/))  
 * [**Werkzeug**](https://pypi.org/project/Werkzeug/) - for password hashing  
-* [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - for interactive
   RESTful API documentation.
 * [**Secrets**](https://pypi.org/project/python-secrets/) - for generating cryptographically strong pseudo-random numbers for managing user authentication.
 * [**Pyodbc**](https://pypi.org/project/pyodbc/) - for accessing the database and carry our user registration.
 * [**Requests**](https://pypi.org/project/requests/) - for making HTTP requests in Python. 
+ 
+## Tools
+
 * [**Docker**](https://www.docker.com/) - for storing the database (of the monolothic architecture) in a container.
+* [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - for interactive
+
+* aws
+* sql server
+* ngrok
+
   
 ## 4 Installation 
 
@@ -133,31 +140,31 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 
 ## 6 Authentication Details
 
-Here is how you register a user to consume the API:  with user login and password credentials using cURL:
+The request body must follow the following structure: 
 
-```
-$ curl 'http://127.0.0.1:5000/docs/users/api/v1/register
+#### User model:
 {
   "First Name": "Teresa",
   "Last Name": "Saldanha",
   "Email": "mtsaldanha@terra.com.br",
   "Password": "123"
 }
-```
 
 That is it! 
 
-After regitration, the system will generate the API Key: 
+After regitration, the system will generate the API Key.
 
-#### Response Body 
+#### User registration:
 
 ```
- 
+curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"First Name\": \"Teresa\", \"Last Name\": \"Saldanha\", \"Email\": \"mtsaldanha@terra.com.br\", \"Password\": \"123\"}"
 {
   "API Key": "1665Sg0UlrAq1BhZOstyPMj9DF-9d-i2o0DcIIB9",
   "Expiration Date": "2021-07-30"
 }
 ```
+The response body contains the API Key and the expiration date. 
+
 #### Response headers
 
 ```
