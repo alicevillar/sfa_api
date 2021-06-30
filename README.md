@@ -139,6 +139,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * aws
 * sql server
 * ngrok
+* AWS EC2
 
   
 ## 4 Installation 
