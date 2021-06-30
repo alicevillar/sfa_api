@@ -38,6 +38,11 @@ This paper describes a design proposal report for two versions:
 
 * 1.2.Prototype 2 = Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. 
 
+
+![print](swagger_print.PNG)
+
+
+
 ## 2. Project Approach
 
 #### Version 1 
