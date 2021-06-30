@@ -44,7 +44,9 @@ This paper describes a design proposal report for two versions:
 ![print](swagger_print.PNG)
 
 
-* WEBSERVICE PAGE
+* WEB INTERFACE
+
+
 
 
 ## 2. Roadmap: development timeline 
