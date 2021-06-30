@@ -1,4 +1,4 @@
-# sfa_api
+# Space Fan Art (SFA - API)  
 Space Fan Art is an API tailored to automatically put a fascinating image of planets and galaxy on your desktop background.
 
 
