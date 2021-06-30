@@ -16,7 +16,3 @@ ip_limiter = Limiter(
 )
 
 
-
-
-
-# Limiter - Demo key

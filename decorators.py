@@ -74,7 +74,7 @@ def api_key_required(func):
 #
 ######################################
 
-def api_or_demo_key_required(func): # This decorater has both the DEMO KEY and the API KEY
+def api_or_demo_key_required(func): # This decorator has both the DEMO KEY and the API KEY
     @wraps(func)
     def decorator(*args,**kwargs): #args - conjunto de parametros de posição / kwargs - parametros opcionais
         api_key = None

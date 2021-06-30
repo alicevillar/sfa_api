@@ -20,7 +20,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 
 #####################################################################################################################
 #
-#   VERSION 1 - contains one endpoint  para receber os dados do usuário
+#   VERSION 1 - contains one endpoint to create a new user
 #
 #####################################################################################################################
 
