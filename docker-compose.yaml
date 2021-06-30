@@ -1,0 +1,12 @@
+# Configuring the container
+
+version: "1.0"
+
+services:
+  sfa-api:
+    ports:
+      - 5000:5000 #redirect port 5000 from my pc to port 5000 of the container
+    build:
+      context: ./ #it will build it using the actual context
+
+

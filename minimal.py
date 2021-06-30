@@ -20,7 +20,7 @@ class API():
                        doc='/docs',authorizations=defining_authorizations)#docs é a rota q está direcionando para a API do swagger
 
     def run(self, ):
-        self.app.run(debug=True,port=5003)
+        self.app.run(debug=True,port=5000)
 
 
 sfa_app = API()

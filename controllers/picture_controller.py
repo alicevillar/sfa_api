@@ -6,6 +6,7 @@ import os
 from werkzeug.datastructures import FileStorage #importando uma abstração de arquivo
 from senhas import *
 from decorators import *
+from controllers.limiters_controller import *
 
 #####################################################################################################################
 #
@@ -28,6 +29,7 @@ picture_namespace = SFA.namespace('pictures', description='picture operations')
 # The decorator .route defines the endpoint path within the API
 @picture_namespace.route('/api/v1/download', doc={"description": 'user downloads an image'})
 
+#@ip_limiter
 class Downloading(Resource):
     # The response method defined possible responses in the documentation
     @picture_namespace.response(200, 'Success')
@@ -37,7 +39,7 @@ class Downloading(Resource):
     @picture_namespace.doc(security='apikey') #avisando para o swagger q esse endpoint precisa de api key
 
 
-    @api_key_required #a função aqui é chamada. Para isso é transformada em decorando a função get q baixa uma imagem
+    @api_or_demo_key_required #a função aqui é chamada. Para isso é transformada em decorando a função get q baixa uma imagem
     def get(self):
         """Downloads a picture"""
         cnxn = p.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
@@ -116,7 +118,7 @@ class Uploading(Resource):
         cursor = cnxn.cursor()
         sql = f"""
             INSERT INTO TB_SFA_Images (Ima_Copyright, Ima_Date,Ima_Explanation,Ima_Title,Ima_Url) 
-            values (?,?,?,?)"""
+            values (?,?,?,?,?)"""
         cursor.execute(sql, (uploaded_file_copyright, uploaded_file_date, uploaded_file_explanation, uploaded_file_title, uploaded_file_path))  # no ultimo argumento tem q ser o caminho absoluto
         cursor.commit()
         # url = do_something_with_file(uploaded_file)

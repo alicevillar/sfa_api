@@ -81,14 +81,17 @@ class Registration(Resource):
 
 
         """User Registration"""
-        cnxn = p.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+        cnxn = p.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='
+                         +username+';PWD='+ password)
         cursor = cnxn.cursor()
-        sql = f""" INSERT INTO TB_SFA_Registration (Reg_Name,Reg_LastName,Reg_Email,Reg_Authentication_Key,Reg_Password,Reg_Expiration_Date,Reg_Last_Access_Ip,Reg_Is_Blocked) 
+        #Base query. This is a generic query. The real data will be in the "???????"
+        sql = f""" INSERT INTO TB_SFA_Registration (Reg_Name,Reg_LastName,Reg_Email,Reg_Authentication_Key,
+        Reg_Password,Reg_Expiration_Date,Reg_Last_Access_Ip,Reg_Is_Blocked) 
         values (?,?,?,?,?,?,?,?)"""
-        cursor.execute(sql, (new_user['First Name'],new_user['Last Name'],new_user['Email'],apikey, password_hash,expiration_date,access_ip,is_blocked))
-        cursor.commit() # para de fato executar o comando
-        #result=cursor.fetchone()
-        #print(result[0])
+        # Here is where the information will be inserted
+        cursor.execute(sql, (new_user['First Name'],new_user['Last Name'],new_user['Email'],apikey,
+                             password_hash,expiration_date,access_ip,is_blocked))
+        cursor.commit() # To execute the command
         return {"API Key": apikey,"Expiration Date":expiration_date}, 200
 
 

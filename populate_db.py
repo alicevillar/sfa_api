@@ -6,7 +6,7 @@ from senhas import *
 cnxn = p.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
 cursor = cnxn.cursor()
 
-with open("C:/Users/Alice/Desktop/provisorio/APOD_365") as file:
+with open("APOD_365") as file:
     data = js.load(file)
     #print(data[0]["date"])
     #data_json=data

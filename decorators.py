@@ -67,3 +67,27 @@ def api_key_required(func):
     return decorator
 
 # O usuário q estiver com chave expirada, está bloqueado ou ip diferente vai tentar entrar e será deletado no banco. Ele vai receber uma mensagem de q nao pode.
+
+#####################################
+#
+# Creating a decorator for the demo key
+#
+######################################
+
+def api_or_demo_key_required(func): # This decorater has both the DEMO KEY and the API KEY
+    @wraps(func)
+    def decorator(*args,**kwargs): #args - conjunto de parametros de posição / kwargs - parametros opcionais
+        api_key = None
+        if 'X-API-KEY' in request.headers: #se no header da request veio uma api key, salvo numa variável
+            api_key = request.headers['X-API-KEY']
+            if api_key == demo_key: # Checking if the key received is the demokey
+                return func(*args, **kwargs)  # aqui roda a funçao decorada - sucesso
+
+            else:
+                return api_key_required(func(*args, **kwargs))  # If it's not the dem key, it's a regular key, so here I'm calling the previous function
+
+        else:
+            return {'Info':'Error: missing API KEY'},401 #dicionario e depois o status de resposta (note a aqui no restplus nao precisa do jsonify)
+
+    return decorator
+
