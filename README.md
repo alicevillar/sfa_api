@@ -118,8 +118,6 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * [**Requests**](https://pypi.org/project/requests/) - for making HTTP requests in Python. 
 * [**Docker**](https://www.docker.com/) - for storing the database (of the monolothic architecture) in a container.
   
-
-
 ## 4 Installation 
 
 ## 5 Quick Start  
@@ -159,7 +157,6 @@ After regitration, the system will generate the API Key:
  content-type: application/json 
  date: Wed, 30 Jun 2021 20:42:59 GMT 
  server: Werkzeug/0.16.1 Python/3.8.6 
-  
 }
 ```
  
