@@ -89,24 +89,21 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 
 ## 3. Project Files 
 
-
-* `README.md` - Contains the description and documentation of the project. 
-* `users_controller.py` [users_controller.py] - This is a config file with one endpoint for user registration (HTTP Request Type -> POST)
-* `picture_controller.py` [picture_controller.py] - This is a config file with two endpoints which allows registrated users to download an image (HTTP Request Type -> GET) and to upload an image (HTTP Request Type -> POST)
-* `limiters_controller.py` [limiters_controller.py] - This is a config file for counting the use of the API (through user's IP address)
-* `demo_key_controller.py` [demo_key_controller.py] - This is the config file of the demo key.
-* `decorators.py` [decorators.py] - This file contains the decorators for the api key and the demo key  
-* `Dockerfile` - Docker config file which is used to build a Docker image
+* `README.md` [README.md](https://github.com/alicevillar/sfa_api/blob/main/README.md)- Contains the description and documentation of the project. 
+* `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - This is a config file with one endpoint for user registration (HTTP Request Type -> POST)
+* `picture_controller.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py) - This is a config file with two endpoints which allows registrated users to download an image (HTTP Request Type -> GET) and to upload an image (HTTP Request Type -> POST)
+* `limiters_controller.py` [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py) - This is a config file for counting the use of the API (through user's IP address)
+* `demo_key_controller.py` [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py) - This is the config file of the demo key.
+* `decorators.py` [decorators.py](https://github.com/alicevillar/sfa_api/blob/main/decorators.py) - This file contains the decorators for the api key and the demo key  
+* `Dockerfile`[Dockerfile](https://github.com/alicevillar/sfa_api/blob/main/Dockerfile) - Docker config file which is used to build a Docker image
   running this RESTful API Server example.
-* `minimal.py` [minimal.py] - This is a config file containing the class API  
+* `minimal.py` [minimal.py](https://github.com/alicevillar/sfa_api/blob/main/minimal.py) - This is a config file containing the class API  
 * `populate_db.py` [populate_db.py] - This is a config file to populate the database.
-* `senhas.py` [senhas.py] - This file contains all the passwords of the database.
-* `server.py` [server.py] - This file contains the driver code. 
-* `docker-compose.yaml` [docker-compose.yaml] - This is a config file to deploy, combine and configure multiple docker-container at the same time. 
-* `.dockerignore` - Lists files and file masks of the files which should be
-  ignored while Docker build process.
-* `.gitignore` - Lists files and file masks of the files which should not be added to git repository.
-* `.requirements.txt` - The list of Python (PyPi) requirements.
+* `senhas.py` - This file contains all the passwords of the database.
+* `server.py` [server.py](https://github.com/alicevillar/sfa_api/blob/main/server.py) - This file contains the driver code. 
+* `docker-compose.yaml` [docker-compose.yaml](https://github.com/alicevillar/sfa_api/blob/main/docker-compose.yaml) - This is a config file to deploy, combine and configure multiple docker-container at the same time. 
+* `.gitignore` [gitignore](https://github.com/alicevillar/sfa_api/blob/main/.gitignore)- Lists files and file masks of the files which should not be added to git repository.
+* `.requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements.
  
 ## 4 Project Dependencies
 
@@ -154,7 +151,6 @@ After regitration, the system will generate the API Key:
   "Expiration Date": "2021-07-30"
 }
 ```
-
 #### Response headers
 
 ```
