@@ -98,7 +98,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * `Dockerfile`[Dockerfile](https://github.com/alicevillar/sfa_api/blob/main/Dockerfile) - Docker config file which is used to build a Docker image
   running this RESTful API Server example.
 * `minimal.py` [minimal.py](https://github.com/alicevillar/sfa_api/blob/main/minimal.py) - This is a config file containing the class API  
-* `populate_db.py` [populate_db.py] - This is a config file to populate the database.
+* `populate_db.py` [populate_db.py](https://github.com/alicevillar/sfa_api/blob/main/populate_db.py) - This is a config file to populate the database.
 * `senhas.py` - This file contains all the passwords of the database.
 * `server.py` [server.py](https://github.com/alicevillar/sfa_api/blob/main/server.py) - This file contains the driver code. 
 * `docker-compose.yaml` [docker-compose.yaml](https://github.com/alicevillar/sfa_api/blob/main/docker-compose.yaml) - This is a config file to deploy, combine and configure multiple docker-container at the same time. 
