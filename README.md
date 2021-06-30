@@ -163,18 +163,5 @@ curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: applicati
   "Expiration Date": "2021-07-30"
 }
 ```
-The response body contains the API Key and the expiration date. 
-
-#### Response headers
-
-```
-{
- content-length: 99 
- content-type: application/json 
- date: Wed, 30 Jun 2021 20:42:59 GMT 
- server: Werkzeug/0.16.1 Python/3.8.6 
-}
-```
- 
-Once the access authentication key expires, you have to create a new one. 
+The response body contains the API Key and the expiration date. Once the access authentication key expires, you have to create a new one. 
 
