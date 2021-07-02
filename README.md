@@ -11,12 +11,12 @@ Space Fan Art is an API tailored using Flask REST-Plus to automatically put a fa
 - [1. Overview](#1-overview)
     - [1.1. Prototype 1: monolithic architecture](#11-monolithic-architecture)
     - [1.2. Prototype 2: microservice-architecture](#12-microservice-architecture)
-- [2. Interfaces](#2-interfaces)
+- [2. Project Interfaces](#2-project-interfaces)
 - [3. Roadmap: development timeline](#2-roadmap-development-timeline)
     - [3.1. Version 1](#31-version-1)
-    - [3.2. Version 2](#31-version-2)
-    - [3.3. Version 3](#31-version-3)
-    - [3.4. Version 4](#31-version-4)
+    - [3.2. Version 2](#32-version-2)
+    - [3.3. Version 3](#33-version-3)
+    - [3.4. Version 4](#34-version-4)
 - [4. Project Structure](#4-project-structure)
     - [4.1. Chapter 1](#41-chapter-1)
     - [4.2. Chapter 2](#42-chapter-2)
@@ -27,26 +27,42 @@ Space Fan Art is an API tailored using Flask REST-Plus to automatically put a fa
 <!-- /TOC -->
 
 ## 1. Overview 
-This API, called SFA (Space Fan Art), is an API that automatically puts a fascinating image of planets and galaxies on your desktop background. Following the best practices proven to secure a REST-API, SFA-API provides access via a web browser and has an interface, which allows authenticated users to download and upload images. 
 
-This paper describes a design proposal report for two versions: 
+This API, called SFA (Space Fan Art), is an API that automatically puts a fascinating image of planets and galaxies on your desktop background. Following the best practices proven to secure a REST-API, SFA-API provides access via swagger and via web interface. Both allows authenticated users to download and upload images. THe web interface of our API has an additional feature: it automatically puts a fascinating image of planets and galaxies on your desktop background!
 
-## 1.1. Prototype 1: monolithic architecture
+This project contains two Prototypes. Prototype 1 has a monolithic architecture and Prototype 2 a microsservice architecture. APOD, one of NASA's Open API's, has been used thoughout the development of both Prototypes:  
 
-* 1.1.Prototype 1 = Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database (ngrok). Here a small NASA dataset of images is used (365 pictures). 
+* In the monolithic architecture it was used as an API model, specially for our web interface, user authentication, Web Service Rate Limits and DEMO_KEY Rate Limits. 
 
-## 1.2. Prototype 2: monolithic architecture
-* 1.2.Prototype 2 = Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. 
+* In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
 
-## 2. Interfaces 
+
+## 1.1. Prototype 1: Monolithic Architecture
+
+> => Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
+
+* [Monolithic Architecture - UML Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/monolithic_architecture.jpg) 
+
+## 1.2. Prototype 2: Microsservice Architecture
+
+> => Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. 
+
+* [Microsservice Architecture - UML Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.jpg) 
+ 
+## 2. Project Interfaces 
 
 #### SWAGGER INTERFACE
 
-![print](swagger_print.PNG)
+Swagger enabled the development across the entire API lifecycle, from design and documentation, to test and deployment. It has also been used as an interface, allowing: a) users authentication, b) download images, and c) upload images.     
+
+![print](/readme_img/swagger_print.PNG)
 
 #### WEB INTERFACE
 
-C:\Users\Alice\Desktop\INTERFACE_SFS\index.html
+The Web Interface is our main interface and it was built with HTML/CSS and Javascript. As swagger, it also allows:  a) users authentication, b) download images, and c) upload images. However, our web interface has an additional feature: when user downloads and image, the system automatically puts it as his or her desktop background. It has been  done with ctypes and Eel libraries. 
+
+* Click [here](C:\Users\Alice\Desktop\INTERFACE_SFS\index.html) to check out our web interface!
+
 
 ## 2. Roadmap: development timeline 
 
@@ -94,11 +110,6 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 ```
 ## 3. Project Structure
 
-
-
-
-## 3. Project Files 
-
 * `README.md` [README.md](https://github.com/alicevillar/sfa_api/blob/main/README.md)- Contains the description and documentation of the project. 
 * `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - defines operations/endpoints with users (user registration).
 * `picture_controller.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py) - defines operations/endpoints with pictures (download and upload).
@@ -114,34 +125,72 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * `server.py` [server.py](https://github.com/alicevillar/sfa_api/blob/main/server.py) - This file imports controllers and runs the API. 
 * `gitignore` [gitignore](https://github.com/alicevillar/sfa_api/blob/main/.gitignore)- Lists files and file masks of the files which should not be added to git repository.
 * `requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements.
+* `application_structure.py` [application_structure.py](https://github.com/alicevillar/sfa_api/blob/main/application_structure.py) - Directory tree structure in Python
+
  
 ## 4 Python Dependencies
 
-* [**flask-restplus**](https://github.com/noirbizarre/flask-restplus) (+
+* [**Flask-RestPlus**](https://github.com/noirbizarre/flask-restplus) (+
   [*flask*](http://flask.pocoo.org/))  
 * [**Werkzeug**](https://pypi.org/project/Werkzeug/) - for password hashing  
   RESTful API documentation.
 * [**Secrets**](https://pypi.org/project/python-secrets/) - for generating cryptographically strong pseudo-random numbers for managing user authentication.
 * [**Pyodbc**](https://pypi.org/project/pyodbc/) - for accessing the database and carry our user registration.
 * [**Requests**](https://pypi.org/project/requests/) - for making HTTP requests in Python. 
- 
- * flask-login 
-* flask-cors
-* flask-limiter
- 
+* [**Eel**](https://github.com/ChrisKnott/Eel) - a little Python library for hosting our local webserver, then lets us use [Python]( https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python) to automatically set a download image as user's desktop background.   
+* [**Flask Login**](https://flask-login.readthedocs.io/en/latest/) - A Flask extension that provides user session management for Flask. It handles the common tasks of logging in, logging out, and remembering your users’ sessions over extended periods of time.
+* [**Flask Cors**](https://flask-cors.readthedocs.io/en/latest/) - A Flask extension for handling Cross Origin Resource Sharing (​CORS), making cross-origin AJAX possible. 
+ * [**Flask Cors**](https://flask-limiter.readthedocs.io/en/stable/) - Flask-Limiter provides rate limiting features to flask routes.
  
 ## Tools
 
 * [**Docker**](https://www.docker.com/) - for storing the database (of the monolothic architecture) in a container.
-* [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - for interactive
+* [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - used for documentation and to allow development team to visualize and interact with the API's. 
+* [**SQL Server**](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) - to create the database of Prototype 1 (monolithic architecture)
+* [**Ngrok**](https://ngrok.com/) - enabled the exposure of the a local development server to the Internet with minimal effort. 
+* [**AWS EC2**](https://aws.amazon.com/pt/ec2/) - cloud computing service used in both prototypes to host and run the applications  
+* [**Github**](https://github.com/alicevillar/sfa_api) - to document the project. 
+* [**Insomnia**](https://insomnia.rest/) - used to consume APOD and retrieve the 365 images for our dataset (monolithic architecture). 
+* [**NASA APOD**](https://api.nasa.gov/) - In the monolithic architecture it was used as an API model. In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
+* [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
 
-* aws
-* sql server
-* ngrok
-* AWS EC2
-
-  
+   
 ## 4 Installation 
+
+### Using Docker
+
+It's easy to start exploring SFA-API using Docker:
+
+```bash
+$ docker run -it --rm --publish 5000:5000 frolvlad/flask-restplus-server-example
+```
+
+[![](https://images.microbadger.com/badges/image/frolvlad/flask-restplus-server-example.svg)](http://microbadger.com/images/frolvlad/flask-restplus-server-example "Get your own image badge on microbadger.com")
+
+### From sources
+
+#### Clone the Project
+
+```bash
+$ git clone https://github.com/alicevillar/sfa_api
+```
+#### Setup Environment
+
+It is recommended to use XXXXXXXX a to manage Python dependencies. You will need `invoke` package to work with everything related to this project.
+
+```bash
+$ pip install -r tasks/requirements.txt
+```
+#### Run Server
+
+NOTE: All dependencies and database migrations will be automatically handled, so go ahead and turn the server ON! 
+
+```bash
+$ invoke app.run
+```
+#### Deploy Server
+
+You can deploy this project as any other Flask/WSGI application. 
 
 ## 5 Quick Start  
 
