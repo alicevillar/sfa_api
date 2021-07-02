@@ -8,25 +8,22 @@ Space Fan Art is an API tailored using Flask REST-Plus to automatically put a fa
 <h1>Table of Contents</h1>
 
 <!-- TOC -->
-
 - [1. Overview](#1-overview)
-    - [1.1. Prototype 1](#11-monolithic-architecture)
-    - [1.2. Prototype 2](#12-microservice-architecture)
-- [2. Project Approach](#2-project-approach)
-    - [2.1. Version 1](#21-version-1)
-    - [2.2. Version 2](#21-version-2)
-    - [2.3. Version 3](#21-version-3)
-    - [2.4. Version 4](#21-version-4)
-- [3. Project Structure](#3-project-structure)
-    - [3.1. Chapter 1](#31-chapter-1)
-    - [3.2. Chapter 2](#32-chapter-2)
-- [4. Dependencies](#4-dependencies) 
-- [5. Installation](#5-results)
-- [5. Quick Start](#5-results)
-- [5. Authentication Details](#5-results)
- 
-
- 
+    - [1.1. Prototype 1: monolithic architecture](#11-monolithic-architecture)
+    - [1.2. Prototype 2: microservice-architecture](#12-microservice-architecture)
+- [2. Interfaces](#2-interfaces)
+- [3. Roadmap: development timeline](#2-roadmap-development-timeline)
+    - [3.1. Version 1](#31-version-1)
+    - [3.2. Version 2](#31-version-2)
+    - [3.3. Version 3](#31-version-3)
+    - [3.4. Version 4](#31-version-4)
+- [4. Project Structure](#4-project-structure)
+    - [4.1. Chapter 1](#41-chapter-1)
+    - [4.2. Chapter 2](#42-chapter-2)
+- [5. Dependencies](#5-dependencies) 
+- [6. Installation](#7-installation)
+- [7. Quick Start](#5-quick-start)
+- [8. Authentication Details](#8-authentication-details)
 <!-- /TOC -->
 
 ## 1. Overview 
@@ -34,11 +31,24 @@ This API, called SFA (Space Fan Art), is an API that automatically puts a fascin
 
 This paper describes a design proposal report for two versions: 
 
+## 1.1. Prototype 1: monolithic architecture
+
 * 1.1.Prototype 1 = Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database (ngrok). Here a small NASA dataset of images is used (365 pictures). 
 
+## 1.2. Prototype 2: monolithic architecture
 * 1.2.Prototype 2 = Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. 
 
-## 2. Project Approach
+## 2. Interfaces 
+
+#### SWAGGER INTERFACE
+
+![print](swagger_print.PNG)
+
+#### WEB INTERFACE
+
+C:\Users\Alice\Desktop\INTERFACE_SFS\index.html
+
+## 2. Roadmap: development timeline 
 
 #### Version 1 
 
@@ -90,33 +100,46 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 ## 3. Project Files 
 
 * `README.md` [README.md](https://github.com/alicevillar/sfa_api/blob/main/README.md)- Contains the description and documentation of the project. 
-* `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - This is a config file with one endpoint for user registration (HTTP Request Type -> POST)
-* `picture_controller.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py) - This is a config file with two endpoints which allows registrated users to download an image (HTTP Request Type -> GET) and to upload an image (HTTP Request Type -> POST)
-* `limiters_controller.py` [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py) - This is a config file for counting the use of the API (through user's IP address)
-* `demo_key_controller.py` [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py) - This is the config file of the demo key.
-* `decorators.py` [decorators.py](https://github.com/alicevillar/sfa_api/blob/main/decorators.py) - This file contains the decorators for the api key and the demo key  
-* `Dockerfile`[Dockerfile](https://github.com/alicevillar/sfa_api/blob/main/Dockerfile) - Docker config file which is used to build a Docker image
-  running this RESTful API Server example.
-* `minimal.py` [minimal.py](https://github.com/alicevillar/sfa_api/blob/main/minimal.py) - This is a config file containing the class API  
-* `populate_db.py` [populate_db.py](https://github.com/alicevillar/sfa_api/blob/main/populate_db.py) - This is a config file to populate the database.
-* `senhas.py` - This file contains all the passwords of the database.
-* `server.py` [server.py](https://github.com/alicevillar/sfa_api/blob/main/server.py) - This file contains the driver code. 
-* `docker-compose.yaml` [docker-compose.yaml](https://github.com/alicevillar/sfa_api/blob/main/docker-compose.yaml) - This is a config file to deploy, combine and configure multiple docker-container at the same time. 
+* `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - defines operations/endpoints with users (user registration).
+* `picture_controller.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py) - defines operations/endpoints with pictures (download and upload).
+* `limiters_controller.py` [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py) - This is file implements the counting to limit the use of the API (through user's IP address) and demo key. 
+* `demo_key_controller.py` [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py) - This file implements the demo key.
+* `decorators.py` [decorators.py](https://github.com/alicevillar/sfa_api/blob/main/decorators.py) - This file contains the decorators for the api key and the demo key (to verify the existence and authenticity of the key).   
+* `Dockerfile`[Dockerfile](https://github.com/alicevillar/sfa_api/blob/main/Dockerfile) - Docker config file is a recipe to build a Docker image
+  running this RESTful API Server.
+* `docker-compose.yaml` [docker-compose.yaml](https://github.com/alicevillar/sfa_api/blob/main/docker-compose.yaml) - This is a config file to deploy and configure the docker-container to run. 
+* `minimal.py` [minimal.py](https://github.com/alicevillar/sfa_api/blob/main/minimal.py) - This is a config file containing the class API.  
+* `populate_db.py` [populate_db.py](https://github.com/alicevillar/sfa_api/blob/main/populate_db.py) - This file is aimed to populate the database.
+* `senhas.py` - This file contains the passwords of the database.
+* `server.py` [server.py](https://github.com/alicevillar/sfa_api/blob/main/server.py) - This file imports controllers and runs the API. 
 * `gitignore` [gitignore](https://github.com/alicevillar/sfa_api/blob/main/.gitignore)- Lists files and file masks of the files which should not be added to git repository.
 * `requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements.
  
-## 4 Project Dependencies
+## 4 Python Dependencies
 
-* [**Python**](https://www.python.org/) pypy3 (2.5.0)
 * [**flask-restplus**](https://github.com/noirbizarre/flask-restplus) (+
   [*flask*](http://flask.pocoo.org/))  
 * [**Werkzeug**](https://pypi.org/project/Werkzeug/) - for password hashing  
-* [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - for interactive
   RESTful API documentation.
 * [**Secrets**](https://pypi.org/project/python-secrets/) - for generating cryptographically strong pseudo-random numbers for managing user authentication.
 * [**Pyodbc**](https://pypi.org/project/pyodbc/) - for accessing the database and carry our user registration.
 * [**Requests**](https://pypi.org/project/requests/) - for making HTTP requests in Python. 
+ 
+ * flask-login 
+* flask-cors
+* flask-limiter
+ 
+ 
+## Tools
+
 * [**Docker**](https://www.docker.com/) - for storing the database (of the monolothic architecture) in a container.
+* [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - for interactive
+
+* aws
+* sql server
+* ngrok
+* AWS EC2
+
   
 ## 4 Installation 
 
@@ -124,41 +147,28 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 
 ## 6 Authentication Details
 
-Here is how you register a user to consume the API:  with user login and password credentials using cURL:
+The request body must follow the following structure: 
 
-```
-$ curl 'http://127.0.0.1:5000/docs/users/api/v1/register
+#### User model:
 {
   "First Name": "Teresa",
   "Last Name": "Saldanha",
   "Email": "mtsaldanha@terra.com.br",
   "Password": "123"
 }
-```
 
 That is it! 
 
-After regitration, the system will generate the API Key: 
+After regitration, the system will generate the API Key.
 
-#### Response Body 
+#### User registration:
 
 ```
- 
+curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"First Name\": \"Teresa\", \"Last Name\": \"Saldanha\", \"Email\": \"mtsaldanha@terra.com.br\", \"Password\": \"123\"}"
 {
   "API Key": "1665Sg0UlrAq1BhZOstyPMj9DF-9d-i2o0DcIIB9",
   "Expiration Date": "2021-07-30"
 }
 ```
-#### Response headers
-
-```
-{
- content-length: 99 
- content-type: application/json 
- date: Wed, 30 Jun 2021 20:42:59 GMT 
- server: Werkzeug/0.16.1 Python/3.8.6 
-}
-```
- 
-Once the access authentication key expires, you have to create a new one. 
+The response body contains the API Key and the expiration date. Once the access authentication key expires, you have to create a new one. 
 
