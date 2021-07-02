@@ -8,27 +8,22 @@ Space Fan Art is an API tailored using Flask REST-Plus to automatically put a fa
 <h1>Table of Contents</h1>
 
 <!-- TOC -->
-
 - [1. Overview](#1-overview)
     - [1.1. Prototype 1: monolithic architecture](#11-monolithic-architecture)
     - [1.2. Prototype 2: microservice-architecture](#12-microservice-architecture)
 - [2. Interfaces](#2-interfaces)
-
 - [3. Roadmap: development timeline](#2-roadmap-development-timeline)
-    - [2.1. Version 1](#21-version-1)
-    - [2.2. Version 2](#21-version-2)
-    - [2.3. Version 3](#21-version-3)
-    - [2.4. Version 4](#21-version-4)
-- [3. Project Structure](#3-project-structure)
-    - [3.1. Chapter 1](#31-chapter-1)
-    - [3.2. Chapter 2](#32-chapter-2)
-- [4. Dependencies](#4-dependencies) 
-- [5. Installation](#5-results)
-- [5. Quick Start](#5-results)
-- [5. Authentication Details](#5-results)
- 
-
- 
+    - [3.1. Version 1](#31-version-1)
+    - [3.2. Version 2](#31-version-2)
+    - [3.3. Version 3](#31-version-3)
+    - [3.4. Version 4](#31-version-4)
+- [4. Project Structure](#4-project-structure)
+    - [4.1. Chapter 1](#41-chapter-1)
+    - [4.2. Chapter 2](#42-chapter-2)
+- [5. Dependencies](#5-dependencies) 
+- [6. Installation](#7-installation)
+- [7. Quick Start](#5-quick-start)
+- [8. Authentication Details](#8-authentication-details)
 <!-- /TOC -->
 
 ## 1. Overview 
