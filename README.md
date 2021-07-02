@@ -10,9 +10,11 @@ Space Fan Art is an API tailored using Flask REST-Plus to automatically put a fa
 <!-- TOC -->
 
 - [1. Overview](#1-overview)
-    - [1.1. Prototype 1](#11-monolithic-architecture)
-    - [1.2. Prototype 2](#12-microservice-architecture)
-- [2. Project Approach](#2-project-approach)
+    - [1.1. Prototype 1: monolithic architecture](#11-monolithic-architecture)
+    - [1.2. Prototype 2: microservice-architecture](#12-microservice-architecture)
+- [2. Interfaces](#2-interfaces)
+
+- [3. Roadmap: development timeline](#2-roadmap-development-timeline)
     - [2.1. Version 1](#21-version-1)
     - [2.2. Version 2](#21-version-2)
     - [2.3. Version 3](#21-version-3)
@@ -34,20 +36,22 @@ This API, called SFA (Space Fan Art), is an API that automatically puts a fascin
 
 This paper describes a design proposal report for two versions: 
 
+## 1.1. Prototype 1: monolithic architecture
+
 * 1.1.Prototype 1 = Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database (ngrok). Here a small NASA dataset of images is used (365 pictures). 
 
+## 1.2. Prototype 2: monolithic architecture
 * 1.2.Prototype 2 = Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. 
 
-## 1. Interfaces 
+## 2. Interfaces 
 
-* SWAGGER
+#### SWAGGER INTERFACE
+
 ![print](swagger_print.PNG)
 
+#### WEB INTERFACE
 
-* WEB INTERFACE
-
-
-
+C:\Users\Alice\Desktop\INTERFACE_SFS\index.html
 
 ## 2. Roadmap: development timeline 
 
