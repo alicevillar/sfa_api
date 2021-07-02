@@ -112,6 +112,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 
 The following directory diagram was generated with the comand "tree /F"
 
+```
 app/
 │   APOD_365
 │   application_structure.py
@@ -130,7 +131,7 @@ app/
 │   │   limiters_controller.py
 │   │   picture_controller.py
 │   │   users_controller.py
-
+```
 
 # Project Files
 
