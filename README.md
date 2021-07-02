@@ -164,9 +164,6 @@ It's easy to start exploring SFA-API using Docker:
 ```bash
 $ docker run -it --rm --publish 5000:5000 frolvlad/flask-restplus-server-example
 ```
-
-[![](https://images.microbadger.com/badges/image/frolvlad/flask-restplus-server-example.svg)](http://microbadger.com/images/frolvlad/flask-restplus-server-example "Get your own image badge on microbadger.com")
-
 ### From sources
 
 #### Clone the Project
