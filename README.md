@@ -110,6 +110,30 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 ```
 ## 3. Project Structure
 
+The following directory diagram was generated with the comand "tree /F"
+
+app/
+│   APOD_365
+│   application_structure.py
+│   decorators.py
+│   docker-compose.yaml
+│   Dockerfile
+│   minimal.py
+│   populate_db.py
+│   README.md
+│   requirements.txt
+│   senhas.py
+│   server.py
+├───images (this folder contains 365 images)
+├───controllers
+│   │   demo_key_controller.py
+│   │   limiters_controller.py
+│   │   picture_controller.py
+│   │   users_controller.py
+
+
+# Project Files
+
 * `README.md` [README.md](https://github.com/alicevillar/sfa_api/blob/main/README.md)- Contains the description and documentation of the project. 
 * `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - defines operations/endpoints with users (user registration).
 * `picture_controller.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py) - defines operations/endpoints with pictures (download and upload).
