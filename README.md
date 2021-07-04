@@ -17,11 +17,11 @@ Space Fan Art is an API tailored using Flask REST-Plus to automatically put a fa
 - [2. Project Interface](#2-project-interface)
 - [3. Development timeline](#3-development-timeline)
 - [4. Project Structure](#4-project-structure)
-- [5. Project Files](#4-project-files)
-- [6. Dependencies](#5-dependencies) 
+- [5. Project Files](#5-project-files)
+- [6. Dependencies](#6-dependencies) 
 - [7. Installation](#7-installation)
-- [8. Quick Start](#5-quick-start)
-- [9. Authentication Details](#8-authentication-details)
+- [8. Quick Start](#8-quick-start)
+- [9. Authentication Details](#9-authentication-details)
 <!-- /TOC -->
 
 ## 1. Overview 
