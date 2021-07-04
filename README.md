@@ -256,6 +256,58 @@ The response body contains the API Key and the expiration date. Once the access 
 The [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-controls/) is a list of security techniques that should be included in every software development project. They are ordered by order of importance, with control number 1 being the most important.
 
 
+<h3>C1: Define Security Requirements</h3>
+
+The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements that represent the best practices for that category drafted as verifiable statements. Successful use of security requirements involves four steps: discovering / selecting, documenting, implementing, and then confirming correct implementation of new security features and functionality within an application.
+
+The standard provides a basis for testing security controls to protect against vulnerabilities such as Cross-Site Scripting (XSS) and SQL injection. 
+
+> SFA-API prevents malicious code by using secure authentication methods. We use parameterised queries to avoid SQL injection attacks. Files: users_controller.py, picture_controller.py. We protect against Cross-Site Scripting (XSS) in our web page, using javascript. 
+
+
+<h3>C2: Leverage Security Frameworks and Libraries</h3>
+
+
+<h3>C3: Secure Database Access</h3>
+
+
+<h3>C4: Encode and Escape Data</h3>
+
+
+<h3>C5: Validate All Inputs</h3>
+
+
+<h3>C6: Implement Digital Identity</h3>
+
+
+<h3>C7: Enforce Access Controls</h3>
+
+
+<h3>C8: Protect Data Everywhere</h3>
+
+
+<h3>C9: Implement Security Logging and Monitoring</h3>
+
+
+<h3>C10: Handle All Errors and Exceptions</h3>
+
+ 
+ 
+ 
+ ## Useful Links: 
+ 
+ OWASP. OWASP Proactive Controls. Available from: https://owasp.org/www-project-proactive-controls/
+ 
+ https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
 
  
 
