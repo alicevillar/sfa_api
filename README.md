@@ -1,7 +1,7 @@
 
 <h1>Space Fan Art (SFA - API)</h1>
 
-SFA-API is the prototype of an API created with Flask REST-Plus. It allow authenticated users to download and upload images from NASA. This project contains two different architectures (monolothic architecture and a microservice architecture) and includes the OWASP Top Ten Proactive Controls, security techniques that should be included in every software development project.
+SFA-API is the prototype of an API created with Flask REST-Plus. It allow authenticated users to download and upload images from NASA. This project contains two different architectures (monolothic architecture and a microservice architecture) and showcases the OWASP Top Ten Proactive Controls, security techniques that should be included in every software development project.
 
 <h3>Currently in progress ! 💻</h3>
 
