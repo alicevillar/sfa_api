@@ -6,12 +6,9 @@ SFA-API is the prototype of an API created with Flask REST-Plus. It allow authen
 <h3>Currently in progress ! 💻</h3>
 
 > Goals to be achieved: 
-> The RESTful API server should be self-documented using Swagger, therefore with interactive documentation UI. 
- 
-> describes the most important control and control categories that every architect and developer should absolutely, 100% include in every project.
-The OWASP Top Ten Proactive Controls 2018   
-> OWASP Top 10 Proactive Controls
-> Extensive testing using Automation Anywhere.
+> * The RESTful API server should be self-documented using Swagger, therefore with interactive documentation UI. 
+> * Showcase the OWASP Top Ten Proactive Controls     
+> * Implement extensive testing using Automation Anywhere.
  
 <h1>Table of Contents</h1>
 
