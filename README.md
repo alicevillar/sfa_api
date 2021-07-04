@@ -19,9 +19,10 @@ Space Fan Art is an API tailored using Flask REST-Plus to automatically put a fa
 - [4. Project Structure](#4-project-structure)
 - [5. Project Files](#5-project-files)
 - [6. Dependencies](#6-dependencies) 
-- [7. Installation](#7-installation)
-- [8. Quick Start](#8-quick-start)
-- [9. Authentication Details](#9-authentication-details)
+- [7. Tools](#7-tools) 
+- [8. Installation](#8-installation)
+- [9. Quick Start](#9-quick-start)
+- [10. Authentication Details](#10-authentication-details)
 <!-- /TOC -->
 
 ## 1. Overview 
@@ -150,7 +151,11 @@ app/
 * `requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements.
 * `application_structure.py` [application_structure.py](https://github.com/alicevillar/sfa_api/blob/main/application_structure.py) - Directory tree structure in Python
 
- 
+ - [6. Dependencies](#6-dependencies) 
+- [7. Installation](#7-installation)
+- [8. Quick Start](#8-quick-start)
+- [9. Authentication Details](#9-authentication-details)
+
 ## 6. Python Dependencies
 
 * [**Flask-RestPlus**](https://github.com/noirbizarre/flask-restplus) (+
@@ -177,8 +182,7 @@ app/
 * [**NASA APOD**](https://api.nasa.gov/) - In the monolithic architecture it was used as an API model. In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
 * [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
 
-   
-## 9. Installation 
+## 8. Installation 
 
 <h3>Using Docker</h3>
 
@@ -212,9 +216,9 @@ $ invoke app.run
 
 You can deploy this project as any other Flask/WSGI application. 
 
-## 10. Quick Start  
+## 9. Quick Start  
 
-## 11. Authentication Details
+## 10. Authentication Details
 
 The request body must follow the following structure: 
 
