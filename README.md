@@ -178,7 +178,7 @@ app/
 * [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
 
    
-## 8. Installation 
+## 9. Installation 
 
 <h3>Using Docker</h3>
 
@@ -191,28 +191,30 @@ $ docker run -it --rm --publish 5000:5000 frolvlad/flask-restplus-server-example
 
 ```bash
 $ git clone https://github.com/alicevillar/sfa_api
-```
-#### Setup Environment 
+``` 
+<h3>Setup Environment </h3>
 
 It is recommended to use XXXXXXXX a to manage Python dependencies. You will need `invoke` package to work with everything related to this project.
 
 ```bash
 $ pip install -r tasks/requirements.txt
 ```
-#### Run Server
+
+<h3>Run Server</h3>
 
 NOTE: All dependencies and database migrations will be automatically handled, so go ahead and turn the server ON! 
 
 ```bash
 $ invoke app.run
 ```
-#### Deploy Server
+ 
+<h3>Deploy Server</h3>
 
 You can deploy this project as any other Flask/WSGI application. 
 
-## 8 Quick Start  
+## 10. Quick Start  
 
-## 9 Authentication Details
+## 11. Authentication Details
 
 The request body must follow the following structure: 
 
