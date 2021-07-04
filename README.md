@@ -1,13 +1,18 @@
 
 <h1>Space Fan Art (SFA - API)</h1>
 
-Space Fan Art is an API tailored using Flask REST-Plus to automatically put a fascinating image of planets and galaxy on your desktop background.
+SFA-API is the prototype of an API created with Flask REST-Plus. It allos authenticated users to download and upload images from NASA. This project contains two different architectures: a monolothic architecture and a microservice architecture. This project includes the OWASP Top Ten Proactive Controls, security techniques that should be included in every software development project.
 
 <h3>Currently in progress ! 💻</h3>
 
-> Goals: 
-> This project was an opportunity to study Flask REST-Plus and Software Security. 
-
+> Goals to be achieved: 
+> The RESTful API server should be self-documented using Swagger, therefore with interactive documentation UI. 
+ 
+> describes the most important control and control categories that every architect and developer should absolutely, 100% include in every project.
+The OWASP Top Ten Proactive Controls 2018   
+> OWASP Top 10 Proactive Controls
+> Extensive testing using Automation Anywhere.
+ 
 <h1>Table of Contents</h1>
 
 <!-- TOC -->
@@ -23,6 +28,8 @@ Space Fan Art is an API tailored using Flask REST-Plus to automatically put a fa
 - [8. Installation](#8-installation)
 - [9. Quick Start](#9-quick-start)
 - [10. Authentication Details](#10-authentication-details)
+- [11. OWASP Proactive Controls](#10-OWASP-proactive-controls)
+
 <!-- /TOC -->
 
 ## 1. Overview 
@@ -234,7 +241,8 @@ That is it!
 
 After regitration, the system will generate the API Key.
 
-#### User registration:
+ 
+<h3>User Registration</h3>
 
 ```
 curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"First Name\": \"Teresa\", \"Last Name\": \"Saldanha\", \"Email\": \"mtsaldanha@terra.com.br\", \"Password\": \"123\"}"
@@ -244,4 +252,19 @@ curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: applicati
 }
 ```
 The response body contains the API Key and the expiration date. Once the access authentication key expires, you have to create a new one. 
+
+
+## 11. OWASP Proactive Controls
+
+The [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-controls/) is a list of security techniques that should be included in every software development project. They are ordered by order of importance, with control number 1 being the most important.
+
+
+
+ 
+
+ 
+
+
+
+
 
