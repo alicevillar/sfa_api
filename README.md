@@ -133,7 +133,7 @@ app/
 │   │   users_controller.py
 ```
 
-# Project Files
+## 4. Project Files
 
 * `README.md` [README.md](https://github.com/alicevillar/sfa_api/blob/main/README.md)- Contains the description and documentation of the project. 
 * `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - defines operations/endpoints with users (user registration).
@@ -153,7 +153,7 @@ app/
 * `application_structure.py` [application_structure.py](https://github.com/alicevillar/sfa_api/blob/main/application_structure.py) - Directory tree structure in Python
 
  
-## 4 Python Dependencies
+## 5. Python Dependencies
 
 * [**Flask-RestPlus**](https://github.com/noirbizarre/flask-restplus) (+
   [*flask*](http://flask.pocoo.org/))  
@@ -167,7 +167,7 @@ app/
 * [**Flask Cors**](https://flask-cors.readthedocs.io/en/latest/) - A Flask extension for handling Cross Origin Resource Sharing (​CORS), making cross-origin AJAX possible. 
  * [**Flask Cors**](https://flask-limiter.readthedocs.io/en/stable/) - Flask-Limiter provides rate limiting features to flask routes.
  
-## Tools
+## 6. Tools
 
 * [**Docker**](https://www.docker.com/) - for storing the database (of the monolothic architecture) in a container.
 * [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - used for documentation and to allow development team to visualize and interact with the API's. 
@@ -180,7 +180,7 @@ app/
 * [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
 
    
-## 4 Installation 
+## 7. Installation 
 
 ### Using Docker
 
@@ -214,9 +214,9 @@ $ invoke app.run
 
 You can deploy this project as any other Flask/WSGI application. 
 
-## 5 Quick Start  
+## 8 Quick Start  
 
-## 6 Authentication Details
+## 9 Authentication Details
 
 The request body must follow the following structure: 
 
