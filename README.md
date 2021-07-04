@@ -3,27 +3,25 @@
 
 Space Fan Art is an API tailored using Flask REST-Plus to automatically put a fascinating image of planets and galaxy on your desktop background.
 
+<h3>Currently in progress ! 💻</h3>
+
+> Goals: 
 > This project was an opportunity to study Flask REST-Plus and Software Security. 
 
 <h1>Table of Contents</h1>
 
 <!-- TOC -->
 - [1. Overview](#1-overview)
-    - [1.1. Prototype 1: monolithic architecture](#11-monolithic-architecture)
-    - [1.2. Prototype 2: microservice-architecture](#12-microservice-architecture)
-- [2. Project Interfaces](#2-project-interfaces)
-- [3. Roadmap: development timeline](#2-roadmap-development-timeline)
-    - [3.1. Version 1](#31-version-1)
-    - [3.2. Version 2](#32-version-2)
-    - [3.3. Version 3](#33-version-3)
-    - [3.4. Version 4](#34-version-4)
+    - [1.1. Monolithic Architecture](#11-monolithic-architecture)
+    - [1.2. Microservice Architecture](#12-microservice-architecture)
+- [2. Project Interface](#2-project-interface)
+- [3. Development timeline](#3-development-timeline)
 - [4. Project Structure](#4-project-structure)
-    - [4.1. Chapter 1](#41-chapter-1)
-    - [4.2. Chapter 2](#42-chapter-2)
-- [5. Dependencies](#5-dependencies) 
-- [6. Installation](#7-installation)
-- [7. Quick Start](#5-quick-start)
-- [8. Authentication Details](#8-authentication-details)
+- [5. Project Files](#4-project-files)
+- [6. Dependencies](#5-dependencies) 
+- [7. Installation](#7-installation)
+- [8. Quick Start](#5-quick-start)
+- [9. Authentication Details](#8-authentication-details)
 <!-- /TOC -->
 
 ## 1. Overview 
@@ -37,19 +35,19 @@ This project contains two Prototypes. Prototype 1 has a monolithic architecture 
 * In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
 
 
-## 1.1. Prototype 1: Monolithic Architecture
+## 1.1. Monolithic Architecture
 
 > => Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
 
 * [Monolithic Architecture - UML Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/monolithic_architecture.jpg) 
 
-## 1.2. Prototype 2: Microsservice Architecture
+## 1.2. Microservice Architecture
 
 > => Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. 
 
 * [Microsservice Architecture - UML Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.jpg) 
  
-## 2. Project Interfaces 
+## 2. Project Interface
 
 #### SWAGGER INTERFACE
 
@@ -64,9 +62,9 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 * Click [here](C:\Users\Alice\Desktop\INTERFACE_SFS\index.html) to check out our web interface!
 
 
-## 2. Roadmap: development timeline 
+## 3. Development timeline 
 
-#### Version 1 
+<h3>Version 1</h3>
 
 This is the first version of SFA-API. It contains one endpoint that allows you to download an image.
 ```
@@ -76,7 +74,7 @@ This is the first version of SFA-API. It contains one endpoint that allows you t
 * URL GET Parameters -> N/A
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/download
 ```
-#### Version 2
+<h3>Version 2</h3>
 
 This is the second version of SFA-API. It contains one more endpoint that allows you to upload an image.
 ```
@@ -86,7 +84,7 @@ This is the second version of SFA-API. It contains one more endpoint that allows
 * URL GET Parameters -> file / title / explanation / date / copyright
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/upload
 ```
-#### Version 3
+<h3>Version 3</h3>
 
 This is the first version of SFA-API. It contains one more endpoint that allows you to register a new user.
 
@@ -97,7 +95,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * URL POST Parameters -> First name / Last name / email / password
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/register
 ```
-#### Version 4 
+<h3>Version 4</h3>
 
 This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key.
 
@@ -108,7 +106,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * URL GET Parameters -> N/A
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/demo_key
 ```
-## 3. Project Structure
+## 4. Project Structure
 
 The following directory diagram was generated with the comand "tree /F"
 
@@ -133,7 +131,7 @@ app/
 │   │   users_controller.py
 ```
 
-## 4. Project Files
+## 5. Project Files
 
 * `README.md` [README.md](https://github.com/alicevillar/sfa_api/blob/main/README.md)- Contains the description and documentation of the project. 
 * `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - defines operations/endpoints with users (user registration).
@@ -153,7 +151,7 @@ app/
 * `application_structure.py` [application_structure.py](https://github.com/alicevillar/sfa_api/blob/main/application_structure.py) - Directory tree structure in Python
 
  
-## 5. Python Dependencies
+## 6. Python Dependencies
 
 * [**Flask-RestPlus**](https://github.com/noirbizarre/flask-restplus) (+
   [*flask*](http://flask.pocoo.org/))  
@@ -167,7 +165,7 @@ app/
 * [**Flask Cors**](https://flask-cors.readthedocs.io/en/latest/) - A Flask extension for handling Cross Origin Resource Sharing (​CORS), making cross-origin AJAX possible. 
  * [**Flask Cors**](https://flask-limiter.readthedocs.io/en/stable/) - Flask-Limiter provides rate limiting features to flask routes.
  
-## 6. Tools
+## 7. Tools
 
 * [**Docker**](https://www.docker.com/) - for storing the database (of the monolothic architecture) in a container.
 * [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - used for documentation and to allow development team to visualize and interact with the API's. 
@@ -180,23 +178,21 @@ app/
 * [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
 
    
-## 7. Installation 
+## 8. Installation 
 
-### Using Docker
+<h3>Using Docker</h3>
 
 It's easy to start exploring SFA-API using Docker:
 
 ```bash
 $ docker run -it --rm --publish 5000:5000 frolvlad/flask-restplus-server-example
 ```
-### From sources
-
-#### Clone the Project
+<h3>Clone the Project</h3> 
 
 ```bash
 $ git clone https://github.com/alicevillar/sfa_api
 ```
-#### Setup Environment
+#### Setup Environment 
 
 It is recommended to use XXXXXXXX a to manage Python dependencies. You will need `invoke` package to work with everything related to this project.
 
