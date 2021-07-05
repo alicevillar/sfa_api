@@ -172,7 +172,9 @@ app/
 * [**Eel**](https://github.com/ChrisKnott/Eel) - a little Python library for hosting our local webserver, then lets us use [Python]( https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python) to automatically set a download image as user's desktop background.   
 * [**Flask Login**](https://flask-login.readthedocs.io/en/latest/) - A Flask extension that provides user session management for Flask. It handles the common tasks of logging in, logging out, and remembering your users’ sessions over extended periods of time.
 * [**Flask Cors**](https://flask-cors.readthedocs.io/en/latest/) - A Flask extension for handling Cross Origin Resource Sharing (​CORS), making cross-origin AJAX possible. 
- * [**Flask Cors**](https://flask-limiter.readthedocs.io/en/stable/) - Flask-Limiter provides rate limiting features to flask routes.
+* [**Flask Limiters**](https://flask-limiter.readthedocs.io/en/stable/) - Flask-Limiter provides rate limiting features to flask routes.
+* [**Validator Collection**](https://pypi.org/project/validator-collection/) - to validade unsers' inputs. 
+ 
  
 ## 7. Tools
 
@@ -276,8 +278,11 @@ The standard provides a basis for testing security controls to protect against v
 
 <h3>C5: Validate All Inputs</h3>
 
- https://pypi.org/project/validator-collection/
+Input validation is a programming technique that ensures only properly formatted data may enter a software system component. It validates that an input value is what you think it should be. Syntax validity means that the data is in the form that is expected. 
 
+> SFA-API validates inputs we use the Python library [Validator Collection](https://pypi.org/project/validator-collection/), which is a Python library that provides functions that can be used to validate the type and contents of an input value.
+
+ 
 <h3>C6: Implement Digital Identity</h3>
 
 
