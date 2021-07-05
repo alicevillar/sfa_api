@@ -285,7 +285,18 @@ Input validation is a programming technique that ensures only properly formatted
  
 <h3>C6: Implement Digital Identity</h3>
 
+OWASP provide several recommendations for secure implementation of Digital Identity, a unique representation of a user. OWASP divide it in three levels: 
+* Level 1 : Passwords => It's necessary to store them securely and follow OWASP password requirements. 
+* Level 2 : Multi-Factor Authentication => Using passwords as a sole factor provides weak security. Multi-factor solutions provide a more robust solution by requiring an attacker to acquire more than one element to authenticate with the service. 
+* Level 3 : Cryptographic Based Authentication => requires authentication that is "based on proof of possession of a key through a cryptographic protocol.” This type of authentication is used to achieve the strongest level of authentication assurance.  
 
+> SFA-API applies digital identity, authentication and session management recommendation. We use python libraries werkzeug (for password hashing) and secrets (to generate authentication key). 
+However, we're only scratching the surface. We are maximizing the security in our API > following OWASP recommendations. Here are the basic security measures we apply to maximize the security in our AP:  
+> * Level 1 : Passwords => a) In SFA-API, passwords have at least 8 characters in length; b) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/tree/master/Passwords); c) we securely store user credentials, so is a password is compromised, the attacker does not immediately have access to this information. 
+> * Level 2 : Multi-Factor Authentication (MFA) => SFA-API applies 2 layers of protection: hashing passwords and authentication key (which works as a token).
+> * Level 3 : Cryptographic Based Authentication => Once the initial successful user authentication has taken place, the application tracks this user (this is called Session Management) so it can store details about usage. 
+
+ 
 <h3>C7: Enforce Access Controls</h3>
 
 
