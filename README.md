@@ -155,11 +155,6 @@ app/
 * `requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements.
 * `application_structure.py` [application_structure.py](https://github.com/alicevillar/sfa_api/blob/main/application_structure.py) - Directory tree structure in Python
 
- - [6. Dependencies](#6-dependencies) 
-- [7. Installation](#7-installation)
-- [8. Quick Start](#8-quick-start)
-- [9. Authentication Details](#9-authentication-details)
-
 ## 6. Python Dependencies
 
 * [**Flask-RestPlus**](https://github.com/noirbizarre/flask-restplus) (+
@@ -269,11 +264,30 @@ The standard provides a basis for testing security controls to protect against v
 
 <h3>C2: Leverage Security Frameworks and Libraries</h3>
 
+Leveraging security frameworks helps prevent a wide range of application vulnerabilities. 
+
+https://owasp.org/www-project-dependency-check/
 
 <h3>C3: Secure Database Access</h3>
 
+Secure access to databases consider: secure queries, secure configuration, secure communication and secure authentication. 
+ 
+
+> * Here is how secure database access is done in SFA-API: 
+> * Secure queries: In order to mitigate SQL injection we used use ‘Query Parameterization’. However, certain locations in a database query are not parameterizable. Because of the large variation in the pattern of SQL injection attacks they are often unable to protect databases. In SFA-API we test queries for performance. 
+> * Secure configuration: we use pyodbc, an open source Python module that makes accessing ODBC databases simple.
+> Secure communication: we apply secure (authenticated, encrypted) communications methods.   It is a good practice to only use the secure communications options per the "Protect Data Everywhere control".
+
+
+
+All access to the database should be properly authenticated. 
+
+
+> ==> In SFA-API, Cross-site scripting is prevented by: 
 
 <h3>C4: Encode and Escape Data</h3>
+
+> ==> In SFA-API, Cross-site scripting is prevented by: 
 
 
 <h3>C5: Validate All Inputs</h3>
@@ -290,7 +304,7 @@ OWASP provide several recommendations for secure implementation of Digital Ident
 * Level 2 : Multi-Factor Authentication => Using passwords as a sole factor provides weak security. Multi-factor solutions provide a more robust solution by requiring an attacker to acquire more than one element to authenticate with the service. 
 * Level 3 : Cryptographic Based Authentication => requires authentication that is "based on proof of possession of a key through a cryptographic protocol.” This type of authentication is used to achieve the strongest level of authentication assurance.  
 
-> SFA-API applies digital identity, authentication and session management recommendation. We use python libraries werkzeug (for password hashing) and secrets (to generate authentication key). 
+> SFA-API applies digital identity, authentication and session management recommendation. We use libraries werkzeug (for password hashing) and secrets (to generate authentication key). 
 However, we're only scratching the surface. We are maximizing the security in our API > following OWASP recommendations. Here are the basic security measures we apply to maximize the security in our AP:  
 > * Level 1 : Passwords => a) In SFA-API, passwords have at least 8 characters in length; b) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/tree/master/Passwords); c) we securely store user credentials, so is a password is compromised, the attacker does not immediately have access to this information. 
 > * Level 2 : Multi-Factor Authentication (MFA) => SFA-API applies 2 layers of protection: hashing passwords and authentication key (which works as a token).
@@ -300,8 +314,17 @@ However, we're only scratching the surface. We are maximizing the security in ou
 <h3>C7: Enforce Access Controls</h3>
 
 
+
+
 <h3>C8: Protect Data Everywhere</h3>
 
+> ==> In SFA-API, SQL injection is prevented by: 
+> * a) parametrized queries: makes it possible for the database to recognize the code and distinguish it from input data; 
+> * b) least privilege on the database: we focus focus on identifying what access rights or elevated permissions the application needs; 
+> * c) stored procedures: we have a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterized. Simply put, it is a type of code that can be stored for later and used many times.
+> * d) escaping: we use character-escaping functions for user-supplied input provided by each database management system (DBMS). This is done to make sure the DBMS never confuses it with the SQL statement provided by the developer.
+ 
+ 
 
 <h3>C9: Implement Security Logging and Monitoring</h3>
 
@@ -317,10 +340,7 @@ However, we're only scratching the surface. We are maximizing the security in ou
  
  https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
  
- 
- 
- 
- 
+ https://www.ptsecurity.com/ww-en/analytics/knowledge-base/how-to-prevent-sql-injection-attacks/#6
  
  
 
