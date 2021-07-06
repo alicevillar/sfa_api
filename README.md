@@ -240,12 +240,15 @@ $ pip install -r tasks/requirements.txt
   
 ## 9. Quick Start :warning:TODO 
  
+ <br>
+ <br>
+ 
 
 ## 10. Authentication Details
 
 The request body must follow the following structure: 
 
-<h3>User model:</h3>
+:large_blue_circle: USER MODEL:
 {
   "First Name": "Teresa",
   "Last Name": "Saldanha",
@@ -258,7 +261,7 @@ That is it!
 After regitration, the system will generate the API Key.
 
  
-<h3>User Registration</h3>
+:large_blue_circle: USER REGISTRATION:
 
 ```
 curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"First Name\": \"Teresa\", \"Last Name\": \"Saldanha\", \"Email\": \"mtsaldanha@terra.com.br\", \"Password\": \"123\"}"
