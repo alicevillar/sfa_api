@@ -1,7 +1,7 @@
 
  <h1>Space Fan Art (SFA - API)</h1>
 
-SFA-API is the prototype of an API created with Flask REST-Plus. This project contains two different architectures (monolothic architecture and a microservice architecture) and showcases the OWASP Top Ten Proactive Controls, security techniques that should be included in every software development project. In both prototypes, users have to register to get an authentication key, which allows them download and upload images from NASA. 
+SFA-API is the prototype of an API with two different architectures (monolothic architecture and a microservice architecture). In both architectures, users have to register to get an authentication key, which allows them download and upload images from NASA. The images come from two different sources: in the monolithic architecture, they come from a local database containing [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microserve architecture, they come directly from  APOD (one of the most famous NASA's Open API) because SFA-API and APOD are integrated. 
 
 :arrow_forward: Duration : 3 months
 <br>
@@ -10,9 +10,10 @@ SFA-API is the prototype of an API created with Flask REST-Plus. This project co
 <h3>Currently in progress ! 💻</h3>
 
 > :round_pushpin: Goals to be achieved: 
-> * The RESTful API server should be self-documented using Swagger, therefore with interactive documentation UI. 
-> * Showcase the OWASP Top Ten Proactive Controls.      
-> * Implement extensive testing using Automation Anywhere.
+> * Create two working prototypes with [Flask REST-Plus](https://flask-restplus.readthedocs.io/en/stable/), an extension for Flask that adds support for quickly building REST APIs. 
+> * The RESTful API server should be self-documented using [Swagger](https://swagger.io/), therefore with interactive documentation UI. 
+> * Showcase the [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-controls/), security techniques that should be included in every software development project.  
+> * Implement extensive testing using [Automation Anywhere](https://www.automationanywhere.com/).
  
 <h1>Table of Contents</h1>
 
@@ -35,25 +36,22 @@ SFA-API is the prototype of an API created with Flask REST-Plus. This project co
 
 ## 1. Overview 
 
-This API, called SFA (Space Fan Art), is an API created with Flask REST-Plus following the best practices proven to secure a REST-API and showcasing the OWASP Top Ten Proactive Controls. 
-
-This project contains two Prototypes. Prototype 1 has a monolithic architecture and Prototype 2 a microsservice architecture. APOD, one of NASA's most famous Open API's, has been used as a model thoughout the development of both Prototypes:  
-
-
-We showcase the OWASP Top Ten Proactive Controls in both 
-
-SFA-API provides access via swagger and via web interface. 
-
-
-an API that automatically puts a fascinating image of planets and galaxies on your desktop background. 
-
+This API, called SFA (Space Fan Art), is an API created with Flask REST-Plus following the best practices proven to secure a REST-API and showcasing the OWASP Top Ten Proactive Controls. This project contains two Prototypes: a monolithic architecture and a microsservice architecture. APOD, one of NASA's most famous Open API's, has been used as a model thoughout the development of both Prototypes:  
  
-Both allows authenticated users to download and upload images. The web interface of our API has an additional feature: it automatically puts a fascinating image of planets and galaxies on your desktop background!
+:arrow_forward: In the monolithic architecture APOD was used as an API model, specially for our web interface, user authentication, Web Service Rate Limits and DEMO_KEY Rate Limits. 
+<br>
+:arrow_forward:In the microservice architecture, SFA-API is connected with APOD, which returns the picture of the day. 
 
+<br> 
  
-:arrow_forward: In the monolithic architecture it was used as an API model, specially for our web interface, user authentication, Web Service Rate Limits and DEMO_KEY Rate Limits. 
+Both prototypes allows authenticated users to download and upload images. Here is how it works: user have to registration, the system generates an authentication key, which the user will use to download and upload fantastic image of planets and galaxies! SFA-API provides access via swagger and via web interface. The web interface of our API has an additional feature: it automatically puts a fascinating image of planets and galaxies on your desktop background!
 
-:arrow_forward:In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
+> :radio_button: SFA-API FEATURES: 
+> * :arrow_forward: user registration, which generates an authentication key
+> * :arrow_forward: download images
+> * :arrow_forward: upload images
+> * :arrow_forward: sign in 
+> * :arrow_forward: demo key
 
 
 ## 1.1. Monolithic Architecture
@@ -72,16 +70,26 @@ Both allows authenticated users to download and upload images. The web interface
 
 :large_blue_circle: SWAGGER INTERFACE
 
-Swagger enabled the development across the entire API lifecycle, from design and documentation, to test and deployment. It has also been used as an interface, allowing: a) users authentication, b) download images, and c) upload images.     
+Swagger enabled the development across the entire API lifecycle, from design and documentation, to test and deployment. It has also been used as an interface. 
+> :radio_button: FEATURES: 
+> * :arrow_forward: user registration (generates an authentication key)
+> * :arrow_forward: download images  
+> * :arrow_forward: upload images (users can increment our database uploading new images)
+> * :arrow_forward: demo key (the demo key is: DEMO_KEY)
+> * :arrow_forward: sign in (to comply with GDPR, the system allows users to delete their data)
 
 ![print](/readme_img/swagger_print.PNG)
 
 :large_blue_circle: WEB INTERFACE
 
 The Web Interface is our main interface and it was built with HTML/CSS and Javascript. As swagger, it also allows:  a) users authentication, b) download images, and c) upload images. However, our web interface has an additional feature: when user downloads and image, the system automatically puts it as his or her desktop background. It has been  done with ctypes and Eel libraries. 
-
-* Click [here](C:\Users\Alice\Desktop\INTERFACE_SFS\index.html) to check out our web interface!
-
+ 
+ > :radio_button: FEATURES: 
+> * :arrow_forward: user registration, which generates an authentication key
+> * :arrow_forward: download images (the system can automatically put an image on user's desktop background) warning:TODO
+> * :arrow_forward: upload images (users can increment our database uploading new images)
+> * :arrow_forward: demo key (the demo key is: DEMO_KEY)
+> * :arrow_forward: sign in (to comply with GDPR, the system allows users to delete their data)
 
 ## 3. Development timeline 
 
@@ -130,7 +138,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 
 :paperclip:VERSION 5 
 
-:new: This is the first version of SFA-API. It contains one endpoint that allows users to sign in. To comply with GDPR, this allows users to delete their data in the system. 
+:warning:TODO This is the fifth version of SFA-API. It contains one endpoint that allows users to sign in. To comply with GDPR, this allows users to delete their data in the system. 
  
 
 ## 4. Project Structure
@@ -208,14 +216,14 @@ app/
 * [**NASA APOD**](https://api.nasa.gov/) - In the monolithic architecture it was used as an API model. In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
 * [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
 
-## 8. Installation 
+## 8. Installation  :warning:TODO 
 
 <h3>Using Docker</h3>
 
 It's easy to start exploring SFA-API using Docker:
 
 ```bash
-$ docker run -it --rm --publish 5000:5000 frolvlad/flask-restplus-server-example
+$ docker run -it --rm --publish 5000:5000 alicevillar/sfa_api
 ```
 <h3>Clone the Project</h3> 
 
@@ -224,26 +232,13 @@ $ git clone https://github.com/alicevillar/sfa_api
 ``` 
 <h3>Setup Environment </h3>
 
-It is recommended to use XXXXXXXX a to manage Python dependencies. You will need `invoke` package to work with everything related to this project.
+You will need `invoke` package to work with everything related to this project.
 
 ```bash
 $ pip install -r tasks/requirements.txt
 ```
-
-<h3>Run Server</h3>
-
-NOTE: All dependencies and database migrations will be automatically handled, so go ahead and turn the server ON! 
-
-```bash
-$ invoke app.run
-```
- 
-<h3>Deploy Server</h3>
-
-You can deploy this project as any other Flask/WSGI application. 
-
-## 9. Quick Start  
-
+  
+## 9. Quick Start :warning:TODO 
  
 
 ## 10. Authentication Details
@@ -364,16 +359,22 @@ Sensitive data such as passwords, credit card numbers, health records, personal 
 * d) escaping: is done in the file [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py), which defines operations/endpoints with pictures (download and upload). 
  
 <h3>C9: Implement Security Logging and Monitoring</h3>
-
   
+Security logging can be used for: Feeding intrusion detection systems, Forensic analysis and investigations, Satisfying regulatory compliance requirements
+
+> :white_check_mark: In SFA-API, we use a logging framework, a utility designed to standardise the process of logging in your application. Our logging framework is Flask->  
+> RESTPlus, an extension for Flask that adds support for quickly building REST APIs. Flask-RESTPlus encourages best practices with minimal setup. It provides a coherent
+> collection of decorators and tools to describe your API and expose its documentation properly (using Swagger). The logging from FlasK-Rest-Plus is standardised: a request is
+> received and then returned. In  FlasK-Rest-Plus the loggins are very simple, they are not very informative (thus, it is not possible to know details about each request). To
+> have informative loggins we will use docker, which is where all the loggins will be stored. It is secure. 
+
 
 <h3>C10:  Handle All Errors and Exceptions</h3>  
 
 Exception handling is a programming concept that allows an application to respond to different error states (like network down, or database connection failed, etc) in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure.
 
-> :white_check_mark: In SFA-API, we handle error and exceptions .... 
+> :white_check_mark: In SFA-API, we handle error and exceptions in the file [login_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/login_controller.py_
 
- 
  
  
  ## Useful Links: 
@@ -387,7 +388,6 @@ Exception handling is a programming concept that allows an application to respon
 [how-to-prevent-sql-injection-attacks](https://www.ptsecurity.com/ww-en/analytics/knowledge-base/how-to-prevent-sql-injection-attacks/#6)
  
  
-
 
 
 
