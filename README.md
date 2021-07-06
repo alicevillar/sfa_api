@@ -312,8 +312,7 @@ Encoding and escaping are defensive techniques meant to stop injection attacks. 
  * Encoding (commonly called “Output Encoding”) involves translating special characters into some different but equivalent form that is no longer dangerous in the target interpreter, for example translating the < character into the &lt; string when writing to an HTML page. 
  * Escaping involves adding a special character before the character/string to avoid it being misinterpreted, for example, adding a \ character before a " (double quote) character so that it is interpreted as text and not as closing a string.
  
-> :white_check_mark: In SFA-API, we apply C4:
-> * Escaping is done in the file [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py), which defines operations/endpoints with pictures (download and upload). 
+> :white_check_mark: In SFA-API, we apply C4: 
 > * Encoding in our webpage interface (HTML/CSS, Javascript). :warning:TODO 
 > It should be highlightened that a hash is not ‘encryption’ – it cannot be decrypted back to the original text (it is a ‘one-way’ cryptographic function, Whereas encryption is a two-way function, hashing is a one-way function. Hashing is used in conjunction with authentication to produce strong evidence that a given message has not been modified and serves the purpose of ensuring integrity, i.e. making it so that if something is changed you can know that it’s changed.
 password is stored in hashed into the database and the authentication process uses hashing comparison. For password hashing we use the library [Werkzeug](https://pypi.org/project/Werkzeug/). 
