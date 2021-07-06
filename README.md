@@ -51,9 +51,9 @@ an API that automatically puts a fascinating image of planets and galaxies on yo
 Both allows authenticated users to download and upload images. The web interface of our API has an additional feature: it automatically puts a fascinating image of planets and galaxies on your desktop background!
 
  
-:white_check_mark: In the monolithic architecture it was used as an API model, specially for our web interface, user authentication, Web Service Rate Limits and DEMO_KEY Rate Limits. 
+:arrow_forward: In the monolithic architecture it was used as an API model, specially for our web interface, user authentication, Web Service Rate Limits and DEMO_KEY Rate Limits. 
 
-:white_check_mark:In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
+:arrow_forward:In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
 
 
 ## 1.1. Monolithic Architecture
