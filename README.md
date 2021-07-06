@@ -3,6 +3,10 @@
 
 SFA-API is the prototype of an API created with Flask REST-Plus. This project contains two different architectures (monolothic architecture and a microservice architecture) and showcases the OWASP Top Ten Proactive Controls, security techniques that should be included in every software development project. In both prototypes, users have to register to get an authentication key, which allows them download and upload images from NASA. 
 
+:arrow_forward: Duration : 3 months
+<br>
+:arrow_forward: Team : Teamwork of 3
+
 <h3>Currently in progress ! 💻</h3>
 
 > :round_pushpin: Goals to be achieved: 
@@ -60,7 +64,7 @@ Both allows authenticated users to download and upload images. The web interface
 
 ## 1.2. Microservice Architecture
 
-> :small_blue_diamond: Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. 
+> :small_orange_diamond: Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. 
 
 * [Microsservice Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.jpg) 
  
