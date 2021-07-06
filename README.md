@@ -70,13 +70,13 @@ Both allows authenticated users to download and upload images. The web interface
  
 ## 2. Project Interface
 
-#### SWAGGER INTERFACE
+:large_blue_circle: SWAGGER INTERFACE
 
 Swagger enabled the development across the entire API lifecycle, from design and documentation, to test and deployment. It has also been used as an interface, allowing: a) users authentication, b) download images, and c) upload images.     
 
 ![print](/readme_img/swagger_print.PNG)
 
-#### WEB INTERFACE
+:large_blue_circle: WEB INTERFACE
 
 The Web Interface is our main interface and it was built with HTML/CSS and Javascript. As swagger, it also allows:  a) users authentication, b) download images, and c) upload images. However, our web interface has an additional feature: when user downloads and image, the system automatically puts it as his or her desktop background. It has been  done with ctypes and Eel libraries. 
 
@@ -85,7 +85,7 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 
 ## 3. Development timeline 
 
-<h3>Version 1</h3>
+:paperclip: VERSION 1
 
 This is the first version of SFA-API. It contains one endpoint that allows you to download an image.
 ```
@@ -95,7 +95,7 @@ This is the first version of SFA-API. It contains one endpoint that allows you t
 * URL GET Parameters -> N/A
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/download
 ```
-<h3>Version 2</h3>
+:paperclip:VERSION 2 
 
 This is the second version of SFA-API. It contains one more endpoint that allows you to upload an image.
 ```
@@ -105,7 +105,7 @@ This is the second version of SFA-API. It contains one more endpoint that allows
 * URL GET Parameters -> file / title / explanation / date / copyright
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/upload
 ```
-<h3>Version 3</h3>
+:paperclip:VERSION 3 
 
 This is the first version of SFA-API. It contains one more endpoint that allows you to register a new user.
 
@@ -116,7 +116,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * URL POST Parameters -> First name / Last name / email / password
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/register
 ```
-<h3>Version 4</h3>
+:paperclip:VERSION 4 
 
 This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key.
 
@@ -128,7 +128,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/demo_key
 ```
 
-<h3>Version 5</h3>
+:paperclip:VERSION 5 
 
 :new: This is the first version of SFA-API. It contains one endpoint that allows users to sign in. To comply with GDPR, this allows users to delete their data in the system. 
  
@@ -193,7 +193,6 @@ app/
 * [**Validator Collection**](https://pypi.org/project/validator-collection/) - to validade unsers' inputs. 
 * [**Dependency Check**](https://pypi.org/project/dependency-check/) - scans application dependencies and checks whether they contain any published vulnerabilities.
 
-  
  
 ## 7. Tools
 
@@ -280,27 +279,23 @@ The [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-c
 
  <h3>C1: Define Security Requirements</h3>
 
-:white_check_mark: The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements that represent the best practices for that category drafted as verifiable statements. Successful use of security requirements involves four steps: discovering / selecting, documenting, implementing, and then confirming correct implementation of new security features and functionality within an application.
+The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements that represent the best practices for that category drafted as verifiable statements. Successful use of security requirements involves four steps: discovering / selecting, documenting, implementing, and then confirming correct implementation of new security features and functionality within an application.
 
 The standard provides a basis for testing security controls to protect against vulnerabilities such as Cross-Site Scripting (XSS) and SQL injection. 
 
-> SFA-API prevents malicious code by using secure authentication methods. We use parameterised queries to avoid SQL injection attacks in all the operations with the database. 
-We protect against Cross-Site Scripting (XSS) in our web page, using javascript. 
+>  :white_check_mark: SFA-API prevents malicious code by using secure authentication methods. We use parameterised queries to avoid SQL injection attacks in all the operations with the database. We also protect against Cross-Site Scripting (XSS) in our web page, using javascript. 
 
  <h3>C2: Leverage Security Frameworks and Libraries</h3>
 
-:white_check_mark:Secure frameworks and libraries can help to prevent a wide range of web application vulnerabilities. To attend
+Secure frameworks and libraries can help to prevent a wide range of web application vulnerabilities.  
 
-https://pypi.org/project/dependency-check/
-
-https://owasp.org/www-project-dependency-check/
+>  :white_check_mark: In SFA-API we a tool recommended by OWASP called [Project Dependency](https://pypi.org/project/dependency-check/) to identify project dependencies and check if there are any known, publicly disclosed vulnerabilities for third party code. 
 
  <h3>C3: Secure Database Access</h3>
 
-:white_check_mark:Secure access to databases consider: secure queries, secure configuration, secure communication and secure authentication. 
- 
+ Secure access to databases consider: secure queries, secure configuration, secure communication and secure authentication. 
 
-> * Here is how secure database access is done in SFA-API: 
+>  :white_check_mark: Here is how secure database access is done in SFA-API: 
 > * Secure queries: In order to mitigate SQL injection we used use ‘Query Parameterization’. However, certain locations in a database query are not parameterizable. Because of the large variation in the pattern of SQL injection attacks they are often unable to protect databases. OWASP recomments testing queries for performance, but this is not done here because the queries are all very small and therefore is not necessary. 
 > * Secure configuration: we run the database in a docker container, which has connectivvity restrictions (can only be accessed by the administrator and only has one door open - 1433). The server which runs the database does not allow external access. All access to the database should be properly authenticated. Thus, it is not possible to directly access the database from outside the instance. 
 > Secure communication: we use Pyodbc, an open source Python module to communicate with the database. We apply secure (authenticated, encrypted) communications methods.  
@@ -308,16 +303,15 @@ https://owasp.org/www-project-dependency-check/
 
  <h3>C4: Encode and Escape Data</h3>
 
-:white_check_mark:Encoding/Escaping is used to neutralize content against other forms of injection. 
-Escaping is a subset of encoding, where not all characters need to be encoded. 
+Encoding/Escaping is used to neutralize content against other forms of injection. 
 
-Password is stored in hashed into the database and the authentication process uses hashing comparison. For password hashing we use the library [Werkzeug](https://pypi.org/project/Werkzeug/). 
+> :white_check_mark: In SFA-API, password is stored in hashed into the database and the authentication process uses hashing comparison. For password hashing we use the library [Werkzeug](https://pypi.org/project/Werkzeug/). 
 
-:white_check_mark: <h3>C5: Validate All Inputs</h3>
+<h3>C5: Validate All Inputs</h3>
 
-:white_check_mark: Input validation is a programming technique that ensures only properly formatted data may enter a software system component. It validates that an input value is what you think it should be. Syntax validity means that the data is in the form that is expected. 
+Input validation is a programming technique that ensures only properly formatted data may enter a software system component. It validates that an input value is what you think it should be. Syntax validity means that the data is in the form that is expected. 
 
-> SFA-API validates inputs we use the Python library [Validator Collection](https://pypi.org/project/validator-collection/), which is a Python library that provides functions that can be used to validate the type and contents of an input value.
+> :white_check_mark: SFA-API validates inputs we use the Python library [Validator Collection](https://pypi.org/project/validator-collection/), which is a Python library that provides functions that can be used to validate the type and contents of an input value.
 
  
  <h3>C6: Implement Digital Identity</h3>
@@ -327,7 +321,7 @@ Password is stored in hashed into the database and the authentication process us
 * Level 2 : Multi-Factor Authentication => Using passwords as a sole factor provides weak security. Multi-factor solutions provide a more robust solution by requiring an attacker to acquire more than one element to authenticate with the service. 
 * Level 3 : Cryptographic Based Authentication => requires authentication that is "based on proof of possession of a key through a cryptographic protocol.” This type of authentication is used to achieve the strongest level of authentication assurance.  
 
-> SFA-API applies digital identity, authentication and session management recommendation. We use libraries werkzeug (for password hashing) and secrets (to generate authentication key). 
+> :white_check_mark: SFA-API applies digital identity, authentication and session management recommendation. We use libraries werkzeug (for password hashing) and secrets (to generate authentication key). 
 However, we're only scratching the surface. We are maximizing the security in our API > following OWASP recommendations. Here are the basic security measures we apply to maximize the security in our AP:  
 > * Level 1 : Passwords => 
 > a) In SFA-API, passwords have at least 8 characters in length; 
@@ -345,14 +339,14 @@ However, we're only scratching the surface. We are maximizing the security in ou
 
   <h3>C8: Protect Data Everywhere</h3>
 
-:white_check_mark: Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations
+Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations
 
  * a) parametrized queries: makes it possible for the database to recognize the code and distinguish it from input data; 
  * b) least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
  * c) stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterized. Simply put, it is a type of code that can be stored for later and used many times.
  * d) escaping: use character-escaping functions for user-supplied input provided by each database management system (DBMS). This is done to make sure the DBMS never confuses it with the SQL statement provided by the developer.
 
-> ==> In SFA-API, SQL injection is prevented by: 
+> :white_check_mark: In SFA-API, SQL injection is prevented by: 
 > b) least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
 
 c) stored procedures: This is not done in SFA-API because the queries are small, so this measure is unecessary. 
@@ -365,7 +359,9 @@ c) stored procedures: This is not done in SFA-API because the queries are small,
 
 <h3>C10:  Handle All Errors and Exceptions</h3>  
 
- :white_check_mark:
+Exception handling is a programming concept that allows an application to respond to different error states (like network down, or database connection failed, etc) in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure.
+
+> :white_check_mark: In SFA-API, we handle error and exceptions .... 
 
  
  
