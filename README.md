@@ -1,13 +1,13 @@
 
-<h1>Space Fan Art (SFA - API)</h1>
+ <h1>Space Fan Art (SFA - API)</h1>
 
-SFA-API is the prototype of an API created with Flask REST-Plus. It allow authenticated users to download and upload images from NASA. This project contains two different architectures (monolothic architecture and a microservice architecture) and showcases the OWASP Top Ten Proactive Controls, security techniques that should be included in every software development project.
+SFA-API is the prototype of an API created with Flask REST-Plus. This project contains two different architectures (monolothic architecture and a microservice architecture) and showcases the OWASP Top Ten Proactive Controls, security techniques that should be included in every software development project. In both prototypes, users have to register to get an authentication key, which allows them download and upload images from NASA. 
 
 <h3>Currently in progress ! 💻</h3>
 
-> Goals to be achieved: 
+> :round_pushpin: Goals to be achieved: 
 > * The RESTful API server should be self-documented using Swagger, therefore with interactive documentation UI. 
-> * Showcase the OWASP Top Ten Proactive Controls     
+> * Showcase the OWASP Top Ten Proactive Controls.      
 > * Implement extensive testing using Automation Anywhere.
  
 <h1>Table of Contents</h1>
@@ -25,16 +25,28 @@ SFA-API is the prototype of an API created with Flask REST-Plus. It allow authen
 - [8. Installation](#8-installation)
 - [9. Quick Start](#9-quick-start)
 - [10. Authentication Details](#10-authentication-details)
-- [11. OWASP Proactive Controls](#10-OWASP-proactive-controls)
+- [11. OWASP Proactive Controls](#11-owasp-proactive-controls)
 
 <!-- /TOC -->
 
 ## 1. Overview 
 
-This API, called SFA (Space Fan Art), is an API that automatically puts a fascinating image of planets and galaxies on your desktop background. Following the best practices proven to secure a REST-API, SFA-API provides access via swagger and via web interface. Both allows authenticated users to download and upload images. THe web interface of our API has an additional feature: it automatically puts a fascinating image of planets and galaxies on your desktop background!
+This API, called SFA (Space Fan Art), is an API created with Flask REST-Plus following the best practices proven to secure a REST-API and showcasing the OWASP Top Ten Proactive Controls. 
 
-This project contains two Prototypes. Prototype 1 has a monolithic architecture and Prototype 2 a microsservice architecture. APOD, one of NASA's Open API's, has been used thoughout the development of both Prototypes:  
+This project contains two Prototypes. Prototype 1 has a monolithic architecture and Prototype 2 a microsservice architecture. APOD, one of NASA's most famous Open API's, has been used as a model thoughout the development of both Prototypes:  
 
+
+We showcase the OWASP Top Ten Proactive Controls in both 
+
+SFA-API provides access via swagger and via web interface. 
+
+
+an API that automatically puts a fascinating image of planets and galaxies on your desktop background. 
+
+ 
+Both allows authenticated users to download and upload images. The web interface of our API has an additional feature: it automatically puts a fascinating image of planets and galaxies on your desktop background!
+
+ 
 * In the monolithic architecture it was used as an API model, specially for our web interface, user authentication, Web Service Rate Limits and DEMO_KEY Rate Limits. 
 
 * In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
@@ -42,15 +54,15 @@ This project contains two Prototypes. Prototype 1 has a monolithic architecture 
 
 ## 1.1. Monolithic Architecture
 
-> => Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
+> :small_blue_diamond: Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
 
-* [Monolithic Architecture - UML Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/monolithic_architecture.jpg) 
+* [Monolithic Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/monolithic_architecture.jpg) 
 
 ## 1.2. Microservice Architecture
 
-> => Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. 
+> :small_blue_diamond: Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. 
 
-* [Microsservice Architecture - UML Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.jpg) 
+* [Microsservice Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.jpg) 
  
 ## 2. Project Interface
 
@@ -166,7 +178,7 @@ app/
 * [**Requests**](https://pypi.org/project/requests/) - for making HTTP requests in Python. 
 * [**Eel**](https://github.com/ChrisKnott/Eel) - a little Python library for hosting our local webserver, then lets us use [Python]( https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python) to automatically set a download image as user's desktop background.   
 * [**Flask Login**](https://flask-login.readthedocs.io/en/latest/) - A Flask extension that provides user session management for Flask. It handles the common tasks of logging in, logging out, and remembering your users’ sessions over extended periods of time.
-* [**Flask Cors**](https://flask-cors.readthedocs.io/en/latest/) - A Flask extension for handling Cross Origin Resource Sharing (​CORS), making cross-origin AJAX possible. 
+* [**Flask Cors**](https://flask-cors.readthedocs.io/en/latest/) - A Flask extension for handling Cross Origin Resource Sharing (CORS), making cross-origin AJAX possible. 
 * [**Flask Limiters**](https://flask-limiter.readthedocs.io/en/stable/) - Flask-Limiter provides rate limiting features to flask routes.
 * [**Validator Collection**](https://pypi.org/project/validator-collection/) - to validade unsers' inputs. 
 * [**Dependency Check**](https://pypi.org/project/dependency-check/) - scans application dependencies and checks whether they contain any published vulnerabilities.
@@ -225,7 +237,7 @@ You can deploy this project as any other Flask/WSGI application.
 
 The request body must follow the following structure: 
 
-#### User model:
+<h3>User model:</h3>
 {
   "First Name": "Teresa",
   "Last Name": "Saldanha",
@@ -248,7 +260,6 @@ curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: applicati
 }
 ```
 The response body contains the API Key and the expiration date. Once the access authentication key expires, you have to create a new one. 
-
 
 ## 11. OWASP Proactive Controls
 
@@ -356,10 +367,12 @@ c) stored procedures: This is not done in SFA-API because the queries are small,
  https://www.ptsecurity.com/ww-en/analytics/knowledge-base/how-to-prevent-sql-injection-attacks/#6
  
  
+https://github.com/frol/flask-restplus-server-example
 
 
 
- 
+
+
 
  
 
