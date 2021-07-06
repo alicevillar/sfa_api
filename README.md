@@ -216,8 +216,10 @@ app/
 * [**NASA APOD**](https://api.nasa.gov/) - In the monolithic architecture it was used as an API model. In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
 * [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
 
-## 8. Installation  :warning:TODO 
+## 8. Installation  
 
+ :warning:TODO 
+ 
 <h3>Using Docker</h3>
 
 It's easy to start exploring SFA-API using Docker:
@@ -238,11 +240,11 @@ You will need `invoke` package to work with everything related to this project.
 $ pip install -r tasks/requirements.txt
 ```
   
-## 9. Quick Start :warning:TODO 
+## 9. Quick Start  
  
  <br>
- <br>
- 
+:warning:TODO 
+  <br>
 
 ## 10. Authentication Details
 
@@ -313,6 +315,8 @@ Encoding and escaping are defensive techniques meant to stop injection attacks. 
 > :white_check_mark: In SFA-API, we apply C4:
 > * Escaping is done in the file [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py), which defines operations/endpoints with pictures (download and upload). 
 > * Encoding in our webpage interface (HTML/CSS, Javascript). :warning:TODO 
+> It should be highlightened that a hash is not ‘encryption’ – it cannot be decrypted back to the original text (it is a ‘one-way’ cryptographic function, Whereas encryption is a two-way function, hashing is a one-way function. Hashing is used in conjunction with authentication to produce strong evidence that a given message has not been modified and serves the purpose of ensuring integrity, i.e. making it so that if something is changed you can know that it’s changed.
+password is stored in hashed into the database and the authentication process uses hashing comparison. For password hashing we use the library [Werkzeug](https://pypi.org/project/Werkzeug/). 
 
 <h3>C5: Validate All Inputs</h3>
 
@@ -323,7 +327,7 @@ Input validation is a programming technique that ensures only properly formatted
  
  <h3>C6: Implement Digital Identity</h3>
 
-:white_check_mark: OWASP provides several recommendations for secure implementation of Digital Identity, a unique representation of a user. OWASP divide it in three levels: 
+OWASP provides several recommendations for secure implementation of Digital Identity, a unique representation of a user. OWASP divide it in three levels: 
 * Level 1 : Passwords => It's necessary to store them securely and follow OWASP password requirements. 
 * Level 2 : Multi-Factor Authentication => Using passwords as a sole factor provides weak security. Multi-factor solutions provide a more robust solution by requiring an attacker to acquire more than one element to authenticate with the service. 
 * Level 3 : Cryptographic Based Authentication => requires authentication that is "based on proof of possession of a key through a cryptographic protocol.” This type of authentication is used to achieve the strongest level of authentication assurance.  
@@ -341,27 +345,29 @@ However, we're only scratching the surface. We are maximizing the security in ou
  
  <h3>C7: Enforce Access Controls</h3>
  
-> Hashing is an algorithm to map data of any size to a fixed length. A hash is not ‘encryption’ – it cannot be decrypted back to the original text (it is a ‘one-way’ cryptographic function, Whereas encryption is a two-way function, hashing is a one-way function. Hashing is used in conjunction with authentication to produce strong evidence that a given message has not been modified and serves the purpose of ensuring integrity, i.e. making it so that if something is changed you can know that it’s changed.
-> password is stored in hashed into the database and the authentication process uses hashing comparison. For password hashing we use the library
-> [Werkzeug](https://pypi.org/project/Werkzeug/). Hashing is for validating the integrity of content by detecting all modification via obvious changes to the hash output.
+Access Control functionality often spans many areas of software depending on the complexity of the access control system. In SFA-API, we apply two of the OWASP recommends: a) all request go through some kind of access control verification layer; a) all access control failures should be logged as these may be indicative of a malicious user probing the application for vulnerabilities.
 
-
-:white_check_mark: data de expiracao da api (via pyodbc), limite de uso pelo flask limiter, coerência do último de IP acessado (qdo o ep munda, a chave eh bloqueada) (via pyodbc).  
-
-  <h3>C8: Protect Data Everywhere</h3>
+> :white_check_mark: In SFA-API, we maximize the security by using multi-factor authentication in 2 layers of protection: hashing passwords and authentication key.
+> Authentication key is given to users after their registration (to registrate, users have give: first name, last name, email and password). The authentication key is monitored
+> in three different ways: 
+> * a) expiration date – SFA-API has an expiration date, which is done only using pyodbc; 
+> * b) rate limits - we implement rate limits with flask limiter. For this we follow one of APOD rules =>> Daily Limit: 50 requests per IP address per day. 
+> * c) user IP – The system creates a key that corresponds the client’s IP. If the same client changes IP and tries to authenticate, the system does not allow it and will ask the client to authenticate again. This is done with pyodbc.  
+ 
+<h3>C8: Protect Data Everywhere</h3>
 
 Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. 
 
  * a) parametrized queries: makes it possible for the database to recognize the code and distinguish it from input data; 
  * b) least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
  * c) stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterized. Simply put, it is a type of code that can be stored for later and used many times.
- * d) escaping: use character-escaping functions for user-supplied input provided by each database management system (DBMS). This is done to make sure the DBMS never confuses it with the SQL statement provided by the developer.
+ * d) escaping: use character-escaping functions for user-supplied input provided by each database management system (DBMS). This is done to make sure the DBMS never confuse it with the SQL statement provided by the developer.
 
 > :white_check_mark: In SFA-API, we protect data with the following measures: 
 > a) parametrized queries: are widely applied to protect against SQL injection. 
 > b) least privilege on the database: :warning:TODO   
 > c) stored procedures: This is not done in SFA-API because the queries are small, so this measure is unecessary. 
-* d) escaping: is done in the file [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py), which defines operations/endpoints with pictures (download and upload). 
+> d) escaping: is done in the file [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py), which defines operations/endpoints with pictures (download and upload). 
  
 <h3>C9: Implement Security Logging and Monitoring</h3>
   
