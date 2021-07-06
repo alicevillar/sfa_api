@@ -51,9 +51,9 @@ an API that automatically puts a fascinating image of planets and galaxies on yo
 Both allows authenticated users to download and upload images. The web interface of our API has an additional feature: it automatically puts a fascinating image of planets and galaxies on your desktop background!
 
  
-* In the monolithic architecture it was used as an API model, specially for our web interface, user authentication, Web Service Rate Limits and DEMO_KEY Rate Limits. 
+:white_check_mark: In the monolithic architecture it was used as an API model, specially for our web interface, user authentication, Web Service Rate Limits and DEMO_KEY Rate Limits. 
 
-* In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
+:white_check_mark:In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
 
 
 ## 1.1. Monolithic Architecture
@@ -127,6 +127,12 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * URL GET Parameters -> N/A
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/demo_key
 ```
+
+<h3>Version 5</h3>
+
+:new: This is the first version of SFA-API. It contains one endpoint that allows users to sign in. To comply with GDPR, this allows users to delete their data in the system. 
+ 
+
 ## 4. Project Structure
 
 The following directory diagram was generated with the comand "tree /F"
@@ -237,6 +243,8 @@ You can deploy this project as any other Flask/WSGI application.
 
 ## 9. Quick Start  
 
+ 
+
 ## 10. Authentication Details
 
 The request body must follow the following structure: 
@@ -270,26 +278,26 @@ The response body contains the API Key and the expiration date. Once the access 
 The [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-controls/) is a list of security techniques that should be included in every software development project. They are ordered by order of importance, with control number 1 being the most important.
 
 
-<h3>C1: Define Security Requirements</h3>
+ <h3>C1: Define Security Requirements</h3>
 
-The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements that represent the best practices for that category drafted as verifiable statements. Successful use of security requirements involves four steps: discovering / selecting, documenting, implementing, and then confirming correct implementation of new security features and functionality within an application.
+:white_check_mark: The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements that represent the best practices for that category drafted as verifiable statements. Successful use of security requirements involves four steps: discovering / selecting, documenting, implementing, and then confirming correct implementation of new security features and functionality within an application.
 
 The standard provides a basis for testing security controls to protect against vulnerabilities such as Cross-Site Scripting (XSS) and SQL injection. 
 
 > SFA-API prevents malicious code by using secure authentication methods. We use parameterised queries to avoid SQL injection attacks in all the operations with the database. 
 We protect against Cross-Site Scripting (XSS) in our web page, using javascript. 
 
-<h3>C2: Leverage Security Frameworks and Libraries</h3>
+ <h3>C2: Leverage Security Frameworks and Libraries</h3>
 
-Secure frameworks and libraries can help to prevent a wide range of web application vulnerabilities. To attend
+:white_check_mark:Secure frameworks and libraries can help to prevent a wide range of web application vulnerabilities. To attend
 
 https://pypi.org/project/dependency-check/
 
 https://owasp.org/www-project-dependency-check/
 
-<h3>C3: Secure Database Access</h3>
+ <h3>C3: Secure Database Access</h3>
 
-Secure access to databases consider: secure queries, secure configuration, secure communication and secure authentication. 
+:white_check_mark:Secure access to databases consider: secure queries, secure configuration, secure communication and secure authentication. 
  
 
 > * Here is how secure database access is done in SFA-API: 
@@ -298,23 +306,23 @@ Secure access to databases consider: secure queries, secure configuration, secur
 > Secure communication: we use Pyodbc, an open source Python module to communicate with the database. We apply secure (authenticated, encrypted) communications methods.  
 
 
-<h3>C4: Encode and Escape Data</h3>
+ <h3>C4: Encode and Escape Data</h3>
 
-Encoding/Escaping is used to neutralize content against other forms of injection. 
+:white_check_mark:Encoding/Escaping is used to neutralize content against other forms of injection. 
 Escaping is a subset of encoding, where not all characters need to be encoded. 
 
 Password is stored in hashed into the database and the authentication process uses hashing comparison. For password hashing we use the library [Werkzeug](https://pypi.org/project/Werkzeug/). 
 
-<h3>C5: Validate All Inputs</h3>
+:white_check_mark: <h3>C5: Validate All Inputs</h3>
 
-Input validation is a programming technique that ensures only properly formatted data may enter a software system component. It validates that an input value is what you think it should be. Syntax validity means that the data is in the form that is expected. 
+:white_check_mark: Input validation is a programming technique that ensures only properly formatted data may enter a software system component. It validates that an input value is what you think it should be. Syntax validity means that the data is in the form that is expected. 
 
 > SFA-API validates inputs we use the Python library [Validator Collection](https://pypi.org/project/validator-collection/), which is a Python library that provides functions that can be used to validate the type and contents of an input value.
 
  
-<h3>C6: Implement Digital Identity</h3>
+ <h3>C6: Implement Digital Identity</h3>
 
-OWASP provides several recommendations for secure implementation of Digital Identity, a unique representation of a user. OWASP divide it in three levels: 
+:white_check_mark: OWASP provides several recommendations for secure implementation of Digital Identity, a unique representation of a user. OWASP divide it in three levels: 
 * Level 1 : Passwords => It's necessary to store them securely and follow OWASP password requirements. 
 * Level 2 : Multi-Factor Authentication => Using passwords as a sole factor provides weak security. Multi-factor solutions provide a more robust solution by requiring an attacker to acquire more than one element to authenticate with the service. 
 * Level 3 : Cryptographic Based Authentication => requires authentication that is "based on proof of possession of a key through a cryptographic protocol.” This type of authentication is used to achieve the strongest level of authentication assurance.  
@@ -330,17 +338,15 @@ However, we're only scratching the surface. We are maximizing the security in ou
 > * Level 3 : Cryptographic Based Authentication => Once the initial successful user authentication has taken place, the application tracks this user (this is called Session Management) so it can store details about usage. Flask does it through encrypted cookies. This is implemented on top of cookies for you and signs the cookies cryptographically. What this means is that the user could look at the contents of your cookie but not modify it, unless they know the secret key used for signing. 
 
  
-<h3>C7: Enforce Access Controls</h3>
+ <h3>C7: Enforce Access Controls</h3>
 
 
-data de expiracao da api (via pyodbc), limite de uso pelo flask limiter, coerência do último de IP acessado (qdo o ep munda, a chave eh bloqueada) (via pyodbc).  
+:white_check_mark: data de expiracao da api (via pyodbc), limite de uso pelo flask limiter, coerência do último de IP acessado (qdo o ep munda, a chave eh bloqueada) (via pyodbc).  
 
-<h3>C8: Protect Data Everywhere</h3>
+  <h3>C8: Protect Data Everywhere</h3>
 
-Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations
+:white_check_mark: Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations
 
-
- 
  * a) parametrized queries: makes it possible for the database to recognize the code and distinguish it from input data; 
  * b) least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
  * c) stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterized. Simply put, it is a type of code that can be stored for later and used many times.
@@ -353,11 +359,13 @@ c) stored procedures: This is not done in SFA-API because the queries are small,
 * d) escaping: see C4
   
  
-
 <h3>C9: Implement Security Logging and Monitoring</h3>
 
 
-<h3>C10: Handle All Errors and Exceptions</h3>
+
+<h3>C10:  Handle All Errors and Exceptions</h3>  
+
+ :white_check_mark:
 
  
  
