@@ -9,4 +9,6 @@ services:
     build:
       context: ./ #it will build it using the actual context
 
-
+# Para o container da API
+# Comando docker compose up => Roda o container
+# Comando docker compose build => cria a imagem

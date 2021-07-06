@@ -14,7 +14,6 @@ from controllers.limiters_controller import *
 #
 #####################################################################################################################
 
-
 image_directory="images"
 # Importing and storing in local variables
 APP, SFA = sfa_app.app,sfa_app.api
@@ -37,7 +36,6 @@ class Downloading(Resource):
     @picture_namespace.response(500, 'Server Error')
 
     @picture_namespace.doc(security='apikey') #avisando para o swagger q esse endpoint precisa de api key
-
 
     @api_or_demo_key_required #a função aqui é chamada. Para isso é transformada em decorando a função get q baixa uma imagem
     def get(self):
@@ -85,8 +83,6 @@ class Uploading(Resource):
     #@api_key_required
     #esse decorator vai adicionar uma documentação para essa rota. Esse decorator det q o endpoint upload depende do endpoint de autenticação
     @picture_namespace.doc(security='apikey') #avisando para o swagger q esse endpoint precisa de api key
-
-
 
     @api_key_required #a função aqui é chamada. Para isso é transformada em decorando a função get q sobe uma imagem
     def post(self):

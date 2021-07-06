@@ -10,6 +10,7 @@ class API():
         # Metodo api contém tb o parametro contido na variável authorizations - > A Swagger Authorizations declaration as dictionary
         defining_authorizations = {'apikey':  {'type': 'apiKey','in': 'header', 'name': 'X-API-KEY'}}
         self.app = Flask(__name__)
+        self.app.secret_key = 'super secret string' # gerenciamento de sessão para guardar info e poder usar p/ o login
         self.api = Api(self.app,version='1.0.0',title=str('Space Fan Art (SFA)'),
                        description='This API, called SFA (Space Fan Art), is a fantastic API for any space fan.'
                                    'In essence, what this API does is to automatically put a fascinating '
