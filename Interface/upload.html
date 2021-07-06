@@ -1,0 +1,248 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="index.js"></script>
+
+    <title>Space Fan Art</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img class= "logo" src="./images/logo_modelo.png " alt="  ">
+
+
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html#about">About SFA</a>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="generate_api_key.html">Sign up
+                            </a>
+                        </li>
+                        </li>
+
+                        <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Authentication</a>
+          </li>
+           -->
+                    </ul>
+                    <a href="./sign_in.html" class="btn btn-outline-success  mt-3" type="submit">Sign in</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+
+    <section id="about">
+        <div class="container pt-5">
+            <div class="row pt-5">
+                <div class="col text-center">
+                    <h2>Upload your picture!</h2>
+
+                    <p> 
+                        Please fill the form to upload a picture:
+                    </p>
+                    
+                    <form id="generate_authentication_key" method="POST">
+                        <p> File <br> <input id="myFile" name="filename" type="file"></p>
+ 
+
+                        <p> Title <br> <input id="lastName" name="lastName" type="text"></p>
+                        <p> Explanation <br> <input id="email" name="email" type="text"></p>
+                        <p> Date <br> <input id="email" name="email" type="text"></p>
+                        <p> <br> 
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        </p>
+ 
+
+
+                    </form>
+
+                    <label id="usuarioApi"></label>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="p-5 m-5">
+        <div class="container mt-5">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h3 class="featurette-heading">The Butterfly Nebula <span class="text-muted"> from Upgraded
+                            Hubble</span>
+                    </h3>
+                    <p class="lead">
+                        The bright clusters and nebulae of planet Earth's night sky are often named for flowers or
+                        insects, and NGC
+                        6302 is no exception.
+                        With an estimated surface temperature of about 250,000 degrees C, the central star of this
+                        particular
+                        planetary nebula is exceptionally hot though --
+                        shining brightly in ultraviolet light but hidden from direct view by a dense torus of dust.
+                        This dramatically detailed close-up of the dying star's nebula was recorded by the newly
+                        upgraded Hubble
+                        Space Telescope.
+                        Cutting across a bright cavity of ionized gas, the dust torus surrounding the central star is
+                        near the
+                        center of this view, almost edge-on to the line-of-sight.
+                        Molecular hydrogen has been detected in the hot star's dusty cosmic shroud. NGC 6302 lies about
+                        4,000
+                        light-years away in the arachnologically correct constellation Scorpius.
+
+
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <img class="img_size" src="./images/apod_image_1.jpg" alt="">
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading">Enceladus <span class="text-muted">Ice Volcanos</span></h2>
+                    <p class="lead">In this stunning Saturnian vista - one in a series of artist's visions of volcanos
+                        on alien
+                        worlds - icy geysers erupt along narrow fractures
+                        in inner moon Enceladus. The majestic plumes were actually discovered by instruments on the
+                        Cassini
+                        Spacecraft during close encounters with bright and shiny
+                        Enceladus last year. Researchers now suspect the plumes originate from near-surface pockets of
+                        liquid water
+                        with temperatures near 273 kelvins (0 degrees C) -
+                        hot when compared to the distant moon's surface temperature of 73 kelvins (-200 degrees C). A
+                        dramatic sign
+                        that tiny, 500km-diameter Enceladus is surprisingly
+                        active, these ice volcanos hold out another potential site in the search for water and origin of
+                        life beyond
+                        planet Earth. Enceladus' ice volcanos also likely
+                        produce Saturn's faint but extended E ring.
+
+                    </p>
+                </div>
+                <div class="col-md-5 order-md-1">
+                    <img class="img_size" src="./images/apod_image_2.jpg" alt="">
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container mt-5">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">Melotte 15 <span class="text-muted">in the Heart</span>
+                    </h2>
+                    <p class="lead"> Cosmic clouds seem to form fantastic shapes in the central regions of emission
+                        nebula IC
+                        1805. Of course, the clouds are sculpted by stellar
+                        winds and radiation from massive hot stars in the nebula's newborn star cluster, Melotte 15.
+                        About 1.5
+                        million years young, the cluster stars are near the
+                        center of this colorful skyscape, along with dark dust clouds in silhouette. Dominated by
+                        emission from
+                        atomic hydrogen, the telescopic view spans about 30
+                        light-years. But wider field images reveal that IC 1805's simpler, overall outline suggests its
+                        popular name
+                        - The Heart Nebula. IC 1805 is located along the
+                        northern Milky Way, about 7,500 light years distant toward the constellation Cassiopeia
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <img class="img_size" src="./images/apod_image_3.jpg" alt="">
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="container mt-5">
+
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading">IC 2118: <span class="text-muted">The Witch Head Nebula</span></h2>
+                    <p class="lead">Double, double toil and trouble; Fire burn, and cauldron bubble -- maybe Macbeth
+                        should have
+                        consulted the Witch Head Nebula.
+                        This suggestively shaped reflection nebula is associated with the bright star Rigel in the
+                        constellation
+                        Orion. More formally known as IC 2118,
+                        the Witch Head Nebula glows primarily by light reflected from bright star Rigel, located just
+                        below the
+                        lower edge of the above image.
+                        Fine dust in the nebula reflects the light. The blue color is caused not only by Rigel's blue
+                        color but
+                        because the dust grains reflect blue light more efficiently
+                        than red. The same physical process causes Earth's daytime sky to appear blue, although the
+                        scatterers in
+                        Earth's atmosphere are molecules of nitrogen and oxygen.
+                        The nebula lies about 1000 light-years away.
+
+                    </p>
+                </div>
+                <div class="col-md-5 order-md-1">
+                    <img class="img_size" src="./images/apod_image4.jpg" alt="">
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <footer class="blog-footer">
+        <p>Space Fan Art <a href="https://github.com/alicevillar/SpaceFanArt_API">Github Repository</a>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
+
+
+
+<script>
+     $(document).ready(function () {
+         var user = localStorage.getItem('user');
+         alert("Entrou aqui")
+         console.log(user) //tipo um print do python
+         if(!user) {
+             window.location.href = 'file:///C:/Users/Alice/Desktop/INTERFACE_SFS/sign_in.html'
+         }
+        
+        });
+
+         // sempre q alguem acessar essa pagina vai ser verificado se ela fez sign in 
+        // se ele nao eh usuário, direciona ele p/ o sign in 
+
+</script>
+
+</body>
+ 
+
+</html>
