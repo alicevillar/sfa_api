@@ -283,35 +283,40 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 
 The standard provides a basis for testing security controls to protect against vulnerabilities such as Cross-Site Scripting (XSS) and SQL injection. 
 
->  :white_check_mark: SFA-API prevents malicious code by using secure authentication methods. We use parameterised queries to avoid SQL injection attacks in all the operations with the database. We also protect against Cross-Site Scripting (XSS) in our web page, using javascript. 
+>  :white_check_mark: SFA-API prevents malicious code by using secure authentication methods:
+>  * We use parameterised queries to avoid SQL injection attacks in all the operations with the database. 
+>  * We also protect against Cross-Site Scripting (XSS) in our web page, using javascript. :warning:TODO
 
  <h3>C2: Leverage Security Frameworks and Libraries</h3>
 
 Secure frameworks and libraries can help to prevent a wide range of web application vulnerabilities.  
 
->  :white_check_mark: In SFA-API we a tool recommended by OWASP called [Project Dependency](https://pypi.org/project/dependency-check/) to identify project dependencies and check if there are any known, publicly disclosed vulnerabilities for third party code. 
+>  :white_check_mark: In SFA-API we a tool recommended by OWASP called [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any published vulnerabilities. :warning:TODO
 
  <h3>C3: Secure Database Access</h3>
 
- Secure access to databases consider: secure queries, secure configuration, secure communication and secure authentication. 
+ According to OWASP, secure access to databases consider: secure queries, secure configuration, secure communication and secure authentication. 
 
->  :white_check_mark: Here is how secure database access is done in SFA-API: 
+>  :white_check_mark: SFA-API handles secure database access with the following measures: 
 > * Secure queries: In order to mitigate SQL injection we used use ‘Query Parameterization’. However, certain locations in a database query are not parameterizable. Because of the large variation in the pattern of SQL injection attacks they are often unable to protect databases. OWASP recomments testing queries for performance, but this is not done here because the queries are all very small and therefore is not necessary. 
 > * Secure configuration: we run the database in a docker container, which has connectivvity restrictions (can only be accessed by the administrator and only has one door open - 1433). The server which runs the database does not allow external access. All access to the database should be properly authenticated. Thus, it is not possible to directly access the database from outside the instance. 
 > Secure communication: we use Pyodbc, an open source Python module to communicate with the database. We apply secure (authenticated, encrypted) communications methods.  
 
+<h3>C4: Encode and Escape Data</h3>
 
- <h3>C4: Encode and Escape Data</h3>
-
-Encoding/Escaping is used to neutralize content against other forms of injection. 
-
-> :white_check_mark: In SFA-API, password is stored in hashed into the database and the authentication process uses hashing comparison. For password hashing we use the library [Werkzeug](https://pypi.org/project/Werkzeug/). 
+Encoding and escaping are defensive techniques meant to stop injection attacks. Here is the OWASP definition:
+ * Encoding (commonly called “Output Encoding”) involves translating special characters into some different but equivalent form that is no longer dangerous in the target interpreter, for example translating the < character into the &lt; string when writing to an HTML page. 
+ * Escaping involves adding a special character before the character/string to avoid it being misinterpreted, for example, adding a \ character before a " (double quote) character so that it is interpreted as text and not as closing a string.
+ 
+> :white_check_mark: In SFA-API, we apply C4:
+> * Escaping is done in the file [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py), which defines operations/endpoints with pictures (download and upload). 
+> * Encoding in our webpage interface (HTML/CSS, Javascript). :warning:TODO 
 
 <h3>C5: Validate All Inputs</h3>
 
 Input validation is a programming technique that ensures only properly formatted data may enter a software system component. It validates that an input value is what you think it should be. Syntax validity means that the data is in the form that is expected. 
 
-> :white_check_mark: SFA-API validates inputs we use the Python library [Validator Collection](https://pypi.org/project/validator-collection/), which is a Python library that provides functions that can be used to validate the type and contents of an input value.
+> :white_check_mark: SFA-API validates inputs we use the Python library [Validator Collection](https://pypi.org/project/validator-collection/), which is a Python library that provides functions that can be used to validate the type and contents of an input value. :warning:TODO 
 
  
  <h3>C6: Implement Digital Identity</h3>
@@ -333,29 +338,32 @@ However, we're only scratching the surface. We are maximizing the security in ou
 
  
  <h3>C7: Enforce Access Controls</h3>
+ 
+> Hashing is an algorithm to map data of any size to a fixed length. A hash is not ‘encryption’ – it cannot be decrypted back to the original text (it is a ‘one-way’ cryptographic function, Whereas encryption is a two-way function, hashing is a one-way function. Hashing is used in conjunction with authentication to produce strong evidence that a given message has not been modified and serves the purpose of ensuring integrity, i.e. making it so that if something is changed you can know that it’s changed.
+> password is stored in hashed into the database and the authentication process uses hashing comparison. For password hashing we use the library
+> [Werkzeug](https://pypi.org/project/Werkzeug/). Hashing is for validating the integrity of content by detecting all modification via obvious changes to the hash output.
 
 
 :white_check_mark: data de expiracao da api (via pyodbc), limite de uso pelo flask limiter, coerência do último de IP acessado (qdo o ep munda, a chave eh bloqueada) (via pyodbc).  
 
   <h3>C8: Protect Data Everywhere</h3>
 
-Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations
+Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. 
 
  * a) parametrized queries: makes it possible for the database to recognize the code and distinguish it from input data; 
  * b) least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
  * c) stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterized. Simply put, it is a type of code that can be stored for later and used many times.
  * d) escaping: use character-escaping functions for user-supplied input provided by each database management system (DBMS). This is done to make sure the DBMS never confuses it with the SQL statement provided by the developer.
 
-> :white_check_mark: In SFA-API, SQL injection is prevented by: 
-> b) least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
-
-c) stored procedures: This is not done in SFA-API because the queries are small, so this measure is unecessary. 
-* d) escaping: see C4
-  
+> :white_check_mark: In SFA-API, we protect data with the following measures: 
+> a) parametrized queries: are widely applied to protect against SQL injection. 
+> b) least privilege on the database: :warning:TODO   
+> c) stored procedures: This is not done in SFA-API because the queries are small, so this measure is unecessary. 
+* d) escaping: is done in the file [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py), which defines operations/endpoints with pictures (download and upload). 
  
 <h3>C9: Implement Security Logging and Monitoring</h3>
 
-
+  
 
 <h3>C10:  Handle All Errors and Exceptions</h3>  
 
@@ -368,15 +376,15 @@ Exception handling is a programming concept that allows an application to respon
  
  ## Useful Links: 
  
- OWASP. OWASP Proactive Controls. Available from: https://owasp.org/www-project-proactive-controls/
- 
- https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
- 
- https://www.ptsecurity.com/ww-en/analytics/knowledge-base/how-to-prevent-sql-injection-attacks/#6
- 
- 
-https://github.com/frol/flask-restplus-server-example
+[OWASP Proactive Controls](https://owasp.org/www-project-proactive-controls/)
 
+[Flask RestPlus Server Example](https://github.com/frol/flask-restplus-server-example)
+ 
+[Best Practices for a pragmatic restful API](https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
+ 
+[how-to-prevent-sql-injection-attacks](https://www.ptsecurity.com/ww-en/analytics/knowledge-base/how-to-prevent-sql-injection-attacks/#6)
+ 
+ 
 
 
 
