@@ -1,7 +1,7 @@
 
  <h1>Space Fan Art (SFA - API)</h1>
 
-SFA-API is the prototype of an API with two different architectures (monolothic architecture and a microservice architecture). In both architectures, users have to register to get an authentication key, which allows them download and upload images from NASA. The images come from two different sources: in the monolithic architecture, they come from a local database containing [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microserve architecture, they come directly from  APOD (one of the most famous NASA's Open API) because SFA-API and APOD are integrated. 
+SFA-API is the prototype of an API with two different architectures (monolothic architecture and a microservice architecture). In both architectures, users have to register to get an authentication key, which allows them download and upload images from NASA. The images come from two different sources: in the monolithic architecture, they come from a local database containing [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microserve architecture, they come directly from  APOD (one of the most famous NASA's Open API) because SFA-API and [APOD](https://github.com/nasa/apod-api) are integrated. 
 
 :arrow_forward: Duration : 3 months
 <br>
@@ -249,12 +249,14 @@ $ pip install -r tasks/requirements.txt
 The request body must follow the following structure: 
 
 :large_blue_circle: USER MODEL:
+```
 {
   "First Name": "Teresa",
   "Last Name": "Saldanha",
   "Email": "mtsaldanha@terra.com.br",
   "Password": "123"
 }
+```
 
 That is it! 
 
@@ -389,6 +391,9 @@ Exception handling is a programming concept that allows an application to respon
 [Best Practices for a pragmatic restful API](https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
  
 [how-to-prevent-sql-injection-attacks](https://www.ptsecurity.com/ww-en/analytics/knowledge-base/how-to-prevent-sql-injection-attacks/#6)
+
+[APOD](https://github.com/nasa/apod-api)
+
  
  
 
