@@ -93,6 +93,7 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 > * :arrow_forward: upload images (users can increment our database uploading new images)
 > * :arrow_forward: demo key (the demo key is: DEMO_KEY)
 > * :arrow_forward: sign in (to comply with GDPR, the system allows users to delete their data)
+> * :arrow_forward: automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
 
 ## 3. Development timeline 
 
