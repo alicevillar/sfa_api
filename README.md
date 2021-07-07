@@ -291,15 +291,6 @@ curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: applicati
 The response body contains the API Key and the expiration date. Once the access authentication key expires, you have to create a new one. 
 
 
-Web Service Rate Limits
-
-:warning:TODO 
-
-DEMO_KEY Rate Limits
-
-:warning:TODO  
-
-
 ## 10.2. Web Service Rate Limits
 
 In NASA, limits are placed on the number of API requests you may make using your API key. The defaults are ==>> Hourly Limit: 1,000 requests per hour. For each API key, these limits are applied across all api.nasa.gov API requests. Exceeding these limits will lead to your API key being temporarily blocked from making further requests. 
@@ -311,7 +302,7 @@ In SFA-API we will allow the rate limits NASA uses for the DEMO_KEY, which are:
 
 ## 10.3. Demo Key Rate Limits
 
-In SFA-API, the demo key rate limits will be very short, to encourage users to register and generate their API-Key. 
+In SFA-API, the demo key rate limits are very short, to encourage users to register and generate their API-Key. :warning:TODO 
 
 ## 11. OWASP Proactive Controls
 
