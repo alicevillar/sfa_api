@@ -352,7 +352,7 @@ Encoding and escaping are defensive techniques meant to stop injection attacks. 
 
 Input validation is a programming technique that ensures only properly formatted data may enter a software system component. It validates that an input value is what you think it should be. Syntax validity means that the data is in the form that is expected. 
 
-> :white_check_mark: SFA-API validates inputs we use the Python library [Validator Collection](https://pypi.org/project/validator-collection/), which is a Python library that provides functions that can be used to validate the type and contents of an input value. :warning:TODO 
+> :white_check_mark: SFA-API validates inputs we use the Python library [Validator Collection](https://pypi.org/project/validator-collection/), which is a Python library that provides functions that can be used to validate the type and contents of an input value.  
 
  
  <h3>C6: Implement Digital Identity</h3>
@@ -410,7 +410,7 @@ According to OWASP, security logging can be used for: Feeding intrusion detectio
 
 Exception handling is a programming concept that allows an application to respond to different error states (like network down, or database connection failed, etc) in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure.
 
-> :white_check_mark: In SFA-API, we handle error and exceptions to handle input validation. This is done in the file [login_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/login_controller.py_) and [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_). We have also used try-except in the file [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py_) while checking the number of requests per Key. 
+> :white_check_mark: In SFA-API, we handle error and exceptions to handle input validation. This is done in the file [login_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/login_controller.py_), [users_controller.py] (https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_) and [picture_controller.py] (https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_). We have also used try-except in the file [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py_) while checking the number of requests per Key. 
 
  
  
