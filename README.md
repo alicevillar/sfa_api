@@ -30,6 +30,9 @@ SFA-API is the prototype of an API with two different architectures (monolothic 
 - [8. Installation](#8-installation)
 - [9. Quick Start](#9-quick-start)
 - [10. Authentication Details](#10-authentication-details)
+    - [10.1. Request Structure](#101-request-structure)
+    - [10.2. Web Service Rate Limits](#102-web-service-rate-limits)
+    - [10.3. Demo Key Rate Limits](#103-demo-key-rate-limits)
 - [11. OWASP Proactive Controls](#11-owasp-proactive-controls)
 
 <!-- /TOC -->
@@ -62,7 +65,7 @@ Both prototypes allows authenticated users to download and upload images. Here i
 
 ## 1.2. Microservice Architecture
 
-> :small_orange_diamond: Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. 
+> :small_orange_diamond: Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. For this, we have o sign up for a NASA developer key. 
 
 * [Microsservice Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.jpg) 
  
@@ -255,6 +258,10 @@ $ pip install -r tasks/requirements.txt
 
 ## 10. Authentication Details
 
+## 10.1. Request Structure 
+ 
+In APOD, you do not need to authenticate in order to explore the NASA data. However, if you will be intensively using the APIs to, say, support a mobile application, then you should sign up for a NASA developer key. 
+
 The request body must follow the following structure: 
 
 :large_blue_circle: USER MODEL:
@@ -283,9 +290,32 @@ curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: applicati
 ```
 The response body contains the API Key and the expiration date. Once the access authentication key expires, you have to create a new one. 
 
+
+Web Service Rate Limits
+
+:warning:TODO 
+
+DEMO_KEY Rate Limits
+
+:warning:TODO  
+
+
+## 10.2. Web Service Rate Limits
+
+In NASA, limits are placed on the number of API requests you may make using your API key. The defaults are ==>> Hourly Limit: 1,000 requests per hour. For each API key, these limits are applied across all api.nasa.gov API requests. Exceeding these limits will lead to your API key being temporarily blocked from making further requests. 
+
+In SFA-API we will allow the rate limits NASA uses for the DEMO_KEY, which are:
+
+* Hourly Limit: 30 requests per IP address per hour
+* Daily Limit: 50 requests per IP address per day
+
+## 10.3. Demo Key Rate Limits
+
+In SFA-API, the demo key rate limits will be very short, to encourage users to register and generate their API-Key. 
+
 ## 11. OWASP Proactive Controls
 
-The [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-controls/) is a list of security techniques that should be included in every software development project. They are ordered by order of importance, with control number 1 being the most important.
+The [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-controls/) is a list of security techniques that should be included in every software development project. They are ordered by order of importance, with control number 1 being the most important. 
 
 
  <h3>C1: Define Security Requirements</h3>
@@ -319,10 +349,12 @@ Encoding and escaping are defensive techniques meant to stop injection attacks. 
  * Encoding (commonly called “Output Encoding”) involves translating special characters into some different but equivalent form that is no longer dangerous in the target interpreter, for example translating the < character into the &lt; string when writing to an HTML page. 
  * Escaping involves adding a special character before the character/string to avoid it being misinterpreted, for example, adding a \ character before a " (double quote) character so that it is interpreted as text and not as closing a string.
  
-> :white_check_mark: In SFA-API, we apply C4: 
-> * Encoding in our webpage interface (HTML/CSS, Javascript). :warning:TODO 
-> It should be highlightened that a hash is not ‘encryption’ – it cannot be decrypted back to the original text (it is a ‘one-way’ cryptographic function, Whereas encryption is a two-way function, hashing is a one-way function. Hashing is used in conjunction with authentication to produce strong evidence that a given message has not been modified and serves the purpose of ensuring integrity, i.e. making it so that if something is changed you can know that it’s changed.
-password is stored in hashed into the database and the authentication process uses hashing comparison. For password hashing we use the library [Werkzeug](https://pypi.org/project/Werkzeug/). 
+> :white_check_mark: In SFA-API, we don't apply escaping. We do escaping in our webpage interface (HTML/CSS, Javascript). :warning:TODO 
+> 
+> :o: It should be highlightened that a hash is not ‘encryption’ – it cannot be decrypted back to the original text (it is a ‘one-way’ cryptographic function, Whereas
+> encryption is a two-way function, hashing is a one-way function. Hashing is used in conjunction with authentication to produce strong evidence that a given message has not
+> been modified and serves the purpose of ensuring integrity, i.e. making it so that if something is changed you can know that it’s changed password is stored in hashed into
+> the database and the authentication process uses hashing comparison. For password hashing we use the library [Werkzeug](https://pypi.org/project/Werkzeug/). 
 
 <h3>C5: Validate All Inputs</h3>
 
@@ -338,17 +370,17 @@ OWASP provides several recommendations for secure implementation of Digital Iden
 * Level 2 : Multi-Factor Authentication => Using passwords as a sole factor provides weak security. Multi-factor solutions provide a more robust solution by requiring an attacker to acquire more than one element to authenticate with the service. 
 * Level 3 : Cryptographic Based Authentication => requires authentication that is "based on proof of possession of a key through a cryptographic protocol.” This type of authentication is used to achieve the strongest level of authentication assurance.  
 
-> :white_check_mark: SFA-API applies digital identity, authentication and session management recommendation. We use libraries werkzeug (for password hashing) and secrets (to generate authentication key). 
-However, we're only scratching the surface. We are maximizing the security in our API > following OWASP recommendations. Here are the basic security measures we apply to maximize the security in our AP:  
+> :white_check_mark: SFA-API applies digital identity, authentication and session management recommendation. We use libraries werkzeug (for password hashing) and secrets (to
+> generate authentication key). However, we're only scratching the surface. We are maximizing the security in our API. Following the above OWASP recommendations, here are the
+> basic security measures we apply to maximize the security in our AP:  
 > * Level 1 : Passwords => 
-> a) In SFA-API, passwords have at least 8 characters in length; 
-> b) All printing ASCII characters as well as the space character are acceptable in memorized secrets. 
-> c) We follow the the OWASP recommedation, which is to remove complexity requirements as these have been found to be of limited effectiveness. OWASP recommends the adoption of MFA or longer password lengths instead. What we do it to encourage the use of long passwords and passphrases by recommending this action in the interface. 
-> b) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt); c) we securely store user credentials, so is a password is compromised, the attacker does not immediately have access to this information. 
+> * a) In SFA-API, passwords have at least 8 characters in length; 
+> * b) All printing ASCII characters as well as the space character are acceptable in memorized secrets. 
+> * c) We follow the the OWASP recommedation, which is to remove complexity requirements as these have been found to be of limited effectiveness. OWASP recommends the adoption of MFA or longer password lengths instead. What we do it to encourage the use of long passwords and passphrases by recommending this action in the interface. 
+> * d) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt); c) we securely store user credentials, so is a password is compromised, the attacker does not immediately have access to this information. 
 > * Level 2 : Multi-Factor Authentication (MFA) => SFA-API applies 2 layers of protection: passwords and authentication key (which works as a token).
 > * Level 3 : Cryptographic Based Authentication => Once the initial successful user authentication has taken place, the application tracks this user (this is called Session Management) so it can store details about usage. Flask does it through encrypted cookies. This is implemented on top of cookies for you and signs the cookies cryptographically. What this means is that the user could look at the contents of your cookie but not modify it, unless they know the secret key used for signing. 
 
- 
  <h3>C7: Enforce Access Controls</h3>
  
 Access Control functionality often spans many areas of software depending on the complexity of the access control system. In SFA-API, we apply two of the OWASP recommends: a) all request go through some kind of access control verification layer; a) all access control failures should be logged as these may be indicative of a malicious user probing the application for vulnerabilities.
@@ -362,35 +394,31 @@ Access Control functionality often spans many areas of software depending on the
  
 <h3>C8: Protect Data Everywhere</h3>
 
-Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. 
+Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here are some of the OWAS recommendations:
 
- * a) parametrized queries: makes it possible for the database to recognize the code and distinguish it from input data; 
- * b) least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
- * c) stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterized. Simply put, it is a type of code that can be stored for later and used many times.
- * d) escaping: use character-escaping functions for user-supplied input provided by each database management system (DBMS). This is done to make sure the DBMS never confuse it with the SQL statement provided by the developer.
+ * a) Parametrized queries: makes it possible for the database to recognize the code and distinguish it from input data; 
+ * b) Least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
+ * c) Stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterized. Simply put, it is a type of code that can be stored for later and used many times.
+ * d) Escaping: use character-escaping functions for user-supplied input provided by each database management system (DBMS). This is done to make sure the DBMS never confuse it with the SQL statement provided by the developer.
 
 > :white_check_mark: In SFA-API, we protect data with the following measures: 
-> a) parametrized queries: are widely applied to protect against SQL injection. 
-> b) least privilege on the database: :warning:TODO   
-> c) stored procedures: This is not done in SFA-API because the queries are small, so this measure is unecessary. 
-> d) escaping: is done in the file [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py), which defines operations/endpoints with pictures (download and upload). 
+> a) Parametrized queries: are widely applied to protect against SQL injection. 
+> b) Least privilege on the database: :warning:TODO   
+> c) Stored procedures: This is not done in SFA-API because the queries are small, so this measure is unecessary. 
+> d) Escaping: we didn't need to do it in our API. 
  
 <h3>C9: Implement Security Logging and Monitoring</h3>
   
-Security logging can be used for: Feeding intrusion detection systems, Forensic analysis and investigations, Satisfying regulatory compliance requirements
+According to OWASP, security logging can be used for: Feeding intrusion detection systems, Forensic analysis and investigations, Satisfying regulatory compliance requirements
 
-> :white_check_mark: In SFA-API, we use a logging framework, a utility designed to standardise the process of logging in your application. Our logging framework is Flask->  
-> RESTPlus, an extension for Flask that adds support for quickly building REST APIs. Flask-RESTPlus encourages best practices with minimal setup. It provides a coherent
-> collection of decorators and tools to describe your API and expose its documentation properly (using Swagger). The logging from FlasK-Rest-Plus is standardised: a request is
-> received and then returned. In  FlasK-Rest-Plus the loggins are very simple, they are not very informative (thus, it is not possible to know details about each request). To
-> have informative loggins we will use docker, which is where all the loggins will be stored. It is secure. 
-
+> :white_check_mark: In SFA-API, we use the logging framework, a utility designed to standardise the process of logging in your application. Our logging framework is Flask
+> RESTPlus, an extension for Flask that adds support and encourages best practices with minimal setup. It provides a coherent collection of decorators and tools to describe your API and expose its documentation properly (using Swagger). The logging from FlasK-Rest-Plus is standardised: a request is received and then returned, but with not much information. Thus, it is not possible to know details about each request. To have informative loggins we will use docker, which is where all the loggins will be stored. It is secure. 
 
 <h3>C10:  Handle All Errors and Exceptions</h3>  
 
 Exception handling is a programming concept that allows an application to respond to different error states (like network down, or database connection failed, etc) in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure.
 
-> :white_check_mark: In SFA-API, we handle error and exceptions in the file [login_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/login_controller.py_
+> :white_check_mark: In SFA-API, we handle error and exceptions to handle input validation. This is done in the file [login_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/login_controller.py_) and [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_). We have also used try-except in the file [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py_) while checking the number of requests per Key. 
 
  
  
