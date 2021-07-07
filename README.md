@@ -44,7 +44,7 @@ This API, called SFA (Space Fan Art), is an API created with Flask REST-Plus fol
 
 <br> 
  
-Both prototypes allows authenticated users to download and upload images. Here is how it works: user have to registration, the system generates an authentication key, which the user will use to download and upload fantastic image of planets and galaxies! SFA-API provides access via swagger and via web interface. The web interface of our API has an additional feature: it automatically puts a fascinating image of planets and galaxies on your desktop background!
+Both prototypes allows authenticated users to download and upload images. Here is how it works: user have to register, the system generates an authentication key, which the user will use to download and upload fantastic images of planets and galaxies! SFA-API provides access via swagger and via web interface. The web interface of our API has an additional feature: it automatically puts a fascinating image of planets and galaxies on your desktop background!
 
 > :radio_button: SFA-API FEATURES: 
 > * :arrow_forward: user registration, which generates an authentication key
