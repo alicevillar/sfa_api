@@ -1,7 +1,7 @@
 
  <h1>Space Fan Art (SFA - API)</h1>
 
-SFA-API is the prototype of an API with two different architectures (monolothic architecture and a microservice architecture). In both architectures, users have to register to get an authentication key, which allows them download and upload images from NASA. The images come from two different sources: in the monolithic architecture, they come from a local database containing [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microserve architecture, they come directly from  APOD (one of the most famous NASA's Open API) because SFA-API and [APOD](https://github.com/nasa/apod-api) are integrated. 
+SFA-API is the prototype of an API with two different architectures (monolothic architecture and a microservice architecture). In both architectures, users have to register to get an authentication key, which allows them to download and upload images from NASA. The images come from two different sources: in the monolithic architecture, they come from a local database containing [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microserve architecture, they come directly from  APOD (one of the most famous NASA's Open API) because SFA-API and [APOD](https://github.com/nasa/apod-api) are integrated. 
 
 :arrow_forward: Duration : 3 months
 <br>
