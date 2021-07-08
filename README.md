@@ -312,14 +312,24 @@ The [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-c
 
  <h3>C1: Define Security Requirements</h3>
 
-The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements that represent the best practices for that category drafted as verifiable statements. Successful use of security requirements involves four steps: discovering / selecting, documenting, implementing, and then confirming correct implementation of new security features and functionality within an application.
+The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements that represent the best practices for that category drafted as verifiable statements.  
 
-The standard provides a basis for testing security controls to protect against vulnerabilities such as Cross-Site Scripting (XSS) and SQL injection. 
+>  :white_check_mark: SFA-API security requirements: 
+>  * Protect against injection: We use parameterised queries to avoid SQL injection attacks in all the operations with the database. 
+>  * Protect against Broken Authentication: Create strong passwords. 
+>  * Protect Sensitive Data: Use of strong password (see details in C6: "Implement Digital Identity")
+>  * Broken Access Control: Restrictions on what authenticated users are allowed to do.
+>  * Protect the system from denial-of-service attacks => SFA has rate limits. Limits are placed on the number of API requests you may make using your API key. 
+>  * Protect Security Misconfiguration: all operating systems, frameworks, libraries, and applications must be securely configured and patched/upgraded in a timely fashion.
+>  * Protect against Cross-Site Scripting (XSS): We protect against XSS in our web page, using javascript. :warning:TODO
+>  * Protect against insecure deserialization: Create hash to files, create safer folders with no execution permission to store files and validate files extensions
+>  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any
+>   published vulnerabilities. 
+>  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised: a request is received and then returned.  Loggings are the requests from users. In  FlasK-Rest-Plus
+>  the loggins are very simple, they are not very informative (thus, it is not possible to know details about each request). To have informative loggins we will use docker,
+>  which is where all the loggins will be stored. It is secure. 
 
->  :white_check_mark: SFA-API prevents malicious code by using secure authentication methods:
->  * We use parameterised queries to avoid SQL injection attacks in all the operations with the database. 
->  * We also protect against Cross-Site Scripting (XSS) in our web page, using javascript. :warning:TODO
-
+  
  <h3>C2: Leverage Security Frameworks and Libraries</h3>
 
 Secure frameworks and libraries can help to prevent a wide range of web application vulnerabilities.  
