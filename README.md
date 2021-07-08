@@ -322,7 +322,7 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 >  * Protect the system from denial-of-service attacks => SFA has rate limits. Limits are placed on the number of API requests you may make using your API key. 
 >  * Protect Security Misconfiguration: all operating systems, frameworks, libraries, and applications must be securely configured and patched/upgraded in a timely fashion.
 >  * Protect against Cross-Site Scripting (XSS): We protect against XSS in our web page, using javascript. :warning:TODO
->  * Protect against insecure deserialization: Create hash to files, create safer folders with no execution permission to store files and validate files extensions
+>  * Protect against insecure deserialization:  :warning:TODO
 >  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any
 >   published vulnerabilities. 
 >  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised: a request is received and then returned.  Loggings are the requests from users. In  FlasK-Rest-Plus
