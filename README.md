@@ -316,8 +316,8 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 
 >  :white_check_mark: SFA-API security requirements: 
 >  * Protect against injection: We use parameterised queries to avoid SQL injection attacks in all the operations with the database. 
->  * Protect against Broken Authentication: Create strong passwords. 
->  * Protect Sensitive Data: Use of strong password (see details in C6: "Implement Digital Identity")
+>  * Protect against Broken Authentication: Properly restrict on what authenticated users are allowed to do.
+>  * Protect Sensitive Data: Create strong passwords (see details in C6: "Implement Digital Identity")
 >  * Broken Access Control: Restrictions on what authenticated users are allowed to do.
 >  * Protect the system from denial-of-service attacks => SFA has rate limits. Limits are placed on the number of API requests you may make using your API key. 
 >  * Protect Security Misconfiguration: all operating systems, frameworks, libraries, and applications must be securely configured and patched/upgraded in a timely fashion.
