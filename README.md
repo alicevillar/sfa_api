@@ -99,12 +99,17 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 
 ## 2.1. How to use SFA
 
-> :small_blue_diamond: Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
-
-* [Monolithic Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/monolithic_architecture.jpg) 
+>  :round_pushpin: Step-by-step:
+>  STEP 1 - REGISTRATION: User registration (parameters: first name, last name, email and password) 
+>  STEP 2 - AUTHENTICATION KEY: After registration, user receives an authentication key.
+>  STEP 2 - CONSUME THE API: With the authentication key, user is able to download and upload pictures.
+>  STEP 3 - SIGN IN: After registration, user is able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
 
 ## 2.2. Activity Diagram
 
+Click in the link below to see the activity diagram:
+
+* [Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.jpg) 
 
 ## 3. Development timeline 
 
