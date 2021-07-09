@@ -22,6 +22,8 @@ SFA-API is the prototype of an API with two different architectures (monolothic 
     - [1.1. Monolithic Architecture](#11-monolithic-architecture)
     - [1.2. Microservice Architecture](#12-microservice-architecture)
 - [2. Project Interface](#2-project-interface)
+    - [2.1. How to use SFA](#21-how-to-use-sfa)
+    - [2.2. Activity Diagram](#22-activity-diagram)
 - [3. Development timeline](#3-development-timeline)
 - [4. Project Structure](#4-project-structure)
 - [5. Project Files](#5-project-files)
@@ -31,7 +33,7 @@ SFA-API is the prototype of an API with two different architectures (monolothic 
 - [9. Quick Start](#9-quick-start)
 - [10. Authentication Details](#10-authentication-details)
     - [10.1. Request Structure](#101-request-structure)
-    - [10.2. Web Service Rate Limits](#102-web-service-rate-limits)
+    - [10.2. API Rate Limits](#102-api-rate-limits)
     - [10.3. Demo Key Rate Limits](#103-demo-key-rate-limits)
 - [11. OWASP Proactive Controls](#11-owasp-proactive-controls)
 
@@ -94,6 +96,15 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 > * :arrow_forward: demo key (the demo key is: DEMO_KEY)
 > * :arrow_forward: sign in (to comply with GDPR, the system allows users to delete their data)
 > * :arrow_forward: automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
+
+## 2.1. How to use SFA
+
+> :small_blue_diamond: Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
+
+* [Monolithic Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/monolithic_architecture.jpg) 
+
+## 2.2. Activity Diagram
+
 
 ## 3. Development timeline 
 
@@ -217,7 +228,7 @@ app/
  
 ## 7. Tools
 
-* [**Docker**](https://www.docker.com/) - for storing the database (of the monolothic architecture) in a container.
+* [**Docker**](https://www.docker.com/) - for storing the database and the API in a container. 
 * [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - used for documentation and to allow development team to visualize and interact with the API's. 
 * [**SQL Server**](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) - to create the database of Prototype 1 (monolithic architecture)
 * [**Ngrok**](https://ngrok.com/) - enabled the exposure of the a local development server to the Internet with minimal effort. 
@@ -292,7 +303,7 @@ curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: applicati
 The response body contains the API Key and the expiration date. Once the access authentication key expires, you have to create a new one. 
 
 
-## 10.2. Web Service Rate Limits
+## 10.2. API Rate Limits
 
 In NASA, limits are placed on the number of API requests you may make using your API key. The defaults are ==>> Hourly Limit: 1,000 requests per hour. For each API key, these limits are applied across all api.nasa.gov API requests. Exceeding these limits will lead to your API key being temporarily blocked from making further requests. 
 
