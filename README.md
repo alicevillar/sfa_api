@@ -100,10 +100,10 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 ## 2.1. How to use SFA
 
  :round_pushpin: Step-by-step:
->  * STEP 1 - REGISTRATION: In the User Registration there will be four parameters: first name, last name, email and password. Registration will allow users to consume the API and to sign in. 
+>  * STEP 1 - REGISTRATION: In the User Registration there will be four parameters: first name, last name, email and password.  
 >  * STEP 2 - AUTHENTICATION KEY: After registration, user receives an authentication key.
 >  * STEP 3 - CONSUME THE API: With the authentication key, user is able to download and upload pictures.
->  * STEP 4 - SIGN IN: In the User sign there will be two parameters: email and password.  
+>  * STEP 4 - SIGN IN: Registered users can sign in, which requires two parameters: email and password.  
 >  * STEP 5 - GDPR: After sign in, user will able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
 
 ## 2.2. Activity Diagram
