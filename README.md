@@ -159,7 +159,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 
 :paperclip:VERSION 5 
 
-:warning:TODO This is the fifth version of SFA-API. It contains one endpoint that allows users to sign in. To comply with GDPR, this allows users to delete their data in the system. 
+ This is the fifth version of SFA-API. It contains one endpoint that allows users to sign in. To comply with GDPR, this allows users to delete their data in the system. 
  
  ```
 * Description:
@@ -168,6 +168,12 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * URL POST Parameters -> email / password
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/signin
 ```
+
+:paperclip:VERSION 6 
+
+:warning:TODO This is the sixth version of SFA-API. It contains one endpoint that allows users to sign out.
+ 
+ 
 
 ## 4. Project Structure
 
