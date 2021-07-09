@@ -43,7 +43,6 @@ def api_key_required(func):
                 id_user = result[1]
                 access_ip=request.remote_addr
 
-
                 if is_blocked or date.today() > expiration_date or access_ip != last_access_ip:
 
                     sql = f""" DELETE from TB_SFA_Registration where Reg_Id = ?  """

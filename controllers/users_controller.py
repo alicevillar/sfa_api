@@ -1,5 +1,5 @@
 
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, request, send_from_directory
 from flask_restplus import Api, Resource, fields, inputs
 from minimal import sfa_app
 import pyodbc as p
@@ -10,17 +10,13 @@ from senhas import *
 import secrets
 from datetime import date,timedelta
 from werkzeug.security import generate_password_hash,check_password_hash
-
+from validator_collection import validators, errors
 
 #date dá a data de hj e o delta p/ add dias
 
-# um endpoint para receber os dados do usuário
-# um end point para o usuário - GDPR - deletar, zerar, revogar autorizacao de uso dos dados, consultar(Get-selct)
-
-
 #####################################################################################################################
 #
-#   VERSION 1 - contains one endpoint to create a new user
+#   VERSION 3 - contains one endpoint to create a new user
 #
 #####################################################################################################################
 
@@ -42,7 +38,6 @@ user_model_request = SFA.model("user model",{
     'Password': fields.String})
 
 user_model_response = SFA.model("response",{'API Key': fields.String,'Expiration Date':fields.String} )
-
 
 #####################################################################################################################
 #
@@ -70,12 +65,36 @@ class Registration(Resource):
         #new user recebe um dicionário, entao vou usar isso para inserir no bc esses valores
         new_user=request.get_json()
 
+# INPUTS VALIDATION
+        try:
+            new_user["email"] = validators.email(new_user["email"])
+            new_user["First Name"] = validators.not_empty(new_user["First Name"])
+            new_user["Last Name"] = validators.not_empty(new_user["Last Name"])
+        except errors.EmptyValueError:  # Handling logic goes here
+            print("Missing Input")
+            return {"Error:": "Missing Input"}, 422
+        except errors.InvalidEmailError:  # More handlign logic goes here
+            print("Invalid Input")
+            return {"Error:": "Invalid Input"}, 422 # "422 - unprocessable entity"
+
+# VALIDAÇÃO PARA VERIFICAR SE O CAMPO ESTÁ VAZIO OU NÃO
+
+        # Note q esse with open faz o mesmo que "data = open("useful/common_passwords")"
+        with open("useful/common_passwords") as data:  # bloco para q depois possa sair automaticamente
+            linhas = data.readlines()
+
+        senhas_comuns = [senha.split("\n")[0] for senha in linhas]
+
+        if new_user['Password'] in senhas_comuns:
+            return {"Error:": "Invalid Password. Too weak!"}, 422 # "422 - unprocessable entity"
+
         #usando a bibl secrets para gerar chave de api
         apikey=secrets.token_urlsafe(30)
 
         expiration_date=date.today()+ timedelta(days=30)
         is_blocked=False
         access_ip=request.remote_addr #CAPTURANDO o IP de onde vem o request
+        # antes de guardar usuário no banco precisa verificar se nao ta na lista TODO
         password_hash= generate_password_hash(new_user['Password'])
         #para verificar se está correta a senha será: check_password_hash(hash," - senha recebida p/ verificação - ")
 
@@ -93,7 +112,6 @@ class Registration(Resource):
                              password_hash,expiration_date,access_ip,is_blocked))
         cursor.commit() # To execute the command
         return {"API Key": apikey,"Expiration Date":expiration_date}, 200
-
 
 
 

@@ -27,11 +27,11 @@ def get_key():
         return api_key
 
     except: # se não foi forcencida uma api key: #avisar no terminal um det erro.
-        raise Exception('Request done with no API Key. Limiting could no be done')
+        raise Exception('Request done with no API Key. Limiting could not be done')
 
 key_usage_limiter = Limiter(
     APP,
     key_func=get_key, # counting the use. This functions returns the IP, so it can recognize when the same IP uses the API more than x times
-    default_limits=["30 per day", "30 per hour"],
+    default_limits=["50 per day", "30 per hour"],
     headers_enabled = True
 )

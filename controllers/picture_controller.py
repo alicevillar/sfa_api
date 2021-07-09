@@ -1,5 +1,7 @@
 from flask import send_from_directory, request
 from flask_restplus import Api, Resource, fields, inputs
+from validator_collection import validators, errors
+
 from minimal import sfa_app
 import pyodbc as p
 import os
@@ -34,7 +36,6 @@ class Downloading(Resource):
     @picture_namespace.response(200, 'Success')
     @picture_namespace.response(400, 'Request Error')
     @picture_namespace.response(500, 'Server Error')
-
     @picture_namespace.doc(security='apikey') #avisando para o swagger q esse endpoint precisa de api key
 
     @api_or_demo_key_required #a função aqui é chamada. Para isso é transformada em decorando a função get q baixa uma imagem
@@ -92,7 +93,19 @@ class Uploading(Resource):
         uploaded_file = args['file']  # This is FileStorage instance.
         # Agora, saving in the directory images
         uploaded_file_title = args['title']
+
         uploaded_file_date = args['date']
+        # VALIDATING INPUT
+        try:
+            uploaded_file_date["date"] = validators.date(uploaded_file_date)
+        except errors.EmptyValueError:  # Handling logic goes here
+            print("Missing Input")
+            return {"Error:": "Missing Input"}, 422
+        except errors.CannotCoerceError:  # More handlign logic goes here
+            print("Invalid Input")
+            return {"Error:": "Invalid Input"}, 422  # "422 - unprocessable entity"
+
+
         uploaded_file_explanation = args['explanation']
         uploaded_file_copyright = args['copyright']
 
@@ -100,7 +113,6 @@ class Uploading(Resource):
         # The library already has a syntax that does the protection.
 
         # Inserting the file in the API database
-
         PATH = os.path.abspath(os.path.dirname(__file__)) # This function receives a path and returns the absolute path on the pc
 
         # This function receives two parameters: the absolute and the relative path of the image
@@ -112,10 +124,8 @@ class Uploading(Resource):
         # Now you need to save the file path on the pc
         cnxn = p.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
         cursor = cnxn.cursor()
-        sql = f"""
-            INSERT INTO TB_SFA_Images (Ima_Copyright, Ima_Date,Ima_Explanation,Ima_Title,Ima_Url) 
-            values (?,?,?,?,?)"""
-        cursor.execute(sql, (uploaded_file_copyright, uploaded_file_date, uploaded_file_explanation, uploaded_file_title, uploaded_file_path))  # no ultimo argumento tem q ser o caminho absoluto
+        sql = f"""INSERT INTO TB_SFA_Images (Ima_Copyright, Ima_Date,Ima_Explanation,Ima_Title,Ima_Url) values (?,?,?,?,?)"""
+        cursor.execute(sql, (uploaded_file_copyright, str(uploaded_file_date), uploaded_file_explanation, uploaded_file_title, uploaded_file_path))  # no ultimo argumento tem q ser o caminho absoluto
         cursor.commit()
         # url = do_something_with_file(uploaded_file)
         return {'Info': "Your file has been received!"}, 201

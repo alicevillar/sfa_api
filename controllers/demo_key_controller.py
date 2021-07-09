@@ -14,7 +14,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 
 #####################################################################################################################
 #
-#   VERSION 3 - contains one endpoint that creates a demo key
+#   VERSION 4 - contains one endpoint that creates a demo key
 #
 #####################################################################################################################
 
