@@ -441,12 +441,13 @@ According to OWASP, security logging can be used for: Feeding intrusion detectio
 
 <h3>C10:  Handle All Errors and Exceptions</h3>  
 
-Exception handling is a programming concept that allows an application to respond to different error states (like network down, or database connection failed, etc) in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure.
+Exception handling is a programming concept that allows an application to respond to different error states (like network down, or database connection failed, etc) in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure. The try block lets you test a block of code for errors. The except block lets you handle the error. 
 
-> :white_check_mark: In SFA-API, we handle error and exceptions to handle input validation. This is done in the file [login_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/login_controller.py_), [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_) and [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_). We have also used try-except in the file [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py_) while checking the number of requests per Key. 
+> :white_check_mark: In SFA-API, we use the try-except statement in the following files: 
+> * a) to check input validation. This is done in the files [login_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/login_controller.py_), [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_), [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_) and [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)
+> * b) to check the number of requests per Key, in the file [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py_) while  
 
- 
- 
+
  ## Useful Links: 
  
 [OWASP Proactive Controls](https://owasp.org/www-project-proactive-controls/)
