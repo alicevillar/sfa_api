@@ -157,23 +157,30 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/demo_key
 ```
 
-:paperclip:VERSION 5 
+:paperclip:VERSION 5  :warning:TODO 
 
- This is the fifth version of SFA-API. It contains one endpoint that allows users to sign in. To comply with GDPR, this allows users to delete their data in the system. 
+ This is the fifth version of SFA-API. It contains one endpoint that allows users to see their retored data.  
  
  ```
 * Description:
 * HTTP Request Type -> POST
 * Response -> User loggin    
 * URL POST Parameters -> email / password
-* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/signin
+* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
 ```
 
-:paperclip:VERSION 6 
+:paperclip:VERSION 6  :warning:TODO 
 
-:warning:TODO This is the sixth version of SFA-API. It contains one endpoint that allows users to sign out.
+ This is the fifth version of SFA-API. It contains one endpoint that allows users to delete their data from the system. 
  
- 
+ ```
+* Description:
+* HTTP Request Type -> POST
+* Response -> User loggin    
+* URL POST Parameters -> email / password
+* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
+```
+
 
 ## 4. Project Structure
 
