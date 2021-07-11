@@ -99,12 +99,18 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 
 ## 2.1. How to use SFA
 
-> :small_blue_diamond: Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
-
-* [Monolithic Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/monolithic_architecture.jpg) 
+ :round_pushpin: Step-by-step:
+>  * STEP 1 - REGISTRATION: In the User Registration there will be four parameters: first name, last name, email and password.  
+>  * STEP 2 - AUTHENTICATION KEY: After registration, user receives an authentication key.
+>  * STEP 3 - CONSUME THE API: With the authentication key, user is able to download and upload pictures.
+>  * STEP 4 - SIGN IN: Registered users can sign in, which requires two parameters: email and password.  
+>  * STEP 5 - GDPR: After sign in, user will able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
 
 ## 2.2. Activity Diagram
 
+Click in the link below to see the activity diagram:
+
+* [Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.jpg) 
 
 ## 3. Development timeline 
 
@@ -151,17 +157,30 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/demo_key
 ```
 
-:paperclip:VERSION 5 
+:paperclip:VERSION 5  :warning:TODO 
 
-:warning:TODO This is the fifth version of SFA-API. It contains one endpoint that allows users to sign in. To comply with GDPR, this allows users to delete their data in the system. 
+ This is the fifth version of SFA-API. It contains the first endpoint for GDPR compliance: allows users to see their personal data.  
  
  ```
 * Description:
 * HTTP Request Type -> POST
 * Response -> User loggin    
 * URL POST Parameters -> email / password
-* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/signin
+* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
 ```
+
+:paperclip:VERSION 6  :warning:TODO 
+
+This is the sixth version of SFA-API. It contains the second endpoint for GDPR compliance: allows users to delete their personal data.  
+ 
+ ```
+* Description:
+* HTTP Request Type -> POST
+* Response -> User loggin    
+* URL POST Parameters -> email / password
+* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
+```
+
 
 ## 4. Project Structure
 
@@ -354,7 +373,7 @@ Secure frameworks and libraries can help to prevent a wide range of web applicat
 >  :white_check_mark: SFA-API handles secure database access with the following measures: 
 > * Secure queries: In order to mitigate SQL injection we used use ‘Query Parameterization’. However, certain locations in a database query are not parameterizable. Because of the large variation in the pattern of SQL injection attacks they are often unable to protect databases. OWASP recomments testing queries for performance, but this is not done here because the queries are all very small and therefore is not necessary. 
 > * Secure configuration: we run the database in a docker container, which has connectivvity restrictions (can only be accessed by the administrator and only has one door open - 1433). The server which runs the database does not allow external access. All access to the database should be properly authenticated. Thus, it is not possible to directly access the database from outside the instance. 
-> Secure communication: we use Pyodbc, an open source Python module to communicate with the database. We apply secure (authenticated, encrypted) communications methods.  
+> * Secure communication: we use Pyodbc, an open source Python module to communicate with the database. We apply secure (authenticated, encrypted) communications methods.  
 
 <h3>C4: Encode and Escape Data</h3>
 
@@ -429,12 +448,13 @@ According to OWASP, security logging can be used for: Feeding intrusion detectio
 
 <h3>C10:  Handle All Errors and Exceptions</h3>  
 
-Exception handling is a programming concept that allows an application to respond to different error states (like network down, or database connection failed, etc) in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure.
+Exception handling is a programming concept that allows an application to respond to different error states (like network down, or database connection failed, etc) in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure. The try block lets you test a block of code for errors. The except block lets you handle the error. 
 
-> :white_check_mark: In SFA-API, we handle error and exceptions to handle input validation. This is done in the file [login_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/login_controller.py_), [users_controller.py] (https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_) and [picture_controller.py] (https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_). We have also used try-except in the file [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py_) while checking the number of requests per Key. 
+> :white_check_mark: In SFA-API, we use the try-except statement in the following files: 
+> * a) to check input validation. This is done in the files [login_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/login_controller.py_), [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_), [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_) and [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)
+> * b) to check the number of requests per Key, in the file [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py_) while  
 
- 
- 
+
  ## Useful Links: 
  
 [OWASP Proactive Controls](https://owasp.org/www-project-proactive-controls/)
