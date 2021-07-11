@@ -1,14 +1,19 @@
 from flask import request
-
-
-# Protecting against DDOs attacks
-
 from flask import Flask
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from minimal import sfa_app
 
+
+# Protecting against DDOs attacks
+
 # Limiter - IP
+
+#################################################################################################################
+#   OWASP C7: Enforce Access Controls
+#
+#
+##################################################################################################################
 
 APP, SFA = sfa_app.app,sfa_app.api
 

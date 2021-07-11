@@ -22,13 +22,18 @@ from werkzeug.security import generate_password_hash,check_password_hash
 # Importing and storing in local variables
 APP, SFA = sfa_app.app,sfa_app.api
 
+
+#################################################################################################################
+#
+#   v0.4.0 - Version 4 - Contains one endpoint to create the demo key (HTTP Request Type -> GET)
+#
+##################################################################################################################
+
+# Creating a namespace for the demokey
 demo_key_namespace = SFA.namespace('demo', description='demo operations')
 
 # The decorator .route defines the endpoint path within the API
 @demo_key_namespace.route('/api/v1/demo_key', doc={"description": 'Retriving Demo Key'})
-
-
-
 class Demo_Key_Registration(Resource):
     # The response method defined possible responses in the documentation
     @demo_key_namespace.response(200, 'Success')
