@@ -159,7 +159,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 
 :paperclip:VERSION 5  :warning:TODO 
 
- This is the fifth version of SFA-API. It contains one endpoint that allows users to see their retored data.  
+ This is the fifth version of SFA-API. It contains the first endpoint for GDPR compliance: allows users to see their personal data.  
  
  ```
 * Description:
@@ -171,7 +171,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 
 :paperclip:VERSION 6  :warning:TODO 
 
- This is the fifth version of SFA-API. It contains one endpoint that allows users to delete their data from the system. 
+This is the sixth version of SFA-API. It contains the second endpoint for GDPR compliance: allows users to delete their personal data.  
  
  ```
 * Description:
