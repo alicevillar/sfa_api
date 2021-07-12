@@ -113,8 +113,7 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 >  * STEP 1 - REGISTRATION: In the User Registration there will be four parameters: first name, last name, email and password.  
 >  * STEP 2 - AUTHENTICATION KEY: After registration, user receives an authentication key.
 >  * STEP 3 - CONSUME THE API: With the authentication key, user is able to download and upload pictures.
->  * STEP 4 - SIGN IN: Registered users can sign in, which requires two parameters: email and password.  
->  * STEP 5 - GDPR: After sign in, user will able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
+>  * STEP 4 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
 
 ## 3.2. Activity Diagram
 
