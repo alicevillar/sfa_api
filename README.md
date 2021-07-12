@@ -357,6 +357,7 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 >  * Broken Access Control: Restrictions on what authenticated users are allowed to do. 
 >  * Protect the system from denial-of-service attacks: SFA has rate limits. Limits are placed on the number of API requests you may make using your API key. 
 >  * Protect Security Misconfiguration: all operating systems, frameworks, libraries, and applications must be securely configured and patched/upgraded in a timely fashion. This is done on the Microservice Architecture (Beam Stalk - AWS). 
+>  * Key exchange communication - only happens in the microservice architecture, where AWS cloud services are used. We hold a private key which enabled us to access our VM in EC2. 
 >  * Protect against Cross-Site Scripting (XSS): We protect against XSS in our web page, using javascript. 
 >  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any.  :warning:TODO
 >   published vulnerabilities. 
