@@ -353,20 +353,19 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 
 >  :white_check_mark: SFA-API security requirements: 
 >  * Protect against injection: We use parameterised queries to avoid SQL injection attacks in all the operations with the database. 
->  * Protect against Broken Authentication: Properly restrict on what authenticated users are allowed to do.
->  * Protect Sensitive Data: Create strong passwords (see details in C6: "Implement Digital Identity")
->  * Broken Access Control: Restrictions on what authenticated users are allowed to do.
+>  * Protect Sensitive Data: protected password with hashing and api key generated securely using library Secrets. 
+>  * Broken Access Control: Restrictions on what authenticated users are allowed to do. 
 >  * Protect the system from denial-of-service attacks: SFA has rate limits. Limits are placed on the number of API requests you may make using your API key. 
->  * Protect Security Misconfiguration: all operating systems, frameworks, libraries, and applications must be securely configured and patched/upgraded in a timely fashion.
->  * Protect against Cross-Site Scripting (XSS): We protect against XSS in our web page, using javascript. :warning:TODO
->  * Protect against insecure deserialization:  :warning:TODO
+>  * Protect Security Misconfiguration: all operating systems, frameworks, libraries, and applications must be securely configured and patched/upgraded in a timely fashion. This is done on the Microservice Architecture (Beam Stalk - AWS). 
+>  * Protect against Cross-Site Scripting (XSS): We protect against XSS in our web page, using javascript. 
 >  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any.  :warning:TODO
 >   published vulnerabilities. 
->  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised: a request is received and then returned.  Loggings are the requests from users. In  FlasK-Rest-Plus
->  the loggins are very simple, they are not very informative (thus, it is not possible to know details about each request). To have informative loggins we will use docker,
->  which is where all the loggins will be stored. It is secure. 
+>  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised, a request is received and then returned. In  FlasK-Rest-Plus loggins are very simple, they are not
+>  very informative (thus, it is not possible to know details about each request). To have informative loggins we will use docker, which is where all the loggins will be
+>  securely stored.
 
-  
+  - upload só com usuário registrado pq é rastreavel.
+   
  <h3>C2: Leverage Security Frameworks and Libraries</h3>
 
 Secure frameworks and libraries can help to prevent a wide range of web application vulnerabilities.  
