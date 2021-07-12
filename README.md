@@ -55,8 +55,8 @@ Both prototypes allows authenticated users to download and upload images. Here i
 > * :arrow_forward: user registration, which generates an authentication key
 > * :arrow_forward: download images
 > * :arrow_forward: upload images
-> * :arrow_forward: sign in 
 > * :arrow_forward: demo key
+> * :arrow_forward: gdpr rights to retrieve and delete data
 
 
 ## Architecture 
