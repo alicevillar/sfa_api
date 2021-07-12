@@ -61,17 +61,13 @@ Both prototypes allows authenticated users to download and upload images. Here i
 
 ## Architecture 
 
-MCV - Model-View-Controller
-#
-#   The Model-View-Controller (MVC) framework is an architectural pattern that separates an application
-#   into 3 main logical components: model (data), view (user interface), and controller (processes that handle input)
-#
-#   ==> SFA - MVC:
-#
-#   Model => The type of data we are using in the application: user's data and picture data (json)
-#   View => Our interfaces (Html/CSS/Javascript) and Swagger
-#   Controller => In the file with 6 controllers
+This project uses the Model-View-Controller (MCV) architecture framework, which can be described as an architectural pattern that separates an application
+into three main logical components: model (data), view (user interface), and controller (processes that handle input). In SFA-API, here is our architeture:
 
+* Model => The type of data we are using in the application: user's data and picture data (json)
+* View => Our interfaces (Html/CSS/Javascript) and Swagger
+* Controller => In the file with five controllers: [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_), [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_), [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_), [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py), [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py).
+ 
 
 ## 1.1. Monolithic Architecture
 
@@ -463,7 +459,7 @@ According to OWASP, security logging can be used for: Feeding intrusion detectio
 Exception handling is a programming concept that allows an application to respond to different error states (like network down, or database connection failed, etc) in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure. The try block lets you test a block of code for errors. The except block lets you handle the error. 
 
 > :white_check_mark: In SFA-API, we use the try-except statement in the following files: 
-> * a) to check input validation. This is done in the files [login_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/login_controller.py_), [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_), [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_) and [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)
+> * a) to check input validation. This is done in the files [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_), [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_) and [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)
 > * b) to check the number of requests per Key, in the file [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py_) while  
 
 
