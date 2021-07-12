@@ -18,12 +18,19 @@ from controllers.login_controller import *
 #########################################################################################
 
 APP, SFA = sfa_app.app,sfa_app.api
-# self.api =>> to configure all the API componets - the routes, endpoints, methods, etc.
-# self.app =>> deals with the application - cheching in which door it is running, the rates, user loggin, etc.
+# self.api =>> to configure all the API components - the routes, endpoints, methods, etc.
+# self.app =>> deals with the application - checking in which door it is running, the rates, user login, etc.
 # sfa_app ==> objet of the class API
 
+#################################################################################################################
+#
+#   v0.3.0 - Version 3 - Contains one endpoint that allows user registration (HTTP Request Type -> POST)
+#
+##################################################################################################################
+
+
 #########################################################################################
-# Creating a new namespace: users
+# First step => Creating a new namespace: users
 #########################################################################################
 
 users_namespace = SFA.namespace('users', description='user operations')
@@ -43,15 +50,10 @@ user_model_request = SFA.model("user model",{
 
 user_model_response = SFA.model("response",{'API Key': fields.String,'Expiration Date':fields.String} )
 
-#################################################################################################################
-#
-#   v0.3.0 - Version 3 - Contains one endpoint that allows user registration (HTTP Request Type -> POST)
-#
-##################################################################################################################
 
-#########################################################################################
+#############################################################################################
 # Here we place the namespace decorator .route to define the endpoint path within the API
-#########################################################################################
+#############################################################################################
 @users_namespace.route('/api/v1/register', doc={"description": 'user authentication'})
 class Registration(Resource):
     # Resources are built on top of Flask pluggable views, giving you easy access to multiple HTTP methods
@@ -72,7 +74,8 @@ class Registration(Resource):
     ##################################################################################################################
 
     def post(self):
-        new_user=request.get_json() # Variable new user receives a dictionary. I'll use it to insert values into the DB.
+        # Variable new user receives a dictionary. I'll use it to insert values into the DB.
+        new_user=request.get_json()
 
         #####################################################################################################
         # ==>> OWASP C5: Validate All Inputs
@@ -95,14 +98,14 @@ class Registration(Resource):
         #########################################################################################################
         # ==> OWASP C6: Implement Digital Identity (Level 1 : Passwords)
         #
-        # NOTE: Blocking the top 1000 most common passwords
+        # NOTE: Blocking the top 1000 most common passwords and determinining password length
         # We ensure that the password created by the user is not amongst the most commonly used passwords
         #########################################################################################################
 
         with open("useful/common_passwords") as data:
             linhas = data.readlines()
         senhas_comuns = [senha.split("\n")[0] for senha in linhas]
-        if new_user['Password'] in senhas_comuns:
+        if new_user['Password'] in senhas_comuns or len(new_user['Password']) < 8:
             return {"Error:": "Invalid Password. Too weak!"}, 422 # HTTP 422 - unprocessable entity
 
         # NOTICE ==>> We used with open() to open the file. Could also be:  data = open("useful/common_passwords")"

@@ -1,7 +1,6 @@
 from flask import send_from_directory, request
 from flask_restplus import Api, Resource, fields, inputs
 from validator_collection import validators, errors
-
 from minimal import sfa_app
 import pyodbc as p
 import os
@@ -9,6 +8,16 @@ from werkzeug.datastructures import FileStorage #importando uma abstração de a
 from senhas import *
 from decorators import *
 from controllers.limiters_controller import *
+
+#########################################################################################
+# Importing import sfa_app from minimal.py and storing in local variables
+#########################################################################################
+
+APP, SFA = sfa_app.app,sfa_app.api
+# self.api =>> to configure all the API components - the routes, endpoints, methods, etc.
+# self.app =>> deals with the application - checking in which door it is running, the rates, user login, etc.
+# sfa_app ==> objet of the class API
+
 
 #####################################################################################################################
 #
@@ -18,8 +27,6 @@ from controllers.limiters_controller import *
 
 image_directory="images"
 # Importing and storing in local variables
-APP, SFA = sfa_app.app,sfa_app.api
-
 #aqui dentro det o q acontecerá qdo receber uma request:
 
 # Namespaces are intended for organizing REST endpoints within the API.
@@ -37,7 +44,6 @@ class Downloading(Resource):
     @picture_namespace.response(400, 'Request Error')
     @picture_namespace.response(500, 'Server Error')
     @picture_namespace.doc(security='apikey') #avisando para o swagger q esse endpoint precisa de api key
-
     @api_or_demo_key_required #a função aqui é chamada. Para isso é transformada em decorando a função get q baixa uma imagem
     def get(self):
         """Downloads a picture"""
@@ -45,9 +51,11 @@ class Downloading(Resource):
         cursor = cnxn.cursor()
         sql = 'SELECT top 1 Ima_Url from TB_SFA_Images order by NEWID()'
         cursor.execute(sql)
-        result=cursor.fetchone()
+        result = cursor.fetchone()
         print(result[0])
-        return send_from_directory(directory="\\".join(result[0].split("\\")[0:-1]),filename=result[0].split("\\")[-1],as_attachment=True)
+        #return send_from_directory(directory="\\".join(result[0].split("\\")[0:-1]),filename=result[0].split("\\")[-1],as_attachment=True)
+        return send_from_directory(directory=os.path.dirname(result[0]),filename= os.path.basename(result[0]),as_attachment = True)
+
 
 #####################################################################################################################
 #
@@ -105,7 +113,6 @@ class Uploading(Resource):
             print("Invalid Input")
             return {"Error:": "Invalid Input"}, 422  # "422 - unprocessable entity"
 
-
         uploaded_file_explanation = args['explanation']
         uploaded_file_copyright = args['copyright']
 
@@ -131,15 +138,6 @@ class Uploading(Resource):
         return {'Info': "Your file has been received!"}, 201
 
         # NOTE -> The library already has a syntax that protects against SQL injection.
-
-
-
-#####################################################################################################################
-#
-#   VERSION 3 - contains one endpoint for authentication (HTTP Request Type ->  )
-#
-#####################################################################################################################
-
 
 
    # o .marshal_with = será uma segunda camada de verificação (além do parser)

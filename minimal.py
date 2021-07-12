@@ -19,4 +19,18 @@ class API():
 # variable sfa_app ==> objet of the class API
 sfa_app = API()
 
+#####################################################################################################################
+#
+#                                         MCV - Model-View-Controller
+#
+#   The Model-View-Controller (MVC) framework is an architectural pattern that separates an application
+#   into 3 main logical components: model (data), view (user interface), and controller (processes that handle input)
+#
+#   ==> SFA - MVC:
+#
+#   Model => The type of data we are using in the application: user's data and picture data (json)
+#   View => Our interfaces (Html/CSS/Javascript) and Swagger
+#   Controller => In the file with 6 controllers
+#
+#####################################################################################################################
 

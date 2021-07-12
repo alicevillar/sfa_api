@@ -46,7 +46,6 @@ class RetriveData(Resource):
 
     # Decorator @api.expect() allows you to specify the expected input fields.
     @gdpr_namespace.expect(gdpr_model_request)
-    # Creating a function for the method GET
     def post(self):
         # In this json file we will have email e password. EX.: {"email": "email@mail.com", "password": "125454678"}
         user_information = request.get_json()
@@ -68,8 +67,8 @@ class RetriveData(Resource):
             print("Invalid email")
             return {"Error:": "Invalid email"}, 422 #unprocessable
         except:
-            print("Missing payload")
-            return {"Error:": "Missing payload"}, 422 #unprocessable
+            print("Payload error")
+            return {"Error:": "Payload error"}, 422 #unprocessable
 
 
         #########################################################################################################
@@ -104,14 +103,14 @@ class RetriveData(Resource):
         # reg_id = result[0]
         # hashed_password = result[1]
 
-        try: # TODO: verificar
+        try: #
             results = []
             columns_names = [column[0] for column in cursor.description] # variable to store detailed values
             for row in cursor.fetchall():
                 results.append(dict(zip(columns_names, row)))
             hashed_password = results[0]['Reg_Password']
         except:
-            print("Invalid password")
+            print("Invalid email")
             return {"Error:": "Invalid email"}, 401  # HTTP 401 - Unauthorized
 
         #########################################################################################################
@@ -125,7 +124,6 @@ class RetriveData(Resource):
         #########################################################################################################
 
         # ==>>> to find user_information password is in the DB
-        # todo verificar lógica
 
         if check_password_hash(hashed_password, user_information["password"]):
             results[0]['Reg_Expiration_Date'] = str(results[0]['Reg_Expiration_Date'])
@@ -144,11 +142,11 @@ class DeleteData(Resource):
     # ex: email = request.form.get('email') #pega o email do formulario da request / verificar no banco
     @gdpr_namespace.expect(gdpr_model_request)
     def delete(self):
-        user = request.get_json()
+        user_information_to_delete = request.get_json()
         # user = request.get_json()  # nesse json terá email e password. # {"email": "email@mail.com", "password": "12345678"}
         try:
-            user["email"] = validators.email(user["email"])
-            user["password"] = validators.not_empty(user["password"])
+            user_information_to_delete["email"] = validators.email(user_information_to_delete["email"])
+            user_information_to_delete["password"] = validators.not_empty(user_information_to_delete["password"])
 
         except errors.EmptyValueError:  # Handling logic goes here
             print("Missing email")
@@ -159,41 +157,74 @@ class DeleteData(Resource):
         except:
             print("Missing payload")
             return {"Error:": "Missing payload"}, 422
-        # CONNECTION WITH DB TO FIND THE USER: VERIFICAR EMAIL E SENHA
+
+
+        #########################################################################################################
+        # ==> OWASP C3:Secure Database Access
+        #
+        # Here we comply with OWASP by securing the access to the database considering:
+        # a) secure queries: To protect against SQL injection we use ‘Query Parameterization’
+        # b) we run the database in a docker container, which has connectivity restrictions
+        # c) Secure communication: we use Pyodbc, an open source Python module to communicate with the database.
+        #
+        #  ===>>> Here we connect with the database to find the user_information: verify email and password
+        #
+        #########################################################################################################
+
+        # ==>>> To find user_information email in the DB
+
         cnxn = p.connect(
             'DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
         cursor = cnxn.cursor()
+        sql = f""" SELECT * FROM [SFA_DB].[dbo].[TB_SFA_Registration] where [Reg_Email] = ?  COLLATE Latin1_General_CS_AS """
+        cursor.execute(sql, (user_information_to_delete["email"]))
+        # NOTE: the second parameter is the value replacing the interrogation mark.
 
-        # Aqui nessa query será buscada a Reg_Authentication_Key, Reg_Id, Reg_Expiration_Date, Reg_Last_Access_Ip, Reg_Is_Blocked
-        sql = f""" DELETE FROM [SFA_DB].[dbo].[TB_SFA_Registration] where [Reg_Email] = 'alsv@terra.com.br'  COLLATE Latin1_General_CS_AS  """
+        ######################################################################################################
+        # ==>> OWASP C5: Validate All Inputs
+        # ==>> OWASP C10: Handle All Errors and Exceptions
+        #
+        # NOTE: Here we use try-except statement for input validation.
+        ######################################################################################################
 
-        cursor.execute(sql, (user["email"]))  # o segundo parametro é o valor q substituirá a interrogaçao. Fica numa tupla
-        cursor.commit()#tem q usar isso pq tem uma alteracao no banco
-        #result = cursor.fetchone()  # essa variável vai retornar o ID do usuário e o hash da senha do usuário (tupla)
-        #reg_id = result[0]
-        #hashed_password = result[1]
-        try:
+        # result = cursor.fetchone()  # essa variável vai retornar o ID do usuário e o hash da senha do usuário (tupla)
+        # reg_id = result[0]
+        # hashed_password = result[1]
+
+        try: #
             results = []
-            columns_names = [column[0] for column in cursor.description] # a variável vai extrair os valores detalhados
+            columns_names = [column[0] for column in cursor.description] # variable to store detailed values
             for row in cursor.fetchall():
                 results.append(dict(zip(columns_names, row)))
             hashed_password = results[0]['Reg_Password']
         except:
-            print("Invalid password")
-            return {"Error:": "Invalid email"}, 401  # "422 - unauthorized"
+            print("Invalid email")
+            return {"Error:": "Invalid email"}, 401  # HTTP 401 - Unauthorized
 
-        # VERIFICAR SE O PASSWORD DO USUÁRIO ESTÁ CORRETO
-        # FUNção usada: werkzeug.check_password_hash(pwhash, password)
+        #########################################################################################################
+        # ==> OWASP C6: Implement Digital Identity (Level 1 : Passwords)
+        #
+        # NOTE: Here we check if the password given by the user_information is correct.
+        # The function used is werkzeug.check_password_hash(pwhash, password)
         # Parameters:
         # pwhash – a hashed string like returned by generate_password_hash().
         # password – the plaintext password to compare against the hash.
+        #########################################################################################################
 
-        if check_password_hash(hashed_password, user["password"]):
-            results[0]['Reg_Expiration_Date'] = str(results[0]['Reg_Expiration_Date'])
-            return results[0], 200
+        # ==>>> to find user_information password is in the DB
+        # CONNECTION WITH DB TO FIND THE USER: VERIFICAR EMAIL E SENHA PARA DELETAR USUÁRIO
+        # vai rodar a query e fará o delete. vai pegar a quantidade de colunas afetadas.
 
-        print("Invalid password")
-        return {"Error:": "Invalid password"}, 401  # "422 - unauthorized"
+        if check_password_hash(hashed_password, user_information_to_delete["password"]):
+            sql = f""" DELETE FROM [SFA_DB].[dbo].[TB_SFA_Registration] where [Reg_Email] = ?  COLLATE Latin1_General_CS_AS  """
+            deleted_row_count = cursor.execute(sql, (user_information_to_delete["email"])).rowcount # o segundo parametro é o valor q substituirá a interrogaçao. Fica numa tupla
+            cursor.commit()#tem q usar isso pq tem uma alteracao no banco
+            if deleted_row_count >0:
+                return {"Info": "Your data was succcefully deleted from our database"}, 200  # HTTP 200 - Success
+            else:
+                return {"Error": "System could not delete the user"}, 422 #unprocessable
+        return {"Error:": "Invalid password "}, 401 # HTTP 401 - Unauthorized
+
 
 
 
