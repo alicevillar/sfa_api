@@ -19,23 +19,23 @@ SFA-API is the prototype of an API with two different architectures (monolothic 
 
 <!-- TOC -->
 - [1. Overview](#1-overview)
-    - [1.1. Monolithic Architecture](#11-monolithic-architecture)
-    - [1.2. Microservice Architecture](#12-microservice-architecture)
-- [2. Project Interface](#2-project-interface)
-    - [2.1. How to use SFA](#21-how-to-use-sfa)
-    - [2.2. Activity Diagram](#22-activity-diagram)
-- [3. Development timeline](#3-development-timeline)
-- [4. Project Structure](#4-project-structure)
-- [5. Project Files](#5-project-files)
-- [6. Python Dependencies](#6-python-dependencies) 
-- [7. Tools](#7-tools) 
-- [8. Installation](#8-installation)
-- [9. Quick Start](#9-quick-start)
-- [10. Authentication Details](#10-authentication-details)
-    - [10.1. Request Structure](#101-request-structure)
-    - [10.2. API Rate Limits](#102-api-rate-limits)
-    - [10.3. Demo Key Rate Limits](#103-demo-key-rate-limits)
-- [11. OWASP Proactive Controls](#11-owasp-proactive-controls)
+- [2. Architecture](#2-architecture) 
+    - [2.1. Monolithic Architecture](#11-monolithic-architecture)
+    - [2.2. Microservice Architecture](#12-microservice-architecture)
+- [3. Project Interface](#3-project-interface)
+    - [3.1. How to use SFA](#31-how-to-use-sfa)
+    - [3.2. Activity Diagram](#32-activity-diagram)
+- [4. Development timeline](#4-development-timeline)
+- [5. Project Structure](#5-project-structure)
+- [6. Project Files](#6-project-files)
+- [7. Python Dependencies](#7-python-dependencies) 
+- [8. Tools](#8-tools) 
+- [9. Installation](#9-installation)
+- [10. Quick Start](#10-quick-start)
+- [11. Authentication Details](#11-authentication-details)
+    - [11.1. Request Structure](#111-request-structure)
+    - [10.2. API Rate Limits](#102-api-rate-limits) 
+- [12. OWASP Proactive Controls](#12-owasp-proactive-controls)
 
 <!-- /TOC -->
 
@@ -55,23 +55,33 @@ Both prototypes allows authenticated users to download and upload images. Here i
 > * :arrow_forward: user registration, which generates an authentication key
 > * :arrow_forward: download images
 > * :arrow_forward: upload images
-> * :arrow_forward: sign in 
 > * :arrow_forward: demo key
+> * :arrow_forward: gdpr rights to retrieve and delete data
 
 
-## 1.1. Monolithic Architecture
+## 2. Architecture 
+
+This project uses the Model-View-Controller (MCV) architecture framework, which can be described as an architectural pattern that separates an application
+into three main logical components: model (data), view (user interface), and controller (processes that handle input). In SFA-API, here is our architeture:
+
+* Model => The type of data we are using in the application: user's data and picture data (json)
+* View => Our interfaces (Html/CSS/Javascript) and Swagger
+* Controller => In the file with five controllers: [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_), [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_), [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_), [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py), [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py).
+ 
+
+## 2.1. Monolithic Architecture
 
 > :small_blue_diamond: Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
 
 * [Monolithic Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/monolithic_architecture.jpg) 
 
-## 1.2. Microservice Architecture
+## 2.2. Microservice Architecture
 
 > :small_orange_diamond: Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. For this, we have o sign up for a NASA developer key. 
 
 * [Microsservice Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.jpg) 
  
-## 2. Project Interface
+## 3. Project Interface
 
 :large_blue_circle: SWAGGER INTERFACE
 
@@ -97,22 +107,21 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 > * :arrow_forward: sign in (to comply with GDPR, the system allows users to delete their data)
 > * :arrow_forward: automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
 
-## 2.1. How to use SFA
+## 3.1. How to use SFA
 
  :round_pushpin: Step-by-step:
 >  * STEP 1 - REGISTRATION: In the User Registration there will be four parameters: first name, last name, email and password.  
 >  * STEP 2 - AUTHENTICATION KEY: After registration, user receives an authentication key.
 >  * STEP 3 - CONSUME THE API: With the authentication key, user is able to download and upload pictures.
->  * STEP 4 - SIGN IN: Registered users can sign in, which requires two parameters: email and password.  
->  * STEP 5 - GDPR: After sign in, user will able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
+>  * STEP 4 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
 
-## 2.2. Activity Diagram
+## 3.2. Activity Diagram
 
 Click in the link below to see the activity diagram:
 
 * [Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.jpg) 
 
-## 3. Development timeline 
+## 4. Development timeline 
 
 :paperclip: VERSION 1
 
@@ -169,20 +178,20 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
 ```
 
-:paperclip:VERSION 6  :warning:TODO 
+:paperclip:VERSION 6   
 
 This is the sixth version of SFA-API. It contains the second endpoint for GDPR compliance: allows users to delete their personal data.  
  
  ```
 * Description:
-* HTTP Request Type -> POST
+* HTTP Request Type -> DELETE
 * Response -> User loggin    
 * URL POST Parameters -> email / password
-* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
+* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr2
 ```
 
 
-## 4. Project Structure
+## 5. Project Structure
 
 The following directory diagram was generated with the comand "tree /F"
 
@@ -207,11 +216,13 @@ app/
 │   │   users_controller.py
 ```
 
-## 5. Project Files
+## 6. Project Files
 
 * `README.md` [README.md](https://github.com/alicevillar/sfa_api/blob/main/README.md)- Contains the description and documentation of the project. 
 * `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - defines operations/endpoints with users (user registration).
 * `picture_controller.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py) - defines operations/endpoints with pictures (download and upload).
+* `demo_key_controller.py` [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py) - defines operations/endpoints with gdpr (users can see data and delete their personal data).
+* `gdpr_controller.py` [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py) - defines operations/endpoints with gdpr (users can see data and delete their personal data).
 * `limiters_controller.py` [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py) - This is file implements the counting to limit the use of the API (through user's IP address) and demo key. 
 * `demo_key_controller.py` [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py) - This file implements the demo key.
 * `decorators.py` [decorators.py](https://github.com/alicevillar/sfa_api/blob/main/decorators.py) - This file contains the decorators for the api key and the demo key (to verify the existence and authenticity of the key).   
@@ -223,12 +234,12 @@ app/
 * `senhas.py` - This file contains the passwords of the database.
 * `server.py` [server.py](https://github.com/alicevillar/sfa_api/blob/main/server.py) - This file imports controllers and runs the API. 
 * `gitignore` [gitignore](https://github.com/alicevillar/sfa_api/blob/main/.gitignore)- Lists files and file masks of the files which should not be added to git repository.
-* `requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements.
-* `application_structure.py` [application_structure.py](https://github.com/alicevillar/sfa_api/blob/main/application_structure.py) - Directory tree structure in Python.
 * `common_passwords.py` [common_passwords.py](https://github.com/alicevillar/sfa_api/blob/main/useful/common_passwords) - File containing the most 1000 most common passwords. 
+* `application_structure.py` [application_structure.py](https://github.com/alicevillar/sfa_api/blob/main/application_structure.py) - Directory tree structure in Python.
+* `requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements. Script: 1) pip install pipreqs; 2) pipreqs --encoding=utf8 C:\Users\Alice\PycharmProjects\SFA_DB 
 
 
-## 6. Python Dependencies
+## 7. Python Dependencies
 
 * [**Flask-RestPlus**](https://github.com/noirbizarre/flask-restplus) (+
   [*flask*](http://flask.pocoo.org/))  
@@ -245,7 +256,7 @@ app/
 * [**Dependency Check**](https://pypi.org/project/dependency-check/) - scans application dependencies and checks whether they contain any published vulnerabilities.
 
  
-## 7. Tools
+## 8. Tools
 
 * [**Docker**](https://www.docker.com/) - for storing the database and the API in a container. 
 * [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - used for documentation and to allow development team to visualize and interact with the API's. 
@@ -257,7 +268,7 @@ app/
 * [**NASA APOD**](https://api.nasa.gov/) - In the monolithic architecture it was used as an API model. In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
 * [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
 
-## 8. Installation  
+## 9. Installation  
 
  :warning:TODO 
  
@@ -281,15 +292,15 @@ You will need `invoke` package to work with everything related to this project.
 $ pip install -r tasks/requirements.txt
 ```
   
-## 9. Quick Start  
+## 10. Quick Start  
  
  <br>
 :warning:TODO 
   <br>
 
-## 10. Authentication Details
+## 11. Authentication Details
 
-## 10.1. Request Structure 
+## 11.1. Request Structure 
  
 In APOD, you do not need to authenticate in order to explore the NASA data. However, if you will be intensively using the APIs to, say, support a mobile application, then you should sign up for a NASA developer key. 
 
@@ -322,7 +333,7 @@ curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: applicati
 The response body contains the API Key and the expiration date. Once the access authentication key expires, you have to create a new one. 
 
 
-## 10.2. API Rate Limits
+## 11.2. API Rate Limits
 
 In NASA, limits are placed on the number of API requests you may make using your API key. The defaults are ==>> Hourly Limit: 1,000 requests per hour. For each API key, these limits are applied across all api.nasa.gov API requests. Exceeding these limits will lead to your API key being temporarily blocked from making further requests. 
 
@@ -331,11 +342,7 @@ In SFA-API we will allow the rate limits NASA uses for the DEMO_KEY, which are:
 * Hourly Limit: 30 requests per IP address per hour
 * Daily Limit: 50 requests per IP address per day
 
-## 10.3. Demo Key Rate Limits
-
-In SFA-API, the demo key rate limits are very short, to encourage users to register and generate their API-Key. :warning:TODO 
-
-## 11. OWASP Proactive Controls
+## 12. OWASP Proactive Controls
 
 The [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-controls/) is a list of security techniques that should be included in every software development project. They are ordered by order of importance, with control number 1 being the most important. 
 
@@ -451,7 +458,7 @@ According to OWASP, security logging can be used for: Feeding intrusion detectio
 Exception handling is a programming concept that allows an application to respond to different error states (like network down, or database connection failed, etc) in various ways. Handling exceptions and errors correctly is critical to making your code reliable and secure. The try block lets you test a block of code for errors. The except block lets you handle the error. 
 
 > :white_check_mark: In SFA-API, we use the try-except statement in the following files: 
-> * a) to check input validation. This is done in the files [login_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/login_controller.py_), [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_), [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_) and [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)
+> * a) to check input validation. This is done in the files [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_), [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_) and [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)
 > * b) to check the number of requests per Key, in the file [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py_) while  
 
 
@@ -465,9 +472,11 @@ Exception handling is a programming concept that allows an application to respon
  
 [how-to-prevent-sql-injection-attacks](https://www.ptsecurity.com/ww-en/analytics/knowledge-base/how-to-prevent-sql-injection-attacks/#6)
 
-[APOD](https://github.com/nasa/apod-api)
+[NASA OPEN APIs](https://api.nasa.gov/)
 
- 
+[APOD - GitHub Documentation](https://github.com/nasa/apod-api)
+
+
  
 
 
