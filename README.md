@@ -59,7 +59,7 @@ Both prototypes allows authenticated users to download and upload images. Here i
 > * :arrow_forward: gdpr rights to retrieve and delete data
 
 
-## Architecture 
+## 2. Architecture 
 
 This project uses the Model-View-Controller (MCV) architecture framework, which can be described as an architectural pattern that separates an application
 into three main logical components: model (data), view (user interface), and controller (processes that handle input). In SFA-API, here is our architeture:
