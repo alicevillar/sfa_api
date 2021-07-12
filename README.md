@@ -20,8 +20,8 @@ SFA-API is the prototype of an API with two different architectures (monolothic 
 <!-- TOC -->
 - [1. Overview](#1-overview)
 - [2. Architecture](#2-architecture) 
-    - [2.1. Monolithic Architecture](#11-monolithic-architecture)
-    - [2.2. Microservice Architecture](#12-microservice-architecture)
+    - [2.1. Monolithic Architecture](#21-monolithic-architecture)
+    - [2.2. Microservice Architecture](#22-microservice-architecture)
 - [3. Project Interface](#3-project-interface)
     - [3.1. How to use SFA](#31-how-to-use-sfa)
     - [3.2. Activity Diagram](#32-activity-diagram)
