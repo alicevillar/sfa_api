@@ -19,22 +19,23 @@ SFA-API is the prototype of an API with two different architectures (monolothic 
 
 <!-- TOC -->
 - [1. Overview](#1-overview)
-    - [1.1. Monolithic Architecture](#11-monolithic-architecture)
-    - [1.2. Microservice Architecture](#12-microservice-architecture)
-- [2. Project Interface](#2-project-interface)
-    - [2.1. How to use SFA](#21-how-to-use-sfa)
-    - [2.2. Activity Diagram](#22-activity-diagram)
-- [3. Development timeline](#3-development-timeline)
-- [4. Project Structure](#4-project-structure)
-- [5. Project Files](#5-project-files)
-- [6. Python Dependencies](#6-python-dependencies) 
-- [7. Tools](#7-tools) 
-- [8. Installation](#8-installation)
-- [9. Quick Start](#9-quick-start)
-- [10. Authentication Details](#10-authentication-details)
-    - [10.1. Request Structure](#101-request-structure)
+- [2. Architecture](#2-architecture) 
+    - [2.1. Monolithic Architecture](#11-monolithic-architecture)
+    - [2.2. Microservice Architecture](#12-microservice-architecture)
+- [3. Project Interface](#3-project-interface)
+    - [3.1. How to use SFA](#31-how-to-use-sfa)
+    - [3.2. Activity Diagram](#32-activity-diagram)
+- [4. Development timeline](#4-development-timeline)
+- [5. Project Structure](#5-project-structure)
+- [6. Project Files](#6-project-files)
+- [7. Python Dependencies](#7-python-dependencies) 
+- [8. Tools](#8-tools) 
+- [9. Installation](#9-installation)
+- [10. Quick Start](#10-quick-start)
+- [11. Authentication Details](#11-authentication-details)
+    - [11.1. Request Structure](#111-request-structure)
     - [10.2. API Rate Limits](#102-api-rate-limits) 
-- [11. OWASP Proactive Controls](#11-owasp-proactive-controls)
+- [12. OWASP Proactive Controls](#12-owasp-proactive-controls)
 
 <!-- /TOC -->
 
@@ -56,6 +57,20 @@ Both prototypes allows authenticated users to download and upload images. Here i
 > * :arrow_forward: upload images
 > * :arrow_forward: sign in 
 > * :arrow_forward: demo key
+
+
+## Architecture 
+
+MCV - Model-View-Controller
+#
+#   The Model-View-Controller (MVC) framework is an architectural pattern that separates an application
+#   into 3 main logical components: model (data), view (user interface), and controller (processes that handle input)
+#
+#   ==> SFA - MVC:
+#
+#   Model => The type of data we are using in the application: user's data and picture data (json)
+#   View => Our interfaces (Html/CSS/Javascript) and Swagger
+#   Controller => In the file with 6 controllers
 
 
 ## 1.1. Monolithic Architecture
@@ -96,7 +111,7 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 > * :arrow_forward: sign in (to comply with GDPR, the system allows users to delete their data)
 > * :arrow_forward: automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
 
-## 2.1. How to use SFA
+## 3.1. How to use SFA
 
  :round_pushpin: Step-by-step:
 >  * STEP 1 - REGISTRATION: In the User Registration there will be four parameters: first name, last name, email and password.  
@@ -105,13 +120,13 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 >  * STEP 4 - SIGN IN: Registered users can sign in, which requires two parameters: email and password.  
 >  * STEP 5 - GDPR: After sign in, user will able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
 
-## 2.2. Activity Diagram
+## 3.2. Activity Diagram
 
 Click in the link below to see the activity diagram:
 
 * [Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.jpg) 
 
-## 3. Development timeline 
+## 4. Development timeline 
 
 :paperclip: VERSION 1
 
@@ -168,20 +183,20 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
 ```
 
-:paperclip:VERSION 6  :warning:TODO 
+:paperclip:VERSION 6   
 
 This is the sixth version of SFA-API. It contains the second endpoint for GDPR compliance: allows users to delete their personal data.  
  
  ```
 * Description:
-* HTTP Request Type -> POST
+* HTTP Request Type -> DELETE
 * Response -> User loggin    
 * URL POST Parameters -> email / password
-* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
+* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr2
 ```
 
 
-## 4. Project Structure
+## 5. Project Structure
 
 The following directory diagram was generated with the comand "tree /F"
 
@@ -206,7 +221,7 @@ app/
 │   │   users_controller.py
 ```
 
-## 5. Project Files
+## 6. Project Files
 
 * `README.md` [README.md](https://github.com/alicevillar/sfa_api/blob/main/README.md)- Contains the description and documentation of the project. 
 * `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - defines operations/endpoints with users (user registration).
@@ -229,7 +244,7 @@ app/
 * `requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements. Script: 1) pip install pipreqs; 2) pipreqs --encoding=utf8 C:\Users\Alice\PycharmProjects\SFA_DB 
 
 
-## 6. Python Dependencies
+## 7. Python Dependencies
 
 * [**Flask-RestPlus**](https://github.com/noirbizarre/flask-restplus) (+
   [*flask*](http://flask.pocoo.org/))  
@@ -246,7 +261,7 @@ app/
 * [**Dependency Check**](https://pypi.org/project/dependency-check/) - scans application dependencies and checks whether they contain any published vulnerabilities.
 
  
-## 7. Tools
+## 8. Tools
 
 * [**Docker**](https://www.docker.com/) - for storing the database and the API in a container. 
 * [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - used for documentation and to allow development team to visualize and interact with the API's. 
@@ -258,7 +273,7 @@ app/
 * [**NASA APOD**](https://api.nasa.gov/) - In the monolithic architecture it was used as an API model. In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
 * [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
 
-## 8. Installation  
+## 9. Installation  
 
  :warning:TODO 
  
@@ -282,15 +297,15 @@ You will need `invoke` package to work with everything related to this project.
 $ pip install -r tasks/requirements.txt
 ```
   
-## 9. Quick Start  
+## 10. Quick Start  
  
  <br>
 :warning:TODO 
   <br>
 
-## 10. Authentication Details
+## 11. Authentication Details
 
-## 10.1. Request Structure 
+## 11.1. Request Structure 
  
 In APOD, you do not need to authenticate in order to explore the NASA data. However, if you will be intensively using the APIs to, say, support a mobile application, then you should sign up for a NASA developer key. 
 
@@ -323,7 +338,7 @@ curl -X POST "http://127.0.0.1:5000/users/api/v1/register" -H "accept: applicati
 The response body contains the API Key and the expiration date. Once the access authentication key expires, you have to create a new one. 
 
 
-## 10.2. API Rate Limits
+## 11.2. API Rate Limits
 
 In NASA, limits are placed on the number of API requests you may make using your API key. The defaults are ==>> Hourly Limit: 1,000 requests per hour. For each API key, these limits are applied across all api.nasa.gov API requests. Exceeding these limits will lead to your API key being temporarily blocked from making further requests. 
 
@@ -332,11 +347,7 @@ In SFA-API we will allow the rate limits NASA uses for the DEMO_KEY, which are:
 * Hourly Limit: 30 requests per IP address per hour
 * Daily Limit: 50 requests per IP address per day
 
-## 10.3. Demo Key Rate Limits
-
-In SFA-API, the demo key rate limits are very short, to encourage users to register and generate their API-Key. :warning:TODO 
-
-## 11. OWASP Proactive Controls
+## 12. OWASP Proactive Controls
 
 The [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-controls/) is a list of security techniques that should be included in every software development project. They are ordered by order of importance, with control number 1 being the most important. 
 
