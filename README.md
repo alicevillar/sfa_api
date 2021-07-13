@@ -119,7 +119,7 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 
 Click in the link below to see the activity diagram, which applies to both interfaces of SFA-API.
 
-* [Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.jpg) 
+* [Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.pdf) 
 
 ## 4. Development timeline 
 
