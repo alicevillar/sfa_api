@@ -103,17 +103,18 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 > * :arrow_forward: user registration, which generates an authentication key
 > * :arrow_forward: download images (the system can automatically put an image on user's desktop background) warning:TODO
 > * :arrow_forward: upload images (users can increment our database uploading new images)
-> * :arrow_forward: demo key (the demo key is: DEMO_KEY)
+> * :arrow_forward: demo key (the demo key is: Demo_Key_SFA_Trial)
 > * :arrow_forward: sign in (to comply with GDPR, the system allows users to delete their data)
 > * :arrow_forward: automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
 
 ## 3.1. How to use SFA
 
  :round_pushpin: Step-by-step:
->  * STEP 1 - REGISTRATION: In the User Registration there will be four parameters: first name, last name, email and password.  
->  * STEP 2 - AUTHENTICATION KEY: After registration, user receives an authentication key.
->  * STEP 3 - CONSUME THE API: With the authentication key, user is able to download and upload pictures.
->  * STEP 4 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
+>  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
+>  * STEP 2 - REGISTRATION: For user registration there are four parameters: first name, last name, email and password.  
+>  * STEP 3 - AUTHENTICATION KEY: After registration, user receives an authentication key.
+>  * STEP 4 - CONSUME THE API: With the authentication key, user is able to download and upload pictures.
+>  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
 
 ## 3.2. Activity Diagram
 
