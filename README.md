@@ -20,8 +20,8 @@ SFA-API is the prototype of an API with two different architectures (monolothic 
 <!-- TOC -->
 - [1. Overview](#1-overview)
 - [2. Architecture](#2-architecture) 
-    - [2.1. Monolithic Architecture](#11-monolithic-architecture)
-    - [2.2. Microservice Architecture](#12-microservice-architecture)
+    - [2.1. Monolithic Architecture](#21-monolithic-architecture)
+    - [2.2. Microservice Architecture](#22-microservice-architecture)
 - [3. Project Interface](#3-project-interface)
     - [3.1. How to use SFA](#31-how-to-use-sfa)
     - [3.2. Activity Diagram](#32-activity-diagram)
@@ -73,13 +73,13 @@ into three main logical components: model (data), view (user interface), and con
 
 > :small_blue_diamond: Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
 
-* [Monolithic Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/monolithic_architecture.jpg) 
+* [Monolithic Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/monolithic_architecture.pdf) 
 
 ## 2.2. Microservice Architecture
 
 > :small_orange_diamond: Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. For this, we have o sign up for a NASA developer key. 
 
-* [Microsservice Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.jpg) 
+* [Microsservice Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.pdf) 
  
 ## 3. Project Interface
 
@@ -353,20 +353,20 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 
 >  :white_check_mark: SFA-API security requirements: 
 >  * Protect against injection: We use parameterised queries to avoid SQL injection attacks in all the operations with the database. 
->  * Protect against Broken Authentication: Properly restrict on what authenticated users are allowed to do.
->  * Protect Sensitive Data: Create strong passwords (see details in C6: "Implement Digital Identity")
->  * Broken Access Control: Restrictions on what authenticated users are allowed to do.
+>  * Protect Sensitive Data: protected password with hashing and api key generated securely using library Secrets. 
+>  * Broken Access Control: Restrictions on what authenticated users are allowed to do. 
 >  * Protect the system from denial-of-service attacks: SFA has rate limits. Limits are placed on the number of API requests you may make using your API key. 
->  * Protect Security Misconfiguration: all operating systems, frameworks, libraries, and applications must be securely configured and patched/upgraded in a timely fashion.
->  * Protect against Cross-Site Scripting (XSS): We protect against XSS in our web page, using javascript. :warning:TODO
->  * Protect against insecure deserialization:  :warning:TODO
+>  * Protect Security Misconfiguration: all operating systems, frameworks, libraries, and applications must be securely configured and patched/upgraded in a timely fashion. This is done on the Microservice Architecture (Beam Stalk - AWS). 
+>  * Key exchange communication - only happens in the microservice architecture, where AWS cloud services are used. We hold a private key which enabled us to access our VM in EC2. 
+>  * Protect against Cross-Site Scripting (XSS): We protect against XSS in our web page, using javascript. 
 >  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any.  :warning:TODO
 >   published vulnerabilities. 
->  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised: a request is received and then returned.  Loggings are the requests from users. In  FlasK-Rest-Plus
->  the loggins are very simple, they are not very informative (thus, it is not possible to know details about each request). To have informative loggins we will use docker,
->  which is where all the loggins will be stored. It is secure. 
+>  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised, a request is received and then returned. In  FlasK-Rest-Plus loggins are very simple, they are not
+>  very informative (thus, it is not possible to know details about each request). To have informative loggins we will use docker, which is where all the loggins will be
+>  securely stored.
 
-  
+  - upload só com usuário registrado pq é rastreavel.
+   
  <h3>C2: Leverage Security Frameworks and Libraries</h3>
 
 Secure frameworks and libraries can help to prevent a wide range of web application vulnerabilities.  
