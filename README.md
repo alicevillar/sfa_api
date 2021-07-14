@@ -419,12 +419,12 @@ OWASP provides several recommendations for secure implementation of Digital Iden
 
 > :white_check_mark: SFA-API applies digital identity, authentication and session management recommendation. We use libraries werkzeug (for password hashing) and secrets (to
 > generate authentication key). However, we're only scratching the surface. We are maximizing the security in our API. Following the above OWASP recommendations, here are the
-> basic security measures we apply to maximize the security in our AP:  
+> basic security measures we apply to maximise the security in our AP:  
 > * Level 1 : Passwords => 
 > * a) In SFA-API, passwords have at least 8 characters in length; 
-> * b) All printing ASCII characters as well as the space character are acceptable in memorized secrets. 
-> * c) We follow the the OWASP recommedation, which is to remove complexity requirements as these have been found to be of limited effectiveness. OWASP recommends the adoption of MFA or longer password lengths instead. What we do it to encourage the use of long passwords and passphrases by recommending this action in the interface. 
-> * d) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt); c) we securely store user credentials, so is a password is compromised, the attacker does not immediately have access to this information. 
+> * b) All printing ASCII characters as well as the space character are acceptable in memorised secrets. 
+> * c) We follow the the OWASP recommendation, which is to remove complexity requirements as these have been found to be of limited effectiveness. OWASP recommends the adoption of MFA or longer password lengths instead. We encourage the use of long passwords and passphrases by recommending this action in the interface. 
+> * d) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt); c) we securely store user credentials, so if a password is compromised, the attacker does not immediately have access to this information. 
 > * Level 2 : Multi-Factor Authentication (MFA) => SFA-API applies 2 layers of protection: passwords and authentication key (which works as a token).
 > * Level 3 : Cryptographic Based Authentication => Once the initial successful user authentication has taken place, the application tracks this user (this is called Session Management) so it can store details about usage. Flask does it through encrypted cookies. This is implemented on top of cookies for you and signs the cookies cryptographically. What this means is that the user could look at the contents of your cookie but not modify it, unless they know the secret key used for signing. 
 
@@ -441,17 +441,17 @@ Access Control functionality often spans many areas of software depending on the
  
 <h3>C8: Protect Data Everywhere</h3>
 
-Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here are some of the OWAS recommendations:
+Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here are some of the OWASPs recommendations:
 
- * a) Parametrized queries: makes it possible for the database to recognize the code and distinguish it from input data; 
+ * a) Parametrised queries: makes it possible for the database to recognize the code and distinguish it from input data; 
  * b) Least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
- * c) Stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterized. Simply put, it is a type of code that can be stored for later and used many times.
+ * c) Stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterised. Simply put, it is a type of code that can be stored for later and used many times.
  * d) Escaping: use character-escaping functions for user-supplied input provided by each database management system (DBMS). This is done to make sure the DBMS never confuse it with the SQL statement provided by the developer.
 
 > :white_check_mark: In SFA-API, we protect data with the following measures: 
-> a) Parametrized queries: are widely applied to protect against SQL injection. 
+> a) Parametised queries: are widely applied to protect against SQL injection. 
 > b) Least privilege on the database: :warning:TODO   
-> c) Stored procedures: This is not done in SFA-API because the queries are small, so this measure is unecessary. 
+> c) Stored procedures: This is not done in SFA-API because the queries are small, so this measure is unnecessary. 
 > d) Escaping: we didn't need to do it in our API. 
  
 <h3>C9: Implement Security Logging and Monitoring</h3>
