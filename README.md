@@ -111,12 +111,12 @@ Swagger enabled the development across the entire API lifecycle, from design and
 The Web Interface was built with HTML/CSS and Javascript. It is only aimed to show our microservice working in a different environment.  
  
  > :radio_button: FEATURES: 
-> * :arrow_forward: 2 - download images (user can download images with a demo key)
+> * :arrow_forward: download images from APOD (user can download images with a demo key)
 > * :arrow_forward: automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
 
 ## 3.1. How to use SFA
 
-The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_)contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here goes a small summary how to use them step-by-step.
+The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_) contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here goes a small summary how to use them step-by-step.
 
  :round_pushpin: Monolithics Architecture Step-by-step:
 >  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
