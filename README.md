@@ -1,6 +1,6 @@
  <h1>Space Fan Art (SFA - API)</h1>
 
-SFA-API is the prototype of an API with two different architectures (monolothic architecture and a microservice architecture). In both architectures, users have to register to get an authentication key, which allows them to download and upload images from NASA. The images come from two different sources: in the monolithic architecture, they come from a local database containing [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microserve architecture, they come directly from  APOD (one of the most famous NASA's Open API) because SFA-API and [APOD](https://github.com/nasa/apod-api) are integrated. 
+Space Fan Art is a working API prototype created with Flask REST-Plus to showcase the OWASP Top Ten Proactive Controls in two different architectures: a monolith and a microservice. In the monolithic architecture, users have to register to get an authentication key, which allows them to download images from NASA and also contribute with our database by uploading pictures to our database of [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microservice architecture, users will only be able to download images, which will come directly from [APOD](https://github.com/nasa/apod-api)(one of the most famous NASA's Open API).  
 
 :arrow_forward: Duration : 3 months
 <br>
@@ -173,7 +173,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 ```
 :paperclip:VERSION 4 
 
-This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key.
+This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key: Demo_Key_SFA_Trial
 
 ```
 * Description:
@@ -183,7 +183,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/demo_key
 ```
 
-:paperclip:VERSION 5  :warning:TODO 
+:paperclip:VERSION 5  
 
  This is the fifth version of SFA-API. It contains the first endpoint for GDPR compliance: allows users to see their personal data.  
  
@@ -209,7 +209,7 @@ This is the sixth version of SFA-API. It contains the second endpoint for GDPR c
 
 :paperclip:VERSION 7   
 
-This is the seventh version of SFA-API. It contains one endpoint that allows users to get images directly from NASA API APOD (HTTP Request Type -> GET) 
+This is the seventh version of SFA-API. It contains one endpoint exclusively created for the microservice architecture. This endpoint allows users to get images directly from NASA API APOD (HTTP Request Type -> GET). Users can do it using the demo key (Demo_Key_SFA_Trial) or the authentication key. 
  
  ```
 * Description:
@@ -295,8 +295,7 @@ app/
 * [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
 
 ## 9. Installation  
-
- :warning:TODO 
+ 
  
 <h3>Using Docker</h3>
 
@@ -384,7 +383,7 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 >  * Protect Security Misconfiguration: all operating systems, frameworks, libraries, and applications must be securely configured and patched/upgraded in a timely fashion. This is done on the Microservice Architecture (Beam Stalk - AWS). 
 >  * Key exchange communication - only happens in the microservice architecture, where AWS cloud services are used. We hold a private key which enabled us to access our VM in EC2. 
 >  * Protect against Cross-Site Scripting (XSS): We protect against XSS in our web page, using javascript. 
->  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any.  :warning:TODO
+>  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any. 
 >   published vulnerabilities. 
 >  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised, a request is received and then returned. In  FlasK-Rest-Plus loggins are very simple, they are not
 >  very informative (thus, it is not possible to know details about each request). Using docker loogs, it is possible to query, store and analyse the loggins.
@@ -412,7 +411,7 @@ Encoding and escaping are defensive techniques meant to stop injection attacks. 
  * Encoding (commonly called “Output Encoding”) involves translating special characters into some different but equivalent form that is no longer dangerous in the target interpreter, for example translating the < character into the &lt; string when writing to an HTML page. 
  * Escaping involves adding a special character before the character/string to avoid it being misinterpreted, for example, adding a \ character before a " (double quote) character so that it is interpreted as text and not as closing a string.
  
-> :white_check_mark: In SFA-API, we don't apply escaping. We do escaping in our webpage interface (HTML/CSS, Javascript). :warning:TODO 
+> :white_check_mark: In SFA-API, we don't apply encoding or escaping because it was not needed. 
 > 
 > :o: It should be highlightened that a hash is not ‘encryption’ – it cannot be decrypted back to the original text (it is a ‘one-way’ cryptographic function, Whereas
 > encryption is a two-way function, hashing is a one-way function. Hashing is used in conjunction with authentication to produce strong evidence that a given message has not
@@ -425,7 +424,6 @@ Input validation is a programming technique that ensures only properly formatted
 
 > :white_check_mark: SFA-API validates inputs we use the Python library [Validator Collection](https://pypi.org/project/validator-collection/), which is a Python library that provides functions that can be used to validate the type and contents of an input value.  
 
- 
  <h3>C6: Implement Digital Identity</h3>
 
 OWASP provides several recommendations for secure implementation of Digital Identity, a unique representation of a user. OWASP divide it in three levels: 
@@ -457,18 +455,9 @@ Access Control functionality often spans many areas of software depending on the
  
 <h3>C8: Protect Data Everywhere</h3>
 
-Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here are some of the OWAS recommendations:
+Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here we describe how we have folloed OWAS recommendations.
 
- * a) Parametrized queries: makes it possible for the database to recognize the code and distinguish it from input data; 
- * b) Least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
- * c) Stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterized. Simply put, it is a type of code that can be stored for later and used many times.
- * d) Escaping: use character-escaping functions for user-supplied input provided by each database management system (DBMS). This is done to make sure the DBMS never confuse it with the SQL statement provided by the developer.
-
-> :white_check_mark: In SFA-API, we protect data with the following measures: 
-> a) Parametrized queries: are widely applied to protect against SQL injection. 
-> b) Least privilege on the database: :warning:TODO   
-> c) Stored procedures: This is not done in SFA-API because the queries are small, so this measure is unecessary. 
-> d) Escaping: we didn't need to do it in our API. 
+> :white_check_mark: In SFA-API, we protect data with warametrized queries to protect against SQL injection. OWASP recommends stored procedures but  is not done in SFA-API because the queries are small, so this measure is unecessary. OWASP also recommends escaping, which we didn't need to do in our API because it wasn't necessary.
  
 <h3>C9: Implement Security Logging and Monitoring</h3>
   
