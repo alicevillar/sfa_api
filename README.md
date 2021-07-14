@@ -1,4 +1,3 @@
-
  <h1>Space Fan Art (SFA - API)</h1>
 
 SFA-API is the prototype of an API with two different architectures (monolothic architecture and a microservice architecture). In both architectures, users have to register to get an authentication key, which allows them to download and upload images from NASA. The images come from two different sources: in the monolithic architecture, they come from a local database containing [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microserve architecture, they come directly from  APOD (one of the most famous NASA's Open API) because SFA-API and [APOD](https://github.com/nasa/apod-api) are integrated. 
@@ -83,38 +82,53 @@ into three main logical components: model (data), view (user interface), and con
  
 ## 3. Project Interface
 
-:large_blue_circle: SWAGGER INTERFACE
+:large_blue_circle: MONOLITHIC ARCHITECTURE ON SWAGGER INTERFACE
 
 Swagger enabled the development across the entire API lifecycle, from design and documentation, to test and deployment. It has also been used as an interface. 
-> :radio_button: FEATURES: 
-> * :arrow_forward: user registration (generates an authentication key)
-> * :arrow_forward: download images  
-> * :arrow_forward: upload images (users can increment our database uploading new images)
-> * :arrow_forward: demo key (the demo key is: DEMO_KEY)
-> * :arrow_forward: sign in (to comply with GDPR, the system allows users to delete their data)
+> :radio_button: We have 6 endpoints, with the following features: 
+> * :arrow_forward: 1 - user registration (generates an authentication key)
+> * :arrow_forward: 2 - download images (user can download images with their authentication key and also with a demo key)
+> * :arrow_forward: 3 - upload images (users can increment our database uploading new images)
+> * :arrow_forward: 4 - demo key (the demo key is: Demo_Key_SFA_Trial)
+> * :arrow_forward: 5 - GDPR1 (to comply with GDPR, the system allows users to see their data)
+> * :arrow_forward: 6 - GDPR2 (to comply with GDPR, the system allows users to delete their data)
+
+:large_blue_circle: MICROSERVICE ARCHITECTURE ON SWAGGER INTERFACE
+> :radio_button: We have 5 endpoints, with the following features: 
+> * :arrow_forward: 1 - user registration (generates an authentication key)
+> * :arrow_forward: 2 - download images (user can download images with their authentication key and also with a demo key)
+> * :arrow_forward: 3 - demo key (the demo key is: Demo_Key_SFA_Trial)
+> * :arrow_forward: 4 - GDPR1 (to comply with GDPR, the system allows users to see their data)
+> * :arrow_forward: 5 - GDPR2 (to comply with GDPR, the system allows users to delete their data)
+
 
 ![print](/readme_img/swagger_print.PNG)
 
 :large_blue_circle: WEB INTERFACE
 
-The Web Interface is our main interface and it was built with HTML/CSS and Javascript. As swagger, it also allows:  a) users authentication, b) download images, and c) upload images. However, our web interface has an additional feature: when user download an image, the system automatically puts it as his or her desktop background. It has been  done with ctypes and Eel libraries. 
+The Web Interface was built with HTML/CSS and Javascript. It is only aimed to show our microservice working in a different environment.  
  
  > :radio_button: FEATURES: 
-> * :arrow_forward: user registration, which generates an authentication key
-> * :arrow_forward: download images (the system can automatically put an image on user's desktop background) warning:TODO
-> * :arrow_forward: upload images (users can increment our database uploading new images)
-> * :arrow_forward: demo key (the demo key is: Demo_Key_SFA_Trial)
-> * :arrow_forward: sign in (to comply with GDPR, the system allows users to delete their data)
+> * :arrow_forward: 2 - download images (user can download images with a demo key)
 > * :arrow_forward: automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
 
 ## 3.1. How to use SFA
 
- :round_pushpin: Step-by-step:
+The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_)contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here goes a small summary how to use them step-by-step.
+
+ :round_pushpin: Monolithics Architecture Step-by-step:
 >  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
 >  * STEP 2 - REGISTRATION: For user registration there are four parameters: first name, last name, email and password.  
 >  * STEP 3 - AUTHENTICATION KEY: After registration, user receives an authentication key.
 >  * STEP 4 - CONSUME THE API: With the authentication key, the user is able to download and upload pictures.
->  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
+>  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance) 
+
+ :round_pushpin: Microservice Architecture Step-by-step:
+>  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
+>  * STEP 2 - REGISTRATION: For user registration there are four parameters: first name, last name, email and password.  
+>  * STEP 3 - AUTHENTICATION KEY: After registration, user receives an authentication key.
+>  * STEP 4 - CONSUME THE API: With the authentication key, the user is only able to download pictures. In this case, the returns JSON-formatted data. 
+>  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance) 
 
 ## 3.2. Activity Diagram
 
@@ -419,12 +433,12 @@ OWASP provides several recommendations for secure implementation of Digital Iden
 
 > :white_check_mark: SFA-API applies digital identity, authentication and session management recommendation. We use libraries werkzeug (for password hashing) and secrets (to
 > generate authentication key). However, we're only scratching the surface. We are maximizing the security in our API. Following the above OWASP recommendations, here are the
-> basic security measures we apply to maximise the security in our AP:  
+> basic security measures we apply to maximize the security in our AP:  
 > * Level 1 : Passwords => 
 > * a) In SFA-API, passwords have at least 8 characters in length; 
-> * b) All printing ASCII characters as well as the space character are acceptable in memorised secrets. 
-> * c) We follow the the OWASP recommendation, which is to remove complexity requirements as these have been found to be of limited effectiveness. OWASP recommends the adoption of MFA or longer password lengths instead. We encourage the use of long passwords and passphrases by recommending this action in the interface. 
-> * d) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt); c) we securely store user credentials, so if a password is compromised, the attacker does not immediately have access to this information. 
+> * b) All printing ASCII characters as well as the space character are acceptable in memorized secrets. 
+> * c) We follow the the OWASP recommedation, which is to remove complexity requirements as these have been found to be of limited effectiveness. OWASP recommends the adoption of MFA or longer password lengths instead. What we do it to encourage the use of long passwords and passphrases by recommending this action in the interface. 
+> * d) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt); c) we securely store user credentials, so is a password is compromised, the attacker does not immediately have access to this information. 
 > * Level 2 : Multi-Factor Authentication (MFA) => SFA-API applies 2 layers of protection: passwords and authentication key (which works as a token).
 > * Level 3 : Cryptographic Based Authentication => Once the initial successful user authentication has taken place, the application tracks this user (this is called Session Management) so it can store details about usage. Flask does it through encrypted cookies. This is implemented on top of cookies for you and signs the cookies cryptographically. What this means is that the user could look at the contents of your cookie but not modify it, unless they know the secret key used for signing. 
 
@@ -441,17 +455,17 @@ Access Control functionality often spans many areas of software depending on the
  
 <h3>C8: Protect Data Everywhere</h3>
 
-Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here are some of the OWASPs recommendations:
+Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here are some of the OWAS recommendations:
 
- * a) Parametrised queries: makes it possible for the database to recognize the code and distinguish it from input data; 
+ * a) Parametrized queries: makes it possible for the database to recognize the code and distinguish it from input data; 
  * b) Least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
- * c) Stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterised. Simply put, it is a type of code that can be stored for later and used many times.
+ * c) Stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterized. Simply put, it is a type of code that can be stored for later and used many times.
  * d) Escaping: use character-escaping functions for user-supplied input provided by each database management system (DBMS). This is done to make sure the DBMS never confuse it with the SQL statement provided by the developer.
 
 > :white_check_mark: In SFA-API, we protect data with the following measures: 
-> a) Parametised queries: are widely applied to protect against SQL injection. 
+> a) Parametrized queries: are widely applied to protect against SQL injection. 
 > b) Least privilege on the database: :warning:TODO   
-> c) Stored procedures: This is not done in SFA-API because the queries are small, so this measure is unnecessary. 
+> c) Stored procedures: This is not done in SFA-API because the queries are small, so this measure is unecessary. 
 > d) Escaping: we didn't need to do it in our API. 
  
 <h3>C9: Implement Security Logging and Monitoring</h3>
@@ -484,8 +498,6 @@ Exception handling is a programming concept that allows an application to respon
 
 [APOD - GitHub Documentation](https://github.com/nasa/apod-api)
 
-
- 
 
 
 
