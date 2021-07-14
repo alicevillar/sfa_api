@@ -370,7 +370,7 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 
 Secure frameworks and libraries can help to prevent a wide range of web application vulnerabilities.  
 
->  :white_check_mark: In SFA-API we a tool recommended by OWASP called [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any published vulnerabilities. :warning:TODO
+>  :white_check_mark: In SFA-API we use a tool recommended by OWASP called [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any published vulnerabilities. :warning:TODO
 
  <h3>C3: Secure Database Access</h3>
 
