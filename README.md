@@ -450,7 +450,7 @@ Access Control functionality often spans many areas of software depending on the
 > Authentication key is given to users after their registration (to registrate, users have give: first name, last name, email and password). The authentication key is monitored
 > in three different ways: 
 > * a) expiration date – SFA-API has an expiration date, which is done only using pyodbc; 
-> * b) rate limits - we implement rate limits with flask limiter. For this we follow one of APOD rules =>> Daily Limit: 50 requests per IP address per day. 
+> * b) rate limits - we implement rate limits with flask limiter. The requests per IP address have the following limits: 30 per day/30 per hour. 
 > * c) user IP – The system creates a key that corresponds the client’s IP. If the same client changes IP and tries to authenticate, the system does not allow it and will ask the client to authenticate again. This is done with pyodbc.  
  
 <h3>C8: Protect Data Everywhere</h3>
