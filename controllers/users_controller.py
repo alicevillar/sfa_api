@@ -3,15 +3,11 @@ from flask import Flask, request, send_from_directory
 from flask_restplus import Api, Resource, fields, inputs
 from minimal import sfa_app
 import pyodbc as p
-import json as js
-import os
-from werkzeug.datastructures import FileStorage #importando uma abstração de arquivo
 from senhas import *
 import secrets
 from datetime import date,timedelta
 from werkzeug.security import generate_password_hash,check_password_hash
 from validator_collection import validators, errors
-from controllers.login_controller import *
 
 #########################################################################################
 # Importing import sfa_app from minimal.py and storing in local variables
@@ -33,7 +29,7 @@ APP, SFA = sfa_app.app,sfa_app.api
 # First step => Creating a new namespace: users
 #########################################################################################
 
-users_namespace = SFA.namespace('users', description='user operations')
+users_namespace = SFA.namespace('Users', description='User operations')
 
 # Here we create a namespace for users' operations.
 # Namespaces are intended for organizing REST endpoints within the API.
@@ -49,7 +45,6 @@ user_model_request = SFA.model("user model",{
     'Password': fields.String})
 
 user_model_response = SFA.model("response",{'API Key': fields.String,'Expiration Date':fields.String} )
-
 
 #############################################################################################
 # Here we place the namespace decorator .route to define the endpoint path within the API
@@ -116,8 +111,10 @@ class Registration(Resource):
         # NOTE: We use libraries werkzeug (for password hashing) and secrets (to generate authentication key).
         #
         # ==>> C7: Enforce Access Controls
-        # NOTE:  multi-factor authentication in 2 layers of protection: hashing passwords and authentication key.
-        # Authentication key is given with registration, which requires: first name, last name, email and password
+        #  The multi-factor authentication in 2 layers of protection: hashing passwords and authentication key.
+        #  Here the authentication key is following these rules:
+        #  a) expiration date – SFA-API has an expiration date, which is done using pyodbc;
+        #  b) user IP – The system creates a key that corresponds the client’s IP.
         ############################################################################################################
 
         # Using library Secrets to generate the API Key with 30 byte token:
@@ -126,9 +123,9 @@ class Registration(Resource):
         expiration_date=date.today()+ timedelta(days=30)
         # Variable to store is a certain user is blocked or not
         is_blocked=False
-        # Capuring the IP from where the request comes from
+        # Capturing the IP from where the request comes from
         access_ip=request.remote_addr
-        # Before storing the IP, it is necessary to see if it is in the list  TODO
+        # Before storing the IP, it is necessary to see if it is in the list
         password_hash= generate_password_hash(new_user['Password'])
         #para verificar se está correta a senha será: check_password_hash(hash," - senha recebida p/ verificação - ")
 
@@ -136,8 +133,8 @@ class Registration(Resource):
         # ==> OWASP C3:Secure Database Access
         #
         # NOTE: Here we comply with OWASP by securing the access to the database considering:
-        # a) secure queries: To protect against SQL injection we use ‘Query Parameterization’
-        # b) we run the database in a docker container, which has connectivity restrictions
+        # a) Secure queries: To protect against SQL injection we use ‘Query Parameterization’
+        # b) Secure configuration: we run the database in a docker container, which has connectivity restrictions
         # c) Secure communication: we use Pyodbc, an open source Python module to communicate with the database.
         #
         #########################################################################################################
@@ -155,47 +152,3 @@ class Registration(Resource):
         cursor.commit() # To execute the command. (note: .commit is needed because here we're makes changes in the DB)
         return {"API Key": apikey,"Expiration Date":expiration_date}, 200
 
-
-'''  
-@users_namespace.route('/api/v1/sign_in', doc={"description": 'user sign in'})
-class login(Resource):  # esse Resource é a rota
-    # The response method defined possible responses in the documentation
-
-    @users_namespace.response(200, 'Success')
-    @users_namespace.response(400, 'Request Error')
-    @users_namespace.response(500, 'Server Error')
-    @users_namespace.response(422, 'Invalid Credentials')
-
-    # o metodo post tem q garantir q aquilo q ele recebe como parametro é o modelo de usuário
-
-     # The .expect method declares the parameters (mandatory or not) that the endpoint expects
-    @users_namespace.expect(login_logout_model_request)  # Note -> It will show in swagger the file it is expecting to receive
-    def post(self):  # Generate api key
-        # extrair essas infomacoes da request, então ler os 3 parametros da request e inserir no bd
-        # new user recebe um dicionário, entao vou usar isso para inserir no bc esses valores
-        #user_credentials = request_loader(request)
-
-        user_credentials = request.get_json()
-        if user_credentials != None:
-            user_loggin = User()
-            user_loggin.id = user_credentials["email"]  # o primeiro campo retornado é o ID do usuário, e o segundo será o hashed password
-            flask_login.login_user(user_loggin)
-            return {"Success:": "Valid Credentials"}, 200
-        return {"Error:": "Invalid Credentials"}, 422
-
- 
-@users_namespace.route('/api/v1/get_current_user', doc={"description": 'get current user'})
-class login(Resource):  # esse Resource é a rota
-    # The response method defined possible responses in the documentation
-
-    @users_namespace.response(200, 'Success')
-    @users_namespace.response(400, 'Request Error')
-    @users_namespace.response(500, 'Server Error')
-    @users_namespace.response(422, 'Invalid Credentials')
-    # o metodo post tem q garantir q aquilo q ele recebe como parametro é o modelo de usuário
-
-
-    def get(self):  # Generate api key
-        return {"Logged user": flask_login.current_user.id}
-
-'''

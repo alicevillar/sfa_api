@@ -9,6 +9,11 @@ services:
     build:
       context: ./ #it will build it using the actual context
 
-# Para o container da API
-# Comando docker compose up => Roda o container
-# Comando docker compose build => cria a imagem
+# API CONTAINER:
+# Command: docker compose up => Creates a container and adds the codes (when an image hasn't been created)
+# Command: docker compose build => Creates an image (this will not run the container
+# Command: ctrl C = stop no container
+
+# docker compose up -d   ====>>> makes it keep running
+
+

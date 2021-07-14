@@ -1,5 +1,4 @@
 from flask import request
-import flask_login
 from flask_restplus import fields, Resource
 from minimal import sfa_app  # importanto a API inteira
 from validator_collection import validators, errors
@@ -27,7 +26,7 @@ APP, SFA = sfa_app.app, sfa_app.api
 # Namespaces are intended for organizing REST endpoints within the API.
 #########################################################################################
 
-gdpr_namespace = SFA.namespace('gdpr', description='gdpr operations')
+gdpr_namespace = SFA.namespace('GDPR', description='GDPR operations')
 
 #########################################################################################
 # Creating a model for gdpr compliance
@@ -75,8 +74,8 @@ class RetriveData(Resource):
         # ==> OWASP C3:Secure Database Access
         #
         # Here we comply with OWASP by securing the access to the database considering:
-        # a) secure queries: To protect against SQL injection we use ‘Query Parameterization’
-        # b) we run the database in a docker container, which has connectivity restrictions
+        # a) Secure queries: To protect against SQL injection we use ‘Query Parameterization’
+        # b) Secure configuration: we run the database in a docker container, which has connectivity restrictions
         # c) Secure communication: we use Pyodbc, an open source Python module to communicate with the database.
         #
         #  ===>>> Here we connect with the database to find the user_information: verify email and password
@@ -99,11 +98,7 @@ class RetriveData(Resource):
         # NOTE: Here we use try-except statement for input validation.
         ######################################################################################################
 
-        # result = cursor.fetchone()  # essa variável vai retornar o ID do usuário e o hash da senha do usuário (tupla)
-        # reg_id = result[0]
-        # hashed_password = result[1]
-
-        try: #
+        try:
             results = []
             columns_names = [column[0] for column in cursor.description] # variable to store detailed values
             for row in cursor.fetchall():
@@ -123,7 +118,7 @@ class RetriveData(Resource):
         # password – the plaintext password to compare against the hash.
         #########################################################################################################
 
-        # ==>>> to find user_information password is in the DB
+        # ==>>> to find out if user's password is in our DB
 
         if check_password_hash(hashed_password, user_information["password"]):
             results[0]['Reg_Expiration_Date'] = str(results[0]['Reg_Expiration_Date'])
@@ -171,7 +166,7 @@ class DeleteData(Resource):
         #
         #########################################################################################################
 
-        # ==>>> To find user_information email in the DB
+        # ==>>> To find our if user's email in our DB
 
         cnxn = p.connect(
             'DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
@@ -187,11 +182,7 @@ class DeleteData(Resource):
         # NOTE: Here we use try-except statement for input validation.
         ######################################################################################################
 
-        # result = cursor.fetchone()  # essa variável vai retornar o ID do usuário e o hash da senha do usuário (tupla)
-        # reg_id = result[0]
-        # hashed_password = result[1]
-
-        try: #
+        try:
             results = []
             columns_names = [column[0] for column in cursor.description] # variable to store detailed values
             for row in cursor.fetchall():
@@ -203,29 +194,34 @@ class DeleteData(Resource):
 
         #########################################################################################################
         # ==> OWASP C6: Implement Digital Identity (Level 1 : Passwords)
-        #
-        # NOTE: Here we check if the password given by the user_information is correct.
+        # Here we check if the password given by the user is correct.
         # The function used is werkzeug.check_password_hash(pwhash, password)
-        # Parameters:
-        # pwhash – a hashed string like returned by generate_password_hash().
-        # password – the plaintext password to compare against the hash.
+        #
         #########################################################################################################
 
-        # ==>>> to find user_information password is in the DB
-        # CONNECTION WITH DB TO FIND THE USER: VERIFICAR EMAIL E SENHA PARA DELETAR USUÁRIO
-        # vai rodar a query e fará o delete. vai pegar a quantidade de colunas afetadas.
+        # CONNECTION WITH DB TO FIND THE USER: checking email and password to delete user
 
         if check_password_hash(hashed_password, user_information_to_delete["password"]):
             sql = f""" DELETE FROM [SFA_DB].[dbo].[TB_SFA_Registration] where [Reg_Email] = ?  COLLATE Latin1_General_CS_AS  """
-            deleted_row_count = cursor.execute(sql, (user_information_to_delete["email"])).rowcount # o segundo parametro é o valor q substituirá a interrogaçao. Fica numa tupla
-            cursor.commit()#tem q usar isso pq tem uma alteracao no banco
+            # The second parameter is the value that replaces the interrogation mark. This protects against injection
+            deleted_row_count = cursor.execute(sql, (user_information_to_delete["email"])).rowcount
+            cursor.commit() # this function is needed because we are making changes to the DB
             if deleted_row_count >0:
                 return {"Info": "Your data was succcefully deleted from our database"}, 200  # HTTP 200 - Success
             else:
                 return {"Error": "System could not delete the user"}, 422 #unprocessable
         return {"Error:": "Invalid password "}, 401 # HTTP 401 - Unauthorized
+        # It will run the query and do the delete. It will get the numeber of columns affected.
 
-
+        ########################################################################################################
+        # ==> OWASP C3:Secure Database Access
+        #
+        # In the code above comply with OWASP by securing the access to the database considering:
+        # a) secure queries: To protect against SQL injection we use ‘Query Parameterization’
+        # b) we run the database in a docker container, which has connectivity restrictions
+        # c) Secure communication: we use Pyodbc, an open source Python module to communicate with the database.
+        #
+        #########################################################################################################
 
 
 
