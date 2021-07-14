@@ -386,7 +386,7 @@ Secure frameworks and libraries can help to prevent a wide range of web applicat
  According to OWASP, secure access to databases consider: secure queries, secure configuration, secure communication and secure authentication. 
 
 >  :white_check_mark: SFA-API handles secure database access with the following measures: 
-> * Secure queries: In order to mitigate SQL injection we used ‘Query Parameterization’. However, certain locations in a database query are not parameterisable. Because of the large variation in the pattern of SQL injection attacks they are often unable to protect databases. OWASP recomments testing queries for performance, but this is not done here because the queries are all very small and therefore is not necessary. 
+> * Secure queries: In order to mitigate SQL injection we used ‘Query Parameterization’. However, certain locations in a database query are not parameterisable. Because of the large variation in the pattern of SQL injection attacks they are often unable to protect databases. OWASP recommends testing queries for performance, but this is not done here because the queries are all very small and therefore it is not necessary. 
 > * Secure configuration: we run the database in a docker container, which has connectivity restrictions (can only be accessed by the administrator and only has one door open - 1433). The server which runs the database does not allow external access. All access to the database should be properly authenticated. Thus, it is not possible to directly access the database from outside the instance. 
 > * Secure communication: we use Pyodbc, an open source Python module to communicate with the database. We apply secure (authenticated, encrypted) communications methods.  
 
