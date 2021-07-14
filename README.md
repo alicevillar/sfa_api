@@ -23,7 +23,7 @@ Space Fan Art is a working API prototype created with Flask REST-Plus to showcas
     - [2.2. Microservice Architecture](#22-microservice-architecture)
 - [3. Project Interface](#3-project-interface)
     - [3.1. How to use SFA](#31-how-to-use-sfa)
-    - [3.2. Activity Diagram](#32-activity-diagram)
+    - [3.2. Activity Diagrams](#32-activity-diagrams)
 - [4. Development timeline](#4-development-timeline)
 - [5. Project Structure](#5-project-structure)
 - [6. Project Files](#6-project-files)
@@ -132,11 +132,13 @@ The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controller
 >  * STEP 4 - CONSUME THE API: With the authentication key, the user is only able to download pictures. In this case, the returns JSON-formatted data. 
 >  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance) 
 
-## 3.2. Activity Diagram
+## 3.2. Activity Diagrams
 
-Click in the link below to see the activity diagram, which applies to both interfaces of SFA-API.
+Click in the links below to see the activity diagrams:
 
-* [Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.pdf) 
+* [Monolithic Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.pdf) 
+* [Microservive Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram_microservice.pdf) 
+
 
 ## 4. Development timeline 
 
