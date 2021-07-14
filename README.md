@@ -1,4 +1,3 @@
-
  <h1>Space Fan Art (SFA - API)</h1>
 
 SFA-API is the prototype of an API with two different architectures (monolothic architecture and a microservice architecture). In both architectures, users have to register to get an authentication key, which allows them to download and upload images from NASA. The images come from two different sources: in the monolithic architecture, they come from a local database containing [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microserve architecture, they come directly from  APOD (one of the most famous NASA's Open API) because SFA-API and [APOD](https://github.com/nasa/apod-api) are integrated. 
@@ -61,7 +60,7 @@ Both prototypes allows authenticated users to download and upload images. Here i
 
 ## 2. Architecture 
 
-This project uses the Model-View-Controller (MCV) architecture framework, which can be described as an architectural pattern that separates an application
+This project uses the Model-View-Controller (MVC) architecture framework, which can be described as an architectural pattern that separates an application
 into three main logical components: model (data), view (user interface), and controller (processes that handle input). In SFA-API, here is our architeture:
 
 * Model => The type of data we are using in the application: user's data and picture data (json)
@@ -83,43 +82,61 @@ into three main logical components: model (data), view (user interface), and con
  
 ## 3. Project Interface
 
-:large_blue_circle: SWAGGER INTERFACE
+:large_blue_circle: MONOLITHIC ARCHITECTURE ON SWAGGER INTERFACE
 
 Swagger enabled the development across the entire API lifecycle, from design and documentation, to test and deployment. It has also been used as an interface. 
-> :radio_button: FEATURES: 
-> * :arrow_forward: user registration (generates an authentication key)
-> * :arrow_forward: download images  
-> * :arrow_forward: upload images (users can increment our database uploading new images)
-> * :arrow_forward: demo key (the demo key is: DEMO_KEY)
-> * :arrow_forward: sign in (to comply with GDPR, the system allows users to delete their data)
+> :radio_button: We have 6 endpoints, with the following features: 
+> * :arrow_forward: 1 - user registration (generates an authentication key)
+> * :arrow_forward: 2 - download images (user can download images with their authentication key and also with a demo key)
+> * :arrow_forward: 3 - upload images (users can increment our database uploading new images)
+> * :arrow_forward: 4 - demo key (the demo key is: Demo_Key_SFA_Trial)
+> * :arrow_forward: 5 - GDPR1 (to comply with GDPR, the system allows users to see their data)
+> * :arrow_forward: 6 - GDPR2 (to comply with GDPR, the system allows users to delete their data)
 
 ![print](/readme_img/swagger_print.PNG)
 
+:large_blue_circle: MICROSERVICE ARCHITECTURE ON SWAGGER INTERFACE
+> :radio_button: We have 5 endpoints, with the following features: 
+> * :arrow_forward: 1 - user registration (generates an authentication key)
+> * :arrow_forward: 2 - download images (user can download images with their authentication key and also with a demo key)
+> * :arrow_forward: 3 - demo key (the demo key is: Demo_Key_SFA_Trial)
+> * :arrow_forward: 4 - GDPR1 (to comply with GDPR, the system allows users to see their data)
+> * :arrow_forward: 5 - GDPR2 (to comply with GDPR, the system allows users to delete their data)
+
+![print](/readme_img/swagger_print_microservice.PNG)
+ 
+
 :large_blue_circle: WEB INTERFACE
 
-The Web Interface is our main interface and it was built with HTML/CSS and Javascript. As swagger, it also allows:  a) users authentication, b) download images, and c) upload images. However, our web interface has an additional feature: when user downloads and image, the system automatically puts it as his or her desktop background. It has been  done with ctypes and Eel libraries. 
+The Web Interface was built with HTML/CSS and Javascript. It is only aimed to show our microservice working in a different environment.  
  
  > :radio_button: FEATURES: 
-> * :arrow_forward: user registration, which generates an authentication key
-> * :arrow_forward: download images (the system can automatically put an image on user's desktop background) warning:TODO
-> * :arrow_forward: upload images (users can increment our database uploading new images)
-> * :arrow_forward: demo key (the demo key is: DEMO_KEY)
-> * :arrow_forward: sign in (to comply with GDPR, the system allows users to delete their data)
+> * :arrow_forward: 2 - download images (user can download images with a demo key)
 > * :arrow_forward: automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
 
 ## 3.1. How to use SFA
 
- :round_pushpin: Step-by-step:
->  * STEP 1 - REGISTRATION: In the User Registration there will be four parameters: first name, last name, email and password.  
->  * STEP 2 - AUTHENTICATION KEY: After registration, user receives an authentication key.
->  * STEP 3 - CONSUME THE API: With the authentication key, user is able to download and upload pictures.
->  * STEP 4 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
+The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_)contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here goes a small summary how to use them step-by-step.
+
+ :round_pushpin: Monolithics Architecture Step-by-step:
+>  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
+>  * STEP 2 - REGISTRATION: For user registration there are four parameters: first name, last name, email and password.  
+>  * STEP 3 - AUTHENTICATION KEY: After registration, user receives an authentication key.
+>  * STEP 4 - CONSUME THE API: With the authentication key, the user is able to download and upload pictures.
+>  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance) 
+
+ :round_pushpin: Microservice Architecture Step-by-step:
+>  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
+>  * STEP 2 - REGISTRATION: For user registration there are four parameters: first name, last name, email and password.  
+>  * STEP 3 - AUTHENTICATION KEY: After registration, user receives an authentication key.
+>  * STEP 4 - CONSUME THE API: With the authentication key, the user is only able to download pictures. In this case, the returns JSON-formatted data. 
+>  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance) 
 
 ## 3.2. Activity Diagram
 
-Click in the link below to see the activity diagram:
+Click in the link below to see the activity diagram, which applies to both interfaces of SFA-API.
 
-* [Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.jpg) 
+* [Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.pdf) 
 
 ## 4. Development timeline 
 
@@ -190,6 +207,17 @@ This is the sixth version of SFA-API. It contains the second endpoint for GDPR c
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr2
 ```
 
+:paperclip:VERSION 7   
+
+This is the seventh version of SFA-API. It contains one endpoint that allows users to get images directly from NASA API APOD (HTTP Request Type -> GET) 
+ 
+ ```
+* Description:
+* HTTP Request Type -> GET
+* Response -> Get url   
+* URL GET Parameters -> N/A
+* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/download
+```
 
 ## 5. Project Structure
 
@@ -221,9 +249,10 @@ app/
 * `README.md` [README.md](https://github.com/alicevillar/sfa_api/blob/main/README.md)- Contains the description and documentation of the project. 
 * `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - defines operations/endpoints with users (user registration).
 * `picture_controller.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py) - defines operations/endpoints with pictures (download and upload).
+* `picture_controller_apod.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller_apod.py) - defines operations/endpoints with pictures (only download). Here is our microservice, so users can get pictures directly from the Nasa's open API: APOD.
 * `demo_key_controller.py` [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py) - defines operations/endpoints with gdpr (users can see data and delete their personal data).
 * `gdpr_controller.py` [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py) - defines operations/endpoints with gdpr (users can see data and delete their personal data).
-* `limiters_controller.py` [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py) - This is file implements the counting to limit the use of the API (through user's IP address) and demo key. 
+* `limiters_controller.py` [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py) - This file implements the counting to limit the use of the API (through user's IP address) and demo key. 
 * `demo_key_controller.py` [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py) - This file implements the demo key.
 * `decorators.py` [decorators.py](https://github.com/alicevillar/sfa_api/blob/main/decorators.py) - This file contains the decorators for the api key and the demo key (to verify the existence and authenticity of the key).   
 * `Dockerfile`[Dockerfile](https://github.com/alicevillar/sfa_api/blob/main/Dockerfile) - Docker config file is a recipe to build a Docker image
@@ -234,7 +263,7 @@ app/
 * `senhas.py` - This file contains the passwords of the database.
 * `server.py` [server.py](https://github.com/alicevillar/sfa_api/blob/main/server.py) - This file imports controllers and runs the API. 
 * `gitignore` [gitignore](https://github.com/alicevillar/sfa_api/blob/main/.gitignore)- Lists files and file masks of the files which should not be added to git repository.
-* `common_passwords.py` [common_passwords.py](https://github.com/alicevillar/sfa_api/blob/main/useful/common_passwords) - File containing the most 1000 most common passwords. 
+* `common_passwords.py` [common_passwords.py](https://github.com/alicevillar/sfa_api/blob/main/useful/common_passwords) - File containing the 1000 most common passwords. 
 * `application_structure.py` [application_structure.py](https://github.com/alicevillar/sfa_api/blob/main/application_structure.py) - Directory tree structure in Python.
 * `requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements. Script: 1) pip install pipreqs; 2) pipreqs --encoding=utf8 C:\Users\Alice\PycharmProjects\SFA_DB 
 
@@ -243,16 +272,13 @@ app/
 
 * [**Flask-RestPlus**](https://github.com/noirbizarre/flask-restplus) (+
   [*flask*](http://flask.pocoo.org/))  
-* [**Werkzeug**](https://pypi.org/project/Werkzeug/) - for password hashing  
-  RESTful API documentation.
+* [**Werkzeug**](https://pypi.org/project/Werkzeug/) - for password hashing RESTful API documentation.
 * [**Secrets**](https://pypi.org/project/python-secrets/) - for generating cryptographically strong pseudo-random numbers for managing user authentication.
 * [**Pyodbc**](https://pypi.org/project/pyodbc/) - for accessing the database and carry our user registration.
 * [**Requests**](https://pypi.org/project/requests/) - for making HTTP requests in Python. 
-* [**Eel**](https://github.com/ChrisKnott/Eel) - a little Python library for hosting our local webserver, then lets us use [Python]( https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python) to automatically set a download image as user's desktop background.   
-* [**Flask Login**](https://flask-login.readthedocs.io/en/latest/) - A Flask extension that provides user session management for Flask. It handles the common tasks of logging in, logging out, and remembering your users’ sessions over extended periods of time.
 * [**Flask Cors**](https://flask-cors.readthedocs.io/en/latest/) - A Flask extension for handling Cross Origin Resource Sharing (CORS), making cross-origin AJAX possible. 
 * [**Flask Limiters**](https://flask-limiter.readthedocs.io/en/stable/) - Flask-Limiter provides rate limiting features to flask routes.
-* [**Validator Collection**](https://pypi.org/project/validator-collection/) - to validade unsers' inputs. 
+* [**Validator Collection**](https://pypi.org/project/validator-collection/) - to validade users' inputs. 
 * [**Dependency Check**](https://pypi.org/project/dependency-check/) - scans application dependencies and checks whether they contain any published vulnerabilities.
 
  
@@ -289,7 +315,7 @@ $ git clone https://github.com/alicevillar/sfa_api
 You will need `invoke` package to work with everything related to this project.
 
 ```bash
-$ pip install -r tasks/requirements.txt
+$ pip install requirements.txt
 ```
   
 ## 10. Quick Start  
@@ -346,7 +372,6 @@ In SFA-API we will allow the rate limits NASA uses for the DEMO_KEY, which are:
 
 The [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-controls/) is a list of security techniques that should be included in every software development project. They are ordered by order of importance, with control number 1 being the most important. 
 
-
  <h3>C1: Define Security Requirements</h3>
 
 The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) contains categories such as authentication, access control, error handling / logging, and web services. Each category contains a collection of requirements that represent the best practices for that category drafted as verifiable statements.  
@@ -362,8 +387,7 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 >  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any.  :warning:TODO
 >   published vulnerabilities. 
 >  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised, a request is received and then returned. In  FlasK-Rest-Plus loggins are very simple, they are not
->  very informative (thus, it is not possible to know details about each request). To have informative loggins we will use docker, which is where all the loggins will be
->  securely stored.
+>  very informative (thus, it is not possible to know details about each request). Using docker loogs, it is possible to query, store and analyse the loggins.
 
   - upload só com usuário registrado pq é rastreavel.
    
@@ -371,15 +395,15 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 
 Secure frameworks and libraries can help to prevent a wide range of web application vulnerabilities.  
 
->  :white_check_mark: In SFA-API we a tool recommended by OWASP called [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any published vulnerabilities. :warning:TODO
+>  :white_check_mark: In SFA-API we use a tool recommended by OWASP called [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any published vulnerabilities. :warning:TODO
 
  <h3>C3: Secure Database Access</h3>
 
  According to OWASP, secure access to databases consider: secure queries, secure configuration, secure communication and secure authentication. 
 
 >  :white_check_mark: SFA-API handles secure database access with the following measures: 
-> * Secure queries: In order to mitigate SQL injection we used use ‘Query Parameterization’. However, certain locations in a database query are not parameterizable. Because of the large variation in the pattern of SQL injection attacks they are often unable to protect databases. OWASP recomments testing queries for performance, but this is not done here because the queries are all very small and therefore is not necessary. 
-> * Secure configuration: we run the database in a docker container, which has connectivvity restrictions (can only be accessed by the administrator and only has one door open - 1433). The server which runs the database does not allow external access. All access to the database should be properly authenticated. Thus, it is not possible to directly access the database from outside the instance. 
+> * Secure queries: In order to mitigate SQL injection we used ‘Query Parameterization’. However, certain locations in a database query are not parameterisable. Because of the large variation in the pattern of SQL injection attacks they are often unable to protect databases. OWASP recommends testing queries for performance, but this is not done here because the queries are all very small and therefore it is not necessary. 
+> * Secure configuration: we run the database in a docker container, which has connectivity restrictions (can only be accessed by the administrator and only has one door open - 1433). The server which runs the database does not allow external access. All access to the database should be properly authenticated. Thus, it is not possible to directly access the database from outside the instance. 
 > * Secure communication: we use Pyodbc, an open source Python module to communicate with the database. We apply secure (authenticated, encrypted) communications methods.  
 
 <h3>C4: Encode and Escape Data</h3>
@@ -476,8 +500,6 @@ Exception handling is a programming concept that allows an application to respon
 
 [APOD - GitHub Documentation](https://github.com/nasa/apod-api)
 
-
- 
 
 
 
