@@ -249,10 +249,10 @@ app/
 * [**Secrets**](https://pypi.org/project/python-secrets/) - for generating cryptographically strong pseudo-random numbers for managing user authentication.
 * [**Pyodbc**](https://pypi.org/project/pyodbc/) - for accessing the database and carry our user registration.
 * [**Requests**](https://pypi.org/project/requests/) - for making HTTP requests in Python. 
-* [**Eel**](https://github.com/ChrisKnott/Eel) - a little Python library for hosting our local webserver, then lets us use [Python]( https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python) to automatically set a download image as user's desktop background.   
+* [**Eel**](https://github.com/ChrisKnott/Eel) - Python library for hosting our local webserver, then lets us use [Python]( https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python) to automatically set a download image as user's desktop background.   
 * [**Flask Cors**](https://flask-cors.readthedocs.io/en/latest/) - A Flask extension for handling Cross Origin Resource Sharing (CORS), making cross-origin AJAX possible. 
 * [**Flask Limiters**](https://flask-limiter.readthedocs.io/en/stable/) - Flask-Limiter provides rate limiting features to flask routes.
-* [**Validator Collection**](https://pypi.org/project/validator-collection/) - to validade unsers' inputs. 
+* [**Validator Collection**](https://pypi.org/project/validator-collection/) - to validade users' inputs. 
 * [**Dependency Check**](https://pypi.org/project/dependency-check/) - scans application dependencies and checks whether they contain any published vulnerabilities.
 
  
