@@ -191,6 +191,17 @@ This is the sixth version of SFA-API. It contains the second endpoint for GDPR c
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr2
 ```
 
+:paperclip:VERSION 7   
+
+This is the seventh version of SFA-API. It contains one endpoint that allows users to get images directly from NASA API APOD (HTTP Request Type -> GET) 
+ 
+ ```
+* Description:
+* HTTP Request Type -> GET
+* Response -> Get url   
+* URL GET Parameters -> N/A
+* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/download
+```
 
 ## 5. Project Structure
 
@@ -222,6 +233,7 @@ app/
 * `README.md` [README.md](https://github.com/alicevillar/sfa_api/blob/main/README.md)- Contains the description and documentation of the project. 
 * `users_controller.py` [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py) - defines operations/endpoints with users (user registration).
 * `picture_controller.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py) - defines operations/endpoints with pictures (download and upload).
+* `picture_controller_apod.py` [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller_apod.py) - defines operations/endpoints with pictures (only download). Here is our microservice, so users can get pictures directly from the Nasa's open API: APOD.
 * `demo_key_controller.py` [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py) - defines operations/endpoints with gdpr (users can see data and delete their personal data).
 * `gdpr_controller.py` [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py) - defines operations/endpoints with gdpr (users can see data and delete their personal data).
 * `limiters_controller.py` [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py) - This file implements the counting to limit the use of the API (through user's IP address) and demo key. 
