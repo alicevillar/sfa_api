@@ -93,6 +93,8 @@ Swagger enabled the development across the entire API lifecycle, from design and
 > * :arrow_forward: 5 - GDPR1 (to comply with GDPR, the system allows users to see their data)
 > * :arrow_forward: 6 - GDPR2 (to comply with GDPR, the system allows users to delete their data)
 
+![print](/readme_img/swagger_print.PNG)
+
 :large_blue_circle: MICROSERVICE ARCHITECTURE ON SWAGGER INTERFACE
 > :radio_button: We have 5 endpoints, with the following features: 
 > * :arrow_forward: 1 - user registration (generates an authentication key)
@@ -101,8 +103,8 @@ Swagger enabled the development across the entire API lifecycle, from design and
 > * :arrow_forward: 4 - GDPR1 (to comply with GDPR, the system allows users to see their data)
 > * :arrow_forward: 5 - GDPR2 (to comply with GDPR, the system allows users to delete their data)
 
-
-![print](/readme_img/swagger_print.PNG)
+![print](/readme_img/swagger_print_microservice.PNG)
+ 
 
 :large_blue_circle: WEB INTERFACE
 
