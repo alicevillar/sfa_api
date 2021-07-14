@@ -457,10 +457,7 @@ Access Control functionality often spans many areas of software depending on the
 
 Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here we describe how we have folloed OWAS recommendations.
 
-> :white_check_mark: In SFA-API, we protect data with the following measures: 
-> a) Parametrized queries: are widely applied to protect against SQL injection. 
-> c) Stored procedures: This is not done in SFA-API because the queries are small, so this measure is unecessary. 
-> d) Escaping: we didn't need to do it in our API. 
+> :white_check_mark: In SFA-API, we protect data with warametrized queries to protect against SQL injection. OWASP recommends stored procedures but  is not done in SFA-API because the queries are small, so this measure is unecessary. OWASP also recommends escaping, which we didn't need to do in our API because it wasn't necessary.
  
 <h3>C9: Implement Security Logging and Monitoring</h3>
   
