@@ -97,7 +97,7 @@ Swagger enabled the development across the entire API lifecycle, from design and
 
 :large_blue_circle: WEB INTERFACE
 
-The Web Interface is our main interface and it was built with HTML/CSS and Javascript. As swagger, it also allows:  a) users authentication, b) download images, and c) upload images. However, our web interface has an additional feature: when user downloads and image, the system automatically puts it as his or her desktop background. It has been  done with ctypes and Eel libraries. 
+The Web Interface is our main interface and it was built with HTML/CSS and Javascript. As swagger, it also allows:  a) users authentication, b) download images, and c) upload images. However, our web interface has an additional feature: when user download an image, the system automatically puts it as his or her desktop background. It has been  done with ctypes and Eel libraries. 
  
  > :radio_button: FEATURES: 
 > * :arrow_forward: user registration, which generates an authentication key
@@ -113,7 +113,7 @@ The Web Interface is our main interface and it was built with HTML/CSS and Javas
 >  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
 >  * STEP 2 - REGISTRATION: For user registration there are four parameters: first name, last name, email and password.  
 >  * STEP 3 - AUTHENTICATION KEY: After registration, user receives an authentication key.
->  * STEP 4 - CONSUME THE API: With the authentication key, user is able to download and upload pictures.
+>  * STEP 4 - CONSUME THE API: With the authentication key, the user is able to download and upload pictures.
 >  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance)  
 
 ## 3.2. Activity Diagram
