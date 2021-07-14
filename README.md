@@ -173,7 +173,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 ```
 :paperclip:VERSION 4 
 
-This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key.
+This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key: Demo_Key_SFA_Trial
 
 ```
 * Description:
@@ -183,7 +183,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/demo_key
 ```
 
-:paperclip:VERSION 5  :warning:TODO 
+:paperclip:VERSION 5  
 
  This is the fifth version of SFA-API. It contains the first endpoint for GDPR compliance: allows users to see their personal data.  
  
@@ -209,7 +209,7 @@ This is the sixth version of SFA-API. It contains the second endpoint for GDPR c
 
 :paperclip:VERSION 7   
 
-This is the seventh version of SFA-API. It contains one endpoint that allows users to get images directly from NASA API APOD (HTTP Request Type -> GET) 
+This is the seventh version of SFA-API. It contains one endpoint exclusively created for the microservice architecture. This endpoint allows users to get images directly from NASA API APOD (HTTP Request Type -> GET). Users can do it using the demo key (Demo_Key_SFA_Trial) or the authentication key. 
  
  ```
 * Description:
