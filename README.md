@@ -383,7 +383,7 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 >  * Protect Security Misconfiguration: all operating systems, frameworks, libraries, and applications must be securely configured and patched/upgraded in a timely fashion. This is done on the Microservice Architecture (Beam Stalk - AWS). 
 >  * Key exchange communication - only happens in the microservice architecture, where AWS cloud services are used. We hold a private key which enabled us to access our VM in EC2. 
 >  * Protect against Cross-Site Scripting (XSS): We protect against XSS in our web page, using javascript. 
->  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any.  :warning:TODO
+>  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any. 
 >   published vulnerabilities. 
 >  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised, a request is received and then returned. In  FlasK-Rest-Plus loggins are very simple, they are not
 >  very informative (thus, it is not possible to know details about each request). Using docker loogs, it is possible to query, store and analyse the loggins.
@@ -411,7 +411,7 @@ Encoding and escaping are defensive techniques meant to stop injection attacks. 
  * Encoding (commonly called “Output Encoding”) involves translating special characters into some different but equivalent form that is no longer dangerous in the target interpreter, for example translating the < character into the &lt; string when writing to an HTML page. 
  * Escaping involves adding a special character before the character/string to avoid it being misinterpreted, for example, adding a \ character before a " (double quote) character so that it is interpreted as text and not as closing a string.
  
-> :white_check_mark: In SFA-API, we don't apply escaping. We do escaping in our webpage interface (HTML/CSS, Javascript). :warning:TODO 
+> :white_check_mark: In SFA-API, we don't apply encoding or escaping because it was not needed. 
 > 
 > :o: It should be highlightened that a hash is not ‘encryption’ – it cannot be decrypted back to the original text (it is a ‘one-way’ cryptographic function, Whereas
 > encryption is a two-way function, hashing is a one-way function. Hashing is used in conjunction with authentication to produce strong evidence that a given message has not
@@ -424,7 +424,6 @@ Input validation is a programming technique that ensures only properly formatted
 
 > :white_check_mark: SFA-API validates inputs we use the Python library [Validator Collection](https://pypi.org/project/validator-collection/), which is a Python library that provides functions that can be used to validate the type and contents of an input value.  
 
- 
  <h3>C6: Implement Digital Identity</h3>
 
 OWASP provides several recommendations for secure implementation of Digital Identity, a unique representation of a user. OWASP divide it in three levels: 
@@ -456,16 +455,10 @@ Access Control functionality often spans many areas of software depending on the
  
 <h3>C8: Protect Data Everywhere</h3>
 
-Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here are some of the OWAS recommendations:
-
- * a) Parametrized queries: makes it possible for the database to recognize the code and distinguish it from input data; 
- * b) Least privilege on the database: the focus should be on identifying what access rights or elevated permissions the application needs; 
- * c) Stored procedures: a group of SQL statements into a logical unit so subsequent executions allow statements to be automatically parameterized. Simply put, it is a type of code that can be stored for later and used many times.
- * d) Escaping: use character-escaping functions for user-supplied input provided by each database management system (DBMS). This is done to make sure the DBMS never confuse it with the SQL statement provided by the developer.
+Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here we describe how we have folloed OWAS recommendations.
 
 > :white_check_mark: In SFA-API, we protect data with the following measures: 
 > a) Parametrized queries: are widely applied to protect against SQL injection. 
-> b) Least privilege on the database: :warning:TODO   
 > c) Stored procedures: This is not done in SFA-API because the queries are small, so this measure is unecessary. 
 > d) Escaping: we didn't need to do it in our API. 
  
