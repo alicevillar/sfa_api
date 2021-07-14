@@ -295,8 +295,7 @@ app/
 * [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
 
 ## 9. Installation  
-
- :warning:TODO 
+ 
  
 <h3>Using Docker</h3>
 
