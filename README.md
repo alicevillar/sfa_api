@@ -144,7 +144,7 @@ Click in the links below to see the activity diagrams:
 
 :paperclip: VERSION 1
 
-This is the first version of SFA-API. It contains one endpoint that allows you to download an image.
+This is the first version of SFA-API. It contains one endpoint exclusively for the Monolithics architecture that allows you to download an image.
 ```
 * Description:
 * HTTP Request Type -> GET
@@ -192,7 +192,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
  ```
 * Description:
 * HTTP Request Type -> POST
-* Response -> User loggin    
+* Response -> Retrieve user data     
 * URL POST Parameters -> email / password
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
 ```
@@ -204,7 +204,7 @@ This is the sixth version of SFA-API. It contains the second endpoint for GDPR c
  ```
 * Description:
 * HTTP Request Type -> DELETE
-* Response -> User loggin    
+* Response -> Delete user data    
 * URL POST Parameters -> email / password
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr2
 ```
