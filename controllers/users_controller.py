@@ -86,7 +86,7 @@ class Registration(Resource):
         except errors.EmptyValueError:  # Handling logic goes here
             print("Missing Input")
             return {"Error:": "Missing Input"}, 422 # HTTP 422 - Unprocessable Entity
-        except errors.InvalidEmailError:  # More handlign logic goes here
+        except errors.InvalidEmailError:  # More handling logic goes here
             print("Invalid Input")
             return {"Error:": "Invalid Input"}, 422 # HTTP 422 - Unprocessable Entity
 
