@@ -12,7 +12,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 #########################################################################################
 APP, SFA = sfa_app.app, sfa_app.api
 # self.api =>> to configure all the API components - the routes, endpoints, methods, etc.
-# self.app =>> deals with the application - cheching in which door it is running, the rates, user loggin, etc.
+# self.app =>> deals with the application - checking in which door it is running, the rates, user loggin, etc.
 # sfa_app ==> objet of the class API
 
 #####################################################################################################################
@@ -23,7 +23,7 @@ APP, SFA = sfa_app.app, sfa_app.api
 
 #########################################################################################
 # Creating a new namespace ==>> gdpr operations
-# Namespaces are intended for organizing REST endpoints within the API.
+# Namespaces are intended for organising REST endpoints within the API.
 #########################################################################################
 
 gdpr_namespace = SFA.namespace('GDPR', description='GDPR operations')
@@ -74,7 +74,7 @@ class RetriveData(Resource):
         # ==> OWASP C3:Secure Database Access
         #
         # Here we comply with OWASP by securing the access to the database considering:
-        # a) Secure queries: To protect against SQL injection we use ‘Query Parameterization’
+        # a) Secure queries: To protect against SQL injection we use ‘Query Parameterisation’
         # b) Secure configuration: we run the database in a docker container, which has connectivity restrictions
         # c) Secure communication: we use Pyodbc, an open source Python module to communicate with the database.
         #
@@ -106,7 +106,7 @@ class RetriveData(Resource):
             hashed_password = results[0]['Reg_Password']
         except:
             print("Invalid email")
-            return {"Error:": "Invalid email"}, 401  # HTTP 401 - Unauthorized
+            return {"Error:": "Invalid email"}, 401  # HTTP 401 - Unauthorised
 
         #########################################################################################################
         # ==> OWASP C6: Implement Digital Identity (Level 1 : Passwords)
@@ -124,7 +124,7 @@ class RetriveData(Resource):
             results[0]['Reg_Expiration_Date'] = str(results[0]['Reg_Expiration_Date'])
             return results[0], 200 # HTTP 200 - Success
         print("Invalid password")
-        return {"Error:": "Invalid password"}, 401  # HTTP 401 - Unauthorized
+        return {"Error:": "Invalid password"}, 401  # HTTP 401 - Unauthorised
 
 ######################################################################################################################
 #
@@ -190,7 +190,7 @@ class DeleteData(Resource):
             hashed_password = results[0]['Reg_Password']
         except:
             print("Invalid email")
-            return {"Error:": "Invalid email"}, 401  # HTTP 401 - Unauthorized
+            return {"Error:": "Invalid email"}, 401  # HTTP 401 - Unauthorised
 
         #########################################################################################################
         # ==> OWASP C6: Implement Digital Identity (Level 1 : Passwords)
@@ -210,7 +210,7 @@ class DeleteData(Resource):
                 return {"Info": "Your data was succcefully deleted from our database"}, 200  # HTTP 200 - Success
             else:
                 return {"Error": "System could not delete the user"}, 422 #unprocessable
-        return {"Error:": "Invalid password "}, 401 # HTTP 401 - Unauthorized
+        return {"Error:": "Invalid password "}, 401 # HTTP 401 - Unauthorised
         # It will run the query and do the delete. It will get the numeber of columns affected.
 
         ########################################################################################################
