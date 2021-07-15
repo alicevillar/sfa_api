@@ -16,10 +16,12 @@ class API():
                        doc='/docs',authorizations=defining_authorizations) # docs is the route that is going to the swagger API
 
     def run(self, ):
-        self.app.run(debug=True,port=5000) # linking the container with mine (127.001)
+        self.app.run(debug=True,port=5000,host="0.0.0.0") # linking the container with mine (127.001)
 #==>> to run the api with docker use port=5000,host="0.0.0.0"
 #==>> to run the api in my pc use port=5001, no need to include host because it will be the default (my ip)
+# http://127.0.0.1:5000/docs
 
+#host="0.0.0.0"
 # variable sfa_app ==> objet of the class API
 sfa_app = API()
 

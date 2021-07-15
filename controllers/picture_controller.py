@@ -76,7 +76,8 @@ upload_parser.add_argument('copyright', location='form', required=False)
 
 ###################################################################################################
 # ===>>> Some clarifications:
-# Parse() method parses arguments from an incoming request and uses them as inputs to invoke the corresponding controller method
+#
+# Parse() method parses arguments from an incoming request and uses as inputs to invoke the corresponding controller method
 # The method .add_argument() is used to specify locations (as well as expected data type and whether or not the parameter is mandatory) to pull the values from the API
 # In other words, it defines what information I'm going to get and where I'll get it from
 # NOTE - > if parameter "required" is True, so if in the swagger I try to make the request without it I won't be able to
@@ -115,12 +116,12 @@ class Uploading(Resource): # The response method defines possible responses in t
 
         try:
             uploaded_file_date["date"] = validators.date(uploaded_file_date)
-        except errors.EmptyValueError:  # Handling logic goes here
+        except errors.EmptyValueError:
             print("Missing Input")
             return {"Error:": "Missing Input"}, 422
-        except errors.CannotCoerceError:  # More handlign logic goes here
+        except errors.CannotCoerceError:
             print("Invalid Input")
-            return {"Error:": "Invalid Input"}, 422  # "422 - unprocessable entity"
+            return {"Error:": "Invalid Input"}, 422  # 422 - unprocessable entity"
 
         uploaded_file_explanation = args['explanation']
         uploaded_file_copyright = args['copyright']
@@ -134,7 +135,6 @@ class Uploading(Resource): # The response method defines possible responses in t
         # Here the file is being saved inside the images folder
         uploaded_file.save("images/" + uploaded_file.filename)
 
-        # Now we need to save the file path on the pc:
 
         #########################################################################################################
         # ==> OWASP C3:Secure Database Access
@@ -145,7 +145,7 @@ class Uploading(Resource): # The response method defines possible responses in t
         # c) Secure communication: we use Pyodbc, an open source Python module to communicate with the database.
         #
         #########################################################################################################
-
+        # Now we need to save the file path on the pc:
         cnxn = p.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
         cursor = cnxn.cursor()
         sql = f"""INSERT INTO TB_SFA_Images (Ima_Copyright, Ima_Date,Ima_Explanation,Ima_Title,Ima_Url) values (?,?,?,?,?)"""
@@ -153,12 +153,3 @@ class Uploading(Resource): # The response method defines possible responses in t
         cursor.commit()
         return {'Info': "Your file has been received!"}, 201
 
-
-        #########################################################################################################
-        # ==> marshal_with = will be a second layer of verification (in addition to the parser)
-        #
-        # NOTE: it will check if the received data model is as expected.
-        # Before using it, I need to define the expected data type
-        # What .marshal_with can do the most is to show the user in the swagger an expected data model
-        #
-        #########################################################################################################

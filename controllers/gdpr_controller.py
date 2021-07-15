@@ -134,16 +134,14 @@ class RetriveData(Resource):
 
 @gdpr_namespace.route('/api/v1/gdpr2', doc={"description": 'user deletes personal data'})
 class DeleteData(Resource):
-    # ex: email = request.form.get('email') #pega o email do formulario da request / verificar no banco
     @gdpr_namespace.expect(gdpr_model_request)
     def delete(self):
-        user_information_to_delete = request.get_json()
-        # user = request.get_json()  # nesse json terá email e password. # {"email": "email@mail.com", "password": "12345678"}
+        user_information_to_delete = request.get_json()  # this json has email e password. # {"email": "email@mail.com", "password": "12345678"}
         try:
             user_information_to_delete["email"] = validators.email(user_information_to_delete["email"])
             user_information_to_delete["password"] = validators.not_empty(user_information_to_delete["password"])
 
-        except errors.EmptyValueError:  # Handling logic goes here
+        except errors.EmptyValueError:
             print("Missing email")
             return {"Error:": "Missing email"}, 422 #unprocessable
         except errors.InvalidEmailError:
@@ -151,7 +149,7 @@ class DeleteData(Resource):
             return {"Error:": "Invalid email"}, 422 #unprocessable
         except:
             print("Missing payload")
-            return {"Error:": "Missing payload"}, 422
+            return {"Error:": "Missing payload"}, 422 #unprocessable
 
 
         #########################################################################################################
@@ -211,7 +209,7 @@ class DeleteData(Resource):
             else:
                 return {"Error": "System could not delete the user"}, 422 #unprocessable
         return {"Error:": "Invalid password "}, 401 # HTTP 401 - Unauthorized
-        # It will run the query and do the delete. It will get the numeber of columns affected.
+        # It will run the query and do the delete. It will get the number of columns affected.
 
         ########################################################################################################
         # ==> OWASP C3:Secure Database Access

@@ -10,13 +10,14 @@ WORKDIR /app
 # The first parameter says everything will be copied. The second says it will all be saved in the main file.
 COPY . .
 # Running three commands - Preparing the container so that the db can work
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+RUN apt-get install curl -y \
+ && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
  && curl https://packages.microsoft.com/config/debian/8/prod.list > /etc/apt/sources.list.d/mssql-release.list \
  && apt-get update \
  && ACCEPT_EULA=Y apt-get install -y msodbcsql17 \
  && ACCEPT_EULA=Y apt-get install -y mssql-tools \
  && echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc \
- && source ~/.bashrc \
+ && /bin/bash -c "source ~/.bashrc " \
  && apt-get install unixodbc -y \
  && apt-get install unixodbc-dev -y \
  && apt-get install python-dev python-pip libxml2-dev libxslt1-dev zlib1g-dev libffi-dev libssl-dev -y \

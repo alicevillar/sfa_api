@@ -13,7 +13,7 @@ from minimal import sfa_app
 #   OWASP C7: Enforce Access Controls
 #
 # In this file you can see the code to monitor the rate limits of both the authentication key and the demo key:
-# The requests per IP address have the following limits: 30 per day/30 per hour
+# The requests per IP address have the following limits: 30 per day/30 per hour (DDOS attacks)
 #
 ##################################################################################################################
 
