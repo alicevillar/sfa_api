@@ -43,7 +43,7 @@ class Downloading(Resource):
     @picture_namespace.response(200, 'Success')
     @picture_namespace.response(400, 'Request Error')
     @picture_namespace.response(500, 'Server Error')
-    @picture_namespace.doc(security='apikey') # telling swagger: "hey, this endpoint needs an api key"
+    @picture_namespace.doc(security='apikey') # telling swagger: "this endpoint needs an api key"
     @api_or_demo_key_required # telling swagger: "hey, to the authentication created in this decorator" (from decorators.py)
     def get(self):
         """Downloads a picture"""
