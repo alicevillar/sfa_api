@@ -128,7 +128,7 @@ Notice that both prototypes allows users to download images, but only in the mon
 
 ## 4. Development timeline 
 
-:paperclip: VERSION 1
+:paperclip: VERSION 1 - [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_)
 
 This is the first version of SFA-API. It contains one endpoint exclusively for the Monolithics architecture that allows you to download an image.
 ```
@@ -138,7 +138,7 @@ This is the first version of SFA-API. It contains one endpoint exclusively for t
 * URL GET Parameters -> N/A
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/download
 ```
-:paperclip:VERSION 2 
+:paperclip:VERSION 2 - [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_)
 
 This is the second version of SFA-API. It contains one more endpoint that allows you to upload an image.
 ```
@@ -148,7 +148,7 @@ This is the second version of SFA-API. It contains one more endpoint that allows
 * URL GET Parameters -> file / title / explanation / date / copyright
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/upload
 ```
-:paperclip:VERSION 3 
+:paperclip:VERSION 3 - [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_)
 
 This is the first version of SFA-API. It contains one more endpoint that allows you to register a new user.
 
@@ -159,7 +159,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * URL POST Parameters -> First name / Last name / email / password
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/register
 ```
-:paperclip:VERSION 4 
+:paperclip:VERSION 4 - [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py_)
 
 This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key: Demo_Key_SFA_Trial
 
@@ -171,7 +171,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/demo_key
 ```
 
-:paperclip:VERSION 5  
+:paperclip:VERSION 5 - [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)
 
  This is the fifth version of SFA-API. It contains the first endpoint for GDPR compliance: allows users to see their personal data.  
  
@@ -183,7 +183,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
 ```
 
-:paperclip:VERSION 6   
+:paperclip:VERSION 6 - [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)  
 
 This is the sixth version of SFA-API. It contains the second endpoint for GDPR compliance: allows users to delete their personal data.  
  
@@ -195,7 +195,7 @@ This is the sixth version of SFA-API. It contains the second endpoint for GDPR c
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr2
 ```
 
-:paperclip:VERSION 7   
+:paperclip:VERSION 7 - [picture_controller_apod.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller_apod.py_)     
 
 This is the seventh version of SFA-API. It contains one endpoint exclusively created for the microservice architecture. This endpoint allows users to get images directly from NASA API APOD (HTTP Request Type -> GET). Users can do it using the demo key (Demo_Key_SFA_Trial) or the authentication key. 
  
