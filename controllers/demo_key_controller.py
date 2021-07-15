@@ -3,9 +3,9 @@ from flask_restplus import Api, Resource, fields, inputs
 from minimal import sfa_app
 from senhas import *
 
-########################################################################################
+#########################################################################################
 # Importing import sfa_app from minimal.py and storing in local variables
-########################################################################################
+#########################################################################################
 
 APP, SFA = sfa_app.app,sfa_app.api
 # self.api =>> to configure all the API components - the routes, endpoints, methods, etc.
