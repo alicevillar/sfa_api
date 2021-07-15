@@ -44,7 +44,7 @@ from senhas import *
 # Here we define a decorator that must be before all endpoints will depend on api key
 # NOTE =>> the api_key_required function will always run before the endpoint
 #
-################################################################################################################33
+################################################################################################################
 
 def api_key_required(func):
     @wraps(func)
@@ -108,41 +108,44 @@ def api_key_required(func):
     return decorator
 
 
-
-#####################################
+##############################################################################################################
 #
-# Creating a decorator for the demo key and api
- ######################################
+#                                   DECORATOR: api_or_demo_key_required
+#
+# Here we are creating a decorator is for both the DEMO KEY and the API KEY
+# NOTE =>> the api_key_required function will always run before the endpoint
+#
+################################################################################################################
 
-def api_or_demo_key_required(func): # This decorator is for both the DEMO KEY and the API KEY
+
+def api_or_demo_key_required(func):
     @wraps(func)
-    def decorator(*args,**kwargs): #args - conjunto de parametros de posição / kwargs - parametros opcionais
+    def decorator(*args,**kwargs): #args - set of position parameters / kwargs - optional parameters
         api_key = None
-        if 'X-API-KEY' in request.headers: #se no header da request veio uma api key, salvo numa variável
+        if 'X-API-KEY' in request.headers: #if in the request header came an api key, saved in a variable
 
             api_key = request.headers['X-API-KEY']
             #print(api_key)
             if api_key == demo_key: # Checking if the key received is the demokey
-                return func(*args, **kwargs)  # aqui roda a funçao decorada - sucesso
+                return func(*args, **kwargs)
             # NOW THIS BLOCK OF CODE COMES FROM THE PREVIOUS DECORADOR:
             else:
-                # verificar se a chave que o usuário postou existe no banco de dados
-                # select no bd para procurar a apikey
+                # verify that the key the user posted exists in the database
+                # select db to search for apikey
                 cnxn = p.connect(
                     'DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
                 cursor = cnxn.cursor()
-                # Aqui nessa query será buscada a Reg_Authentication_Key, Reg_Id, Reg_Expiration_Date, Reg_Last_Access_Ip, Reg_Is_Blocked
                 sql = f"""
                SELECT Reg_Authentication_Key, Reg_Id, Reg_Expiration_Date, Reg_Last_Access_Ip, Reg_Is_Blocked FROM [SFA_DB].[dbo].[TB_SFA_Registration] where [Reg_Authentication_Key] = ? COLLATE Latin1_General_CS_AS 
                                    """
                 cursor.execute(sql,
-                               (api_key))  # o segundo parametro é o valor q substituirá a interrogaçao. Fica numa tupla
+                               (api_key))
                 result = cursor.fetchone()
                 #print("imprimindo resultado api key")
                 #print(result)
-                if result == None:  # assim comparo tipo com tipo
+                if result == None:
                     return {
-                               'Info': 'Error: Invalid API KEY'}, 401  # dicionario e depois o status de resposta (note a aqui no restplus nao precisa do jsonify)
+                               'Info': 'Error: Invalid API KEY'}, 401
                 else:
                     is_blocked = result[4]
                     expiration_date = result[2]
@@ -152,9 +155,9 @@ def api_or_demo_key_required(func): # This decorator is for both the DEMO KEY an
                     if is_blocked or date.today() > expiration_date or access_ip != last_access_ip:
                         sql = f""" DELETE from TB_SFA_Registration where Reg_Id = ?  """
                         cursor.execute(sql, (
-                            id_user))  # o segundo parametro é o valor q substituirá a interrogaçao. Fica numa tupla
+                            id_user))
                         cursor.commit()
-                        # NOTE =>> a função api_key_required vai sempre rodar antes do endpoint
+
                         if access_ip != last_access_ip:
                             return {
                                        'Info': 'Error: You API Key is invalid because does not match your current IP. Please regiser again to create a new API Key.'}, 401
