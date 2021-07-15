@@ -42,22 +42,12 @@ Space Fan Art is a working API prototype created with Flask REST-Plus to showcas
 
 This API, called SFA (Space Fan Art), is an API created with Flask REST-Plus following the best practices proven to secure a REST-API and showcasing the OWASP Top Ten Proactive Controls. This project contains two Prototypes: a monolithic architecture and a microsservice architecture. APOD, one of NASA's most famous Open API's, has been used as a model thoughout the development of both Prototypes:  
  
-:arrow_forward: In the monolithic architecture APOD was used as an API model, specially for our web interface, user authentication, Web Service Rate Limits and DEMO_KEY Rate Limits. 
+:arrow_forward: In the monolithic architecture APOD was used as an API model, user authentication and Rate Limits. 
 <br>
-:arrow_forward:In the microservice architecture, SFA-API is connected with APOD, which returns the picture of the day. 
+:arrow_forward:In the microservice architecture, SFA-API is connected with APOD, which is a NASA open API that returns the picture of the day. 
 
 <br> 
  
-Both prototypes allows authenticated users to download and upload images. Here is how it works: user have to register, the system generates an authentication key, which the user will use to download and upload fantastic images of planets and galaxies! SFA-API provides access via swagger and via web interface. The web interface of our API has an additional feature: it automatically puts a fascinating image of planets and galaxies on your desktop background!
-
-> :radio_button: SFA-API FEATURES: 
-> * :arrow_forward: user registration, which generates an authentication key
-> * :arrow_forward: download images
-> * :arrow_forward: upload images
-> * :arrow_forward: demo key
-> * :arrow_forward: gdpr rights to retrieve and delete data
-
-
 ## 2. Architecture 
 
 This project uses the Model-View-Controller (MVC) architecture framework, which can be described as an architectural pattern that separates an application
@@ -67,7 +57,6 @@ into three main logical components: model (data), view (user interface), and con
 * View => Our interfaces (Html/CSS/Javascript) and Swagger
 * Controller => In the file with five controllers: [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_), [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_), [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_), [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py), [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py).
  
-
 ## 2.1. Monolithic Architecture
 
 > :small_blue_diamond: Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
@@ -106,13 +95,9 @@ Swagger enabled the development across the entire API lifecycle, from design and
 ![print](/readme_img/swagger_print_microservice.PNG)
  
 
-:large_blue_circle: WEB INTERFACE
+:large_blue_circle: WEB INTERFACE (to be developed in the near future!) 
 
-The Web Interface was built with HTML/CSS and Javascript. It is only aimed to show our microservice working in a different environment.  
- 
- > :radio_button: FEATURES: 
-> * :arrow_forward: download images from APOD (user can download images with a demo key)
-> * :arrow_forward: automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
+The Web Interface was built with HTML/CSS and Javascript and our future goal is to give it an additional feature: users will be able to automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
 
 ## 3.1. How to use SFA
 
@@ -139,6 +124,7 @@ Click in the links below to see the activity diagrams:
 * [Monolithic Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.pdf) 
 * [Microservive Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram_microservice.pdf) 
 
+Notice that both prototypes allows users to download images, but only in the monolith users can also upload images to contribute with our database. In both, we save only basic user's data in our database and comply with GDPR by allowing them to see their stored data and delete it. 
 
 ## 4. Development timeline 
 
