@@ -1,6 +1,6 @@
 from flask import request
 from flask_restplus import fields, Resource
-from minimal import sfa_app  # importanto a API inteira
+from minimal import sfa_app  # import the entire API
 from validator_collection import validators, errors
 import pyodbc as p
 from senhas import *
