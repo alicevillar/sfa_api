@@ -33,7 +33,7 @@ image_directory="images"
 #########################################################################################
 
 picture_namespace = SFA.namespace('Pictures', description='Picture operations')
-# Namespaces are intended for organizing REST endpoints within the API.
+# Namespaces are intended for organising REST endpoints within the API.
 # The main idea is to split the app into reusable namespaces.
 
 #############################################################################################
@@ -46,7 +46,7 @@ class Downloading(Resource):
     @picture_namespace.response(200, 'Success')
     @picture_namespace.response(400, 'Request Error')
     @picture_namespace.response(500, 'Server Error')
-    @picture_namespace.doc(security='apikey') # telling swagger: "hey, this endpoint needs an api key"
+    @picture_namespace.doc(security='apikey') # telling swagger: "this endpoint needs an api key"
     @api_or_demo_key_required # telling swagger: "hey, to the authentication created in this decorator" (from decorators.py)
     def get(self):
         """Downloads a picture"""
@@ -89,12 +89,12 @@ upload_parser.add_argument('copyright', location='form', required=False)
 @picture_namespace.route('/api/v1/upload', doc={"description": 'user uploads an image'})
 @picture_namespace.expect(upload_parser)
 # Notice -> Decorator .expect  will show in swagger the file it is expecting to receive
-# Notice -> Before running the class, it necessary to verify if the received request is as expected (this is what this decorator expect does!)
+# Notice -> Before running the class, it is necessary to verify if the received request is as expected (this is what this decorator expect does)
 class Uploading(Resource): # The response method defines possible responses in the documentation
     @picture_namespace.response(200, 'Success')
     @picture_namespace.response(400, 'Request Error')
     @picture_namespace.response(500, 'Server Error')
-    @picture_namespace.doc(security='apikey') # telling swagger: "hey, this endpoint needs an api key"
+    @picture_namespace.doc(security='apikey') # telling swagger: "this endpoint needs an api key"
     @api_key_required # telling swagger: "hey, to the authentication created in this decorator" (from decorators.py
 
     def post(self):
