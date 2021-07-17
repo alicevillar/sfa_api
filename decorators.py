@@ -6,21 +6,18 @@ from senhas import *
 
 ################################################################################################################
 #                               OWASP C6: Implementing Digital Identity
-#
+# Level 1 : Passwords
 # Level 2 = Multi-Factor Authentication (MFA) = applies 2 layers of protection: passwords and authentication key.
-# Level 3 = Cryptographic Based Authentication => Once the initial successful user authentication has taken place,
-# the application tracks this user (this is called Session Management) so it can store details about usage.
-#  Authentication key is given to users after their registration (to registrate, users have give: first name, last name, email and password). The authentication key is monitored in three different ways:
+# Level 3 = Cryptographic Based Authentication
 #
 #                                    OWASP C7: Enforce Access Controls
 
-#  The multi-factor authentication in 2 layers of protection: hashing passwords and authentication key.
-#  Here the authentication key is following these rules:
-#  a) expiration date – SFA-API has an expiration date, which is done using pyodbc;
-#  b) user IP – The system creates a key that corresponds the client’s IP. If the same client changes IP and
-#  tries to authenticate, the system does not allow it and will ask the client to authenticate again.
-#  This is done with pyodbc. We count the number of requests per key so the sysmtem can recognize when
-#  the same IP uses the API more than our rate limits allow.
+# The multi-factor authentication in 2 layers of protection: hashing passwords and authentication key.
+# Here the authentication key is following these rules:
+# a) expiration date – SFA-API has an expiration date, which is done using pyodbc;
+# b) rate limits - The requests per IP address have the following limits: 80 per day/80 per hour.
+# c) user IP – The system creates a key that corresponds the client’s IP.
+# If the same client changes IP and tries to authenticate, the system doesn't allow and will asks to authenticate again.
 #
 #                               OWASP C9: Implement Security Logging and Monitoring
 #
@@ -95,7 +92,6 @@ def api_key_required(func):
                     sql = f""" DELETE from TB_SFA_Registration where Reg_Id = ?  """
                     cursor.execute(sql, (id_user)) # the second parameter is the value that replaces the interrogation mark
                     cursor.commit()
-                    # NOTE =>> the api_key_required function will always run before the endpoint
 
                     if access_ip != last_access_ip:
                         return {'Info': 'Error: You API Key is invalid because does not match your current IP. Please regiser again to create a new API Key.'}, 401
@@ -104,7 +100,7 @@ def api_key_required(func):
                 else:
                     return func(*args, **kwargs)  # running the decorated function
         else:
-            return {'Info':'Error: missing API KEY'},401 # here goes the dictionary and then the http response (here in restplus we do not need jsonify)
+            return {'Info':'Error: missing API KEY'},401 # here goes a dictionary and then the http response (here in restplus we do not need jsonify :) )
     return decorator
 
 
@@ -112,23 +108,22 @@ def api_key_required(func):
 #
 #                                   DECORATOR: api_or_demo_key_required
 #
-# Here we are creating a decorator is for both the DEMO KEY and the API KEY
-# NOTE =>> the api_key_required function will always run before the endpoint
+# Here we are creating a decorator for both the DEMO KEY and the API KEY
 #
 ################################################################################################################
 
 
 def api_or_demo_key_required(func):
     @wraps(func)
-    def decorator(*args,**kwargs): #args - set of position parameters / kwargs - optional parameters
+    def decorator(*args,**kwargs): # args - set of position parameters / kwargs - optional parameters
         api_key = None
-        if 'X-API-KEY' in request.headers: #if in the request header came an api key, saved in a variable
-
+        if 'X-API-KEY' in request.headers: # if the request header comes with an api key, save it in a variable
             api_key = request.headers['X-API-KEY']
             #print(api_key)
-            if api_key == demo_key: # Checking if the key received is the demokey
+            if api_key == demo_key: # Checking if the key received is the demo key
                 return func(*args, **kwargs)
-            # NOW THIS BLOCK OF CODE COMES FROM THE PREVIOUS DECORADOR:
+
+            # NOW THE FOLLOWING BLOCK OF CODE COMES FROM THE PREVIOUS DECORATOR:
             else:
                 # verify that the key the user posted exists in the database
                 # select db to search for apikey
@@ -165,10 +160,10 @@ def api_or_demo_key_required(func):
                             return {
                                        'Info': 'Error: You API Key has expired or is blocked. Please regiser again to create a new API Key.'}, 401
                     else:
-                        return func(*args, **kwargs)  # aqui roda a funçao decorada - sucesso
-        # CLOSING THE BLOCK FROM THE PREVIOUS DECORATOR
+                        return func(*args, **kwargs)  # Running the decorated function - success
+        # CLOSING THE BLOCK
         else:
-            return {'Info':'Error: missing API KEY'},401 #dicionario e depois o status de resposta (note a aqui no restplus nao precisa do jsonify)
+            return {'Info':'Error: missing API KEY'},401 # notice this syntax: dictionary and then the response (Here in Restplus we don't need jsonify :) )
 
     return decorator
 

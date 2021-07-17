@@ -47,7 +47,7 @@ class Downloading(Resource):
     @api_or_demo_key_required # telling swagger: "hey, to the authentication created in this decorator" (from decorators.py)
     def get(self):
         """Downloads a picture"""
-        response = requests.get(url_apod)  # another way to do it: return requests.get(url_apod).json()
+        response = requests.get(url_apod)  # another way to do it would be: return requests.get(url_apod).json()
         response = response.json()
         return response
 

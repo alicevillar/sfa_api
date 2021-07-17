@@ -68,15 +68,6 @@ class Registration(Resource):
     #       Note -> It will show in swagger the file it is expecting to receive
     ##################################################################################################################
 
-    #########################################################################################################
-    # ==> marshal_with
-    #
-    # NOTE: it will check if the received data model is as expected.
-    # Before using it, I need to define the expected data type
-    # The .marshal_with show the user in the swagger an expected data model
-    #
-    #########################################################################################################
-
     def post(self):
         # Variable new user receives a dictionary. I'll use it to insert values into the DB.
         new_user=request.get_json()
@@ -94,13 +85,13 @@ class Registration(Resource):
             new_user["Last Name"] = validators.not_empty(new_user["Last Name"])
         except errors.EmptyValueError:
             print("Missing Input")
-            return {"Error:": "Missing Input"}, 422 # HTTP 422 - Unprocessable Entity
-        except errors.InvalidEmailError:
+            return {"Error:": "Missing Input"}, 422 # Unprocessable Entity
+        except errors.InvalidEmailError:  # More handling logic goes here
             print("Invalid Input")
-            return {"Error:": "Invalid Input"}, 422 # HTTP 422 - Unprocessable Entity
+            return {"Error:": "Invalid Input"}, 422 # Unprocessable Entity
 
         #########################################################################################################
-        # ==> OWASP C6: Implement Digital Identity (Passwords)
+        # ==> OWASP C6: Implement Digital Identity (Level 1 : Passwords)
         #
         # NOTE: Blocking the top 1000 most common passwords and determinining password length
         # We ensure that the password created by the user is not amongst the most commonly used passwords
@@ -110,7 +101,7 @@ class Registration(Resource):
             linhas = data.readlines()
         senhas_comuns = [senha.split("\n")[0] for senha in linhas]
         if new_user['Password'] in senhas_comuns or len(new_user['Password']) < 8:
-            return {"Error:": "Invalid Password. Too weak!"}, 422 # unprocessable entity
+            return {"Error:": "Invalid Password. Too weak!"}, 422 # Unprocessable entity
 
         # NOTICE ==>> We used with open() to open the file. Could also be:  data = open("useful/common_passwords")"
         # We don’t have to write “file.close()”. That will automatically be called.
@@ -136,7 +127,7 @@ class Registration(Resource):
         access_ip=request.remote_addr
         # Before storing the IP, it is necessary to see if it is in the list
         password_hash= generate_password_hash(new_user['Password'])
-        # to verify is the password is correct ==> check_password_hash(hash," - received password for verification - ")
+        #para verificar se está correta a senha será: check_password_hash(hash," - senha recebida p/ verificação - ")
 
         #########################################################################################################
         # ==> OWASP C3:Secure Database Access
@@ -158,6 +149,6 @@ class Registration(Resource):
         # Base query ==>> this is a generic query. The real data will be in the "???????"
         cursor.execute(sql, (new_user['First Name'],new_user['Last Name'],new_user['email'],apikey,
                              password_hash,expiration_date,access_ip,is_blocked))
-        cursor.commit() # To execute the command. (note: .commit is needed because here we're makes changes in the DB)
-        return {"API Key": apikey,"Expiration Date":expiration_date}, 200
+        cursor.commit() # To execute the command. (note: .commit is needed because here we're making changes in the DB)
+        return {"API Key": apikey,"Expiration Date":expiration_date}, 200 # Success
 

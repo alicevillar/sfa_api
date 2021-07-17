@@ -23,7 +23,7 @@ Space Fan Art is a working API prototype created with Flask REST-Plus to showcas
     - [2.2. Microservice Architecture](#22-microservice-architecture)
 - [3. Project Interface](#3-project-interface)
     - [3.1. How to use SFA](#31-how-to-use-sfa)
-    - [3.2. Activity Diagram](#32-activity-diagram)
+    - [3.2. Activity Diagrams](#32-activity-diagrams)
 - [4. Development timeline](#4-development-timeline)
 - [5. Project Structure](#5-project-structure)
 - [6. Project Files](#6-project-files)
@@ -42,22 +42,12 @@ Space Fan Art is a working API prototype created with Flask REST-Plus to showcas
 
 This API, called SFA (Space Fan Art), is an API created with Flask REST-Plus following the best practices proven to secure a REST-API and showcasing the OWASP Top Ten Proactive Controls. This project contains two Prototypes: a monolithic architecture and a microsservice architecture. APOD, one of NASA's most famous Open API's, has been used as a model thoughout the development of both Prototypes:  
  
-:arrow_forward: In the monolithic architecture APOD was used as an API model, specially for our web interface, user authentication, Web Service Rate Limits and DEMO_KEY Rate Limits. 
+:arrow_forward: In the monolithic architecture APOD was used as an API model, user authentication and Rate Limits. 
 <br>
-:arrow_forward:In the microservice architecture, SFA-API is connected with APOD, which returns the picture of the day. 
+:arrow_forward:In the microservice architecture, SFA-API is connected with APOD, which is a NASA open API that returns the picture of the day. 
 
 <br> 
  
-Both prototypes allows authenticated users to download and upload images. Here is how it works: user have to register, the system generates an authentication key, which the user will use to download and upload fantastic images of planets and galaxies! SFA-API provides access via swagger and via web interface. The web interface of our API has an additional feature: it automatically puts a fascinating image of planets and galaxies on your desktop background!
-
-> :radio_button: SFA-API FEATURES: 
-> * :arrow_forward: user registration, which generates an authentication key
-> * :arrow_forward: download images
-> * :arrow_forward: upload images
-> * :arrow_forward: demo key
-> * :arrow_forward: gdpr rights to retrieve and delete data
-
-
 ## 2. Architecture 
 
 This project uses the Model-View-Controller (MVC) architecture framework, which can be described as an architectural pattern that separates an application
@@ -67,7 +57,6 @@ into three main logical components: model (data), view (user interface), and con
 * View => Our interfaces (Html/CSS/Javascript) and Swagger
 * Controller => In the file with five controllers: [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_), [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_), [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_), [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py), [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py).
  
-
 ## 2.1. Monolithic Architecture
 
 > :small_blue_diamond: Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
@@ -76,7 +65,7 @@ into three main logical components: model (data), view (user interface), and con
 
 ## 2.2. Microservice Architecture
 
-> :small_orange_diamond: Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. For this, we have o sign up for a NASA developer key. 
+> :small_orange_diamond: Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. For this, we have to sign up for a NASA developer key. 
 
 * [Microsservice Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.pdf) 
  
@@ -106,17 +95,13 @@ Swagger enabled the development across the entire API lifecycle, from design and
 ![print](/readme_img/swagger_print_microservice.PNG)
  
 
-:large_blue_circle: WEB INTERFACE
+:large_blue_circle: WEB INTERFACE (to be developed in the near future!) 
 
-The Web Interface was built with HTML/CSS and Javascript. It is only aimed to show our microservice working in a different environment.  
- 
- > :radio_button: FEATURES: 
-> * :arrow_forward: download images from APOD (user can download images with a demo key)
-> * :arrow_forward: automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
+The Web Interface was built with HTML/CSS and Javascript and our future goal is to give it an additional feature: users will be able to automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
 
 ## 3.1. How to use SFA
 
-The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_) contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here goes a small summary how to use them step-by-step.
+The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_) contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here is asummary showing how to use them step-by-step.
 
  :round_pushpin: Monolithics Architecture Step-by-step:
 >  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
@@ -132,17 +117,20 @@ The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controller
 >  * STEP 4 - CONSUME THE API: With the authentication key, the user is only able to download pictures. In this case, the returns JSON-formatted data. 
 >  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance) 
 
-## 3.2. Activity Diagram
+## 3.2. Activity Diagrams
 
-Click in the link below to see the activity diagram, which applies to both interfaces of SFA-API.
+Click in the links below to see the activity diagrams:
 
-* [Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.pdf) 
+* [Monolithic Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.pdf) 
+* [Microservive Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram_microservice.pdf) 
+
+Notice that both prototypes allows users to download images, but only in the monolith users can also upload images to contribute with our database. In both, we save only basic user's data in our database and comply with GDPR by allowing them to see their stored data and delete it. 
 
 ## 4. Development timeline 
 
-:paperclip: VERSION 1
+:paperclip: VERSION 1 - In the file: [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_)
 
-This is the first version of SFA-API. It contains one endpoint that allows you to download an image.
+This is the first version of SFA-API. It contains one endpoint exclusively for the Monolithics architecture that allows you to download an image.
 ```
 * Description:
 * HTTP Request Type -> GET
@@ -150,7 +138,7 @@ This is the first version of SFA-API. It contains one endpoint that allows you t
 * URL GET Parameters -> N/A
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/download
 ```
-:paperclip:VERSION 2 
+:paperclip:VERSION 2 - In the file: [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_)
 
 This is the second version of SFA-API. It contains one more endpoint that allows you to upload an image.
 ```
@@ -160,7 +148,7 @@ This is the second version of SFA-API. It contains one more endpoint that allows
 * URL GET Parameters -> file / title / explanation / date / copyright
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/upload
 ```
-:paperclip:VERSION 3 
+:paperclip:VERSION 3 - In the file: [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_)
 
 This is the first version of SFA-API. It contains one more endpoint that allows you to register a new user.
 
@@ -171,10 +159,9 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * URL POST Parameters -> First name / Last name / email / password
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/register
 ```
-:paperclip:VERSION 4 
+:paperclip:VERSION 4 - In the file: [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py_)
 
 This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key: Demo_Key_SFA_Trial
-
 ```
 * Description:
 * HTTP Request Type -> GET
@@ -183,31 +170,31 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/demo_key
 ```
 
-:paperclip:VERSION 5  
+:paperclip:VERSION 5 - In the file: [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)
 
- This is the fifth version of SFA-API. It contains the first endpoint for GDPR compliance: allows users to see their personal data.  
+This is the fifth version of SFA-API. It contains the first endpoint for GDPR compliance: allows users to see their personal data.  
  
  ```
 * Description:
 * HTTP Request Type -> POST
-* Response -> User loggin    
+* Response -> Retrieve user data     
 * URL POST Parameters -> email / password
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
 ```
 
-:paperclip:VERSION 6   
+:paperclip:VERSION 6 - In the file: [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)  
 
 This is the sixth version of SFA-API. It contains the second endpoint for GDPR compliance: allows users to delete their personal data.  
  
  ```
 * Description:
 * HTTP Request Type -> DELETE
-* Response -> User loggin    
+* Response -> Delete user data    
 * URL POST Parameters -> email / password
 * Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr2
 ```
 
-:paperclip:VERSION 7   
+:paperclip:VERSION 7 - In the file: [picture_controller_apod.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller_apod.py_)     
 
 This is the seventh version of SFA-API. It contains one endpoint exclusively created for the microservice architecture. This endpoint allows users to get images directly from NASA API APOD (HTTP Request Type -> GET). Users can do it using the demo key (Demo_Key_SFA_Trial) or the authentication key. 
  
@@ -320,7 +307,8 @@ $ pip install requirements.txt
 ## 10. Quick Start  
  
  <br>
-:warning:TODO 
+ Check our monolithic architecture with the following link:
+ [Swagger - SFA - Monolithic Architecture](http://0c117db5110a.ngrok.io/docs)
   <br>
 
 ## 11. Authentication Details

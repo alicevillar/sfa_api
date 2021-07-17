@@ -22,9 +22,9 @@ APP, SFA = sfa_app.app,sfa_app.api
 # Defining the limiter
 ip_limiter = Limiter(
     APP,
-    # This functions returns the IP, so it can recognize when the same IP uses the API more than x times
+    # This functions returns the IP, so it can recognise when the same IP uses the API more than x times
     key_func=get_remote_address,
-    default_limits=["30 per day", "30 per hour"],
+    default_limits=["80 per day", "80 per hour"],
     headers_enabled = True
 )
 
@@ -39,8 +39,8 @@ def get_key():
 
 key_usage_limiter = Limiter(
     APP,
-    # This functions returns the IP, so it can recognize when the same IP uses the API more than x times
+    # This functions returns the IP, so it can recognise when the same IP uses the API more than x times
     key_func=get_key,
-    default_limits=["30 per day", "30 per hour"],
+    default_limits=["80 per day", "80 per hour"],
     headers_enabled = True
 )

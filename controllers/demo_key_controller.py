@@ -35,7 +35,7 @@ class Demo_Key_Registration(Resource):
     @demo_key_namespace.response(200, 'Success')
     @demo_key_namespace.response(400, 'Request Error')
     @demo_key_namespace.response(500, 'Server Error')
-    # o metodo posto tem q garantir q aquilo q ele recebe como parametro é o modelo de usuário
+    # the method put in place has to guarantee that what it receives as a parameter is the user model
 
     def get(self): # Generating demo key
         return {"API Key": demo_key}, 200
