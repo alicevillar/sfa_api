@@ -36,7 +36,8 @@ Space Fan Art is a working API prototype created with Flask REST-Plus to showcas
     - [10.2. API Rate Limits](#102-api-rate-limits) 
 - [12. OWASP Proactive Controls](#12-owasp-proactive-controls)
 - [13. Automated Testing](#13-automated-testing)
-- [14. Useful Links](#13-useful-links)
+- [14. Project Roadmap](#14-project-roadmap)
+- [15. Useful Links](#15-useful-links)
 
 <!-- /TOC -->
  
