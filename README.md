@@ -352,8 +352,8 @@ In NASA, limits are placed on the number of API requests you may make using your
 
 In SFA-API we will allow the rate limits NASA uses for the DEMO_KEY, which are:
 
-* Hourly Limit: 30 requests per IP address per hour
-* Daily Limit: 50 requests per IP address per day
+* Hourly Limit: 80 requests per IP address per hour
+* Daily Limit: 80 requests per IP address per day
 
 ## 12. OWASP Proactive Controls
 
