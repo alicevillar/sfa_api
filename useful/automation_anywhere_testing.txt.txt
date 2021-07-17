@@ -1,0 +1,108 @@
+  
+(17/7/21 14:54:03) Scenario 1a: Trying to register a user with an invalid password (among top 1000 most common passwords: football
+(17/7/21 14:54:03) {
+  "First Name": "Michael",
+  "Last Name": "Vandans",
+  "email": "michael@gmail.com",
+  "Password": "football"
+}
+(17/7/21 14:54:03) null{
+    "API Key": null,
+    "Expiration Date": null
+}
+HTTP/ 422 UNPROCESSABLE ENTITY
+(17/7/21 14:54:03)  Scenario 1b: Trying to register a user with an invalid password (password with only 6 digits: python)
+(17/7/21 14:54:03) {
+  "First Name": "Michael",
+  "Last Name": "Vandans",
+  "email": "michael@gmail.com",
+  "Password": "python"
+}
+(17/7/21 14:54:03) null{
+    "API Key": null,
+    "Expiration Date": null
+}
+HTTP/ 422 UNPROCESSABLE ENTITY
+(17/7/21 14:54:03) Scenario 1c: Trying to register a user with a valid password (valid password with 8 digits: pythonnn) 
+(17/7/21 14:54:03) {
+  "First Name": "Michael",
+  "Last Name": "Vandans",
+  "email": "michael@gmail.com",
+  "Password": "pythonnn"
+}
+(17/7/21 14:54:04) HTTP/ 200 OK
+null{
+    "API Key": "R4y7a5h0g66KE7BmNWRHfKtBFqxzz2h9ryK4v_tX",
+    "Expiration Date": "2021-08-16"
+}
+
+(17/7/21 14:54:04) Scenario 2a: Testing a valid Authentication Key - trying to download an image 
+(17/7/21 14:54:04) image/jpegattachment; filename=MareFrigorisMattSmith1024.jpg 
+(17/7/21 14:54:04) HTTP/ 200 OK
+(17/7/21 14:54:04) Scenario 2b: Testing an valid Authentication Key - trying to download an image
+(17/7/21 14:54:04) application/jsonnull 
+(17/7/21 14:54:04)  HTTP/ 401 UNAUTHORIZED
+(17/7/21 14:54:04) Scenario 3a: Testing input validation in the endpoint GDPR1 - trying to retrieve user data with an invalid email 
+(17/7/21 14:54:04) {
+  "email": "michaelgmail.com",
+  "Password": "pythonnn"
+}
+(17/7/21 14:54:05) HTTP/ 422 UNPROCESSABLE ENTITY{
+    "Error:": "Invalid email"
+}
+
+(17/7/21 14:54:05) Scenario 3b: Testing input validation in the endpoint GDPR2 - trying to delete user with invalid password 
+(17/7/21 14:54:05) {
+  "email": "michael@gmail.com",
+  "Password": "py"
+}
+(17/7/21 14:54:05) HTTP/ 401 UNAUTHORIZED{
+    "Error:": "Invalid password "
+}
+
+(17/7/21 14:54:05)  Scenario 4a: Testing demo key endpoint
+(17/7/21 14:54:05) { 
+Getting demo key from demo_key endpoint
+}
+
+(17/7/21 14:54:05) HTTP/ 200 OK{
+    "API Key": "Demo_Key_SFA_Trial"
+}
+
+(17/7/21 14:54:05) Scenario 4b: Testing demo key - trying to download a picture without a demo key
+(17/7/21 14:54:05) HTTP/ 401 UNAUTHORIZED{
+    "Info": "Error: Invalid API KEY"
+}
+
+(17/7/21 14:54:05) Scenario 4c: Testing demo key - trying to download a picture with the right demo key
+(17/7/21 14:54:05) {
+  "API Key": "Demo_Key_SFA_Trial"
+}
+(17/7/21 14:54:05) HTTP/ 200 OK  
+(17/7/21 14:54:05) attachment; filename=degas_merc_mar10.jpg
+(17/7/21 14:54:05)  Scenario 5a: Testing SQL Injection
+(17/7/21 14:54:05) {
+  "First Name": "SELECT Reg_Name FROM [SFA_DB].[dbo].[TB_SFA_Registration]",
+  "Last Name": "Vandans",
+  "email": "testinginjection@gmail.com",
+  "Password": "pythonnn"
+}
+
+(17/7/21 14:54:06) {
+    "API Key": "UZIn2W62wpydSUQkk8HB1RqzJNr9lceMGL0zsFVa",
+    "Expiration Date": "2021-08-16"
+}
+HTTP/ 200 OK
+(17/7/21 14:54:06)  Scenario 5b: Retriving SQL injection to check if the API is succefully protecting against injection
+(17/7/21 14:54:06) HTTP/ 200 OK{
+    "Reg_Id": 35,
+    "Reg_Name": "SELECT Reg_Name FROM [SFA_DB].[dbo].[TB_SFA_Registration]",
+    "Reg_LastName": "Vandans",
+    "Reg_Email": "testinginjection@gmail.com",
+    "Reg_Authentication_Key": "4JURps97pyeEP5z9KDQIJLxbdlHfwNoDRvyDYAe0",
+    "Reg_Expiration_Date": "2021-08-15",
+    "Reg_Last_Access_Ip": "127.0.0.1",
+    "Reg_Is_Blocked": false,
+    "Reg_Password": "pbkdf2:sha256:150000$szM7K20t$8ffaf9c35f7b64bdabec51c29b0943844b3aa8d67a9b896e3901f845b070f562"
+}
+
