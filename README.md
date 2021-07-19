@@ -419,13 +419,13 @@ OWASP provides several recommendations for secure implementation of Digital Iden
 * Level 3 : Cryptographic Based Authentication => requires authentication that is "based on proof of possession of a key through a cryptographic protocol.” This type of authentication is used to achieve the strongest level of authentication assurance.  
 
 > :white_check_mark: SFA-API applies digital identity, authentication and session management recommendation. We use libraries werkzeug (for password hashing) and secrets (to
-> generate authentication key). However, we're only scratching the surface. We are maximizing the security in our API. Following the above OWASP recommendations, here are the
-> basic security measures we apply to maximize the security in our AP:  
+> generate authentication key). However, we're only scratching the surface. We are maximising the security in our API. Following the above OWASP recommendations, here are the
+> basic security measures we apply to maximise the security in our API:  
 > * Level 1 : Passwords => 
 > * a) In SFA-API, passwords have at least 8 characters in length; 
 > * b) All printing ASCII characters as well as the space character are acceptable in memorized secrets. 
-> * c) We follow the the OWASP recommedation, which is to remove complexity requirements as these have been found to be of limited effectiveness. OWASP recommends the adoption of MFA or longer password lengths instead. What we do it to encourage the use of long passwords and passphrases by recommending this action in the interface. 
-> * d) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt); c) we securely store user credentials, so is a password is compromised, the attacker does not immediately have access to this information. 
+> * c) We follow the the OWASP recommedation, which is to remove complexity requirements as these have been found to be of limited effectiveness. OWASP recommends the adoption of MFA or longer password lengths instead. We encourage the use of long passwords and passphrases by recommending this action in the interface. 
+> * d) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt); c) we securely store user credentials, so if a password is compromised, the attacker does not immediately have access to this information. 
 > * Level 2 : Multi-Factor Authentication (MFA) => SFA-API applies 2 layers of protection: passwords and authentication key (which works as a token).
 > * Level 3 : Cryptographic Based Authentication => Once the initial successful user authentication has taken place, the application tracks this user (this is called Session Management) so it can store details about usage. Flask does it through encrypted cookies. This is implemented on top of cookies for you and signs the cookies cryptographically. What this means is that the user could look at the contents of your cookie but not modify it, unless they know the secret key used for signing. 
 
