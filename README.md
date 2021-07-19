@@ -68,7 +68,7 @@ into three main logical components: model (data), view (user interface), and con
 
 ## 2.2. Microservice Architecture
 
-> :small_orange_diamond: Design based on a microservice architecture, using MVC (Model-View-Controller) pattern. SFA-API is connected to a NASA Open API APOD, which returns the picture of the day. For this, we had to sign up for a NASA developer key, which you find [here](https://api.nasa.gov/). 
+> :small_orange_diamond: Design based on a microservice architecture, using MVC (Model-View-Controller) pattern. SFA-API is connected to a NASA Open API APOD, which returns the picture of the day. For this, we had to sign up for a NASA developer key, which you can find [here](https://api.nasa.gov/). 
 
 * [Microsservice Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.pdf) 
  
@@ -100,7 +100,7 @@ Swagger enabled the development across the entire API lifecycle, from design and
 
 ## 3.1. How to use SFA
 
-The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_) contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here is asummary showing how to use them step-by-step:
+The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_) contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here is a summary showing how to use them step-by-step:
 
  :round_pushpin: Monolithics Architecture Step-by-step:
 >  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
@@ -113,7 +113,7 @@ The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controller
 >  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
 >  * STEP 2 - REGISTRATION: For user registration there are four parameters: first name, last name, email and password.  
 >  * STEP 3 - AUTHENTICATION KEY: After registration, user receives an authentication key.
->  * STEP 4 - CONSUME THE API: With the authentication key, the user is only able to download pictures. In this case, the returns JSON-formatted data. 
+>  * STEP 4 - CONSUME THE API: With the authentication key, the user is only able to download pictures. In this case returns JSON-formatted data. 
 >  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance) 
 
 ## 3.2. Activity Diagrams
