@@ -262,7 +262,7 @@ app/
   [*flask*](http://flask.pocoo.org/))  
 * [**Werkzeug**](https://pypi.org/project/Werkzeug/) - for password hashing RESTful API documentation.
 * [**Secrets**](https://pypi.org/project/python-secrets/) - for generating cryptographically strong pseudo-random numbers for managing user authentication.
-* [**Pyodbc**](https://pypi.org/project/pyodbc/) - for accessing the database and carry our user registration.
+* [**Pyodbc**](https://pypi.org/project/pyodbc/) - for accessing the database and carry out user registration.
 * [**Requests**](https://pypi.org/project/requests/) - for making HTTP requests in Python. 
 * [**Flask Cors**](https://flask-cors.readthedocs.io/en/latest/) - A Flask extension for handling Cross Origin Resource Sharing (CORS), making cross-origin AJAX possible. 
 * [**Flask Limiters**](https://flask-limiter.readthedocs.io/en/stable/) - Flask-Limiter provides rate limiting features to flask routes.
