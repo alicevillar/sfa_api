@@ -24,7 +24,7 @@ APP, SFA = sfa_app.app,sfa_app.api
 demo_key_namespace = SFA.namespace('Demo Key', description='Demo Key operations')
 
 # Here we create a namespace for demo key operations.
-# Namespaces are intended for organizing REST endpoints within the API.
+# Namespaces are intended for organising REST endpoints within the API.
 
 #############################################################################################
 # Here we place the namespace decorator .route to define the endpoint path within the API

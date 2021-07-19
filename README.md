@@ -1,6 +1,6 @@
  <h1>Space Fan Art (SFA - API)</h1>
 
-Space Fan Art is a working API prototype created with Flask REST-Plus to showcase the OWASP Top Ten Proactive Controls in two different architectures: a monolith and a microservice. In the monolithic architecture, users have to register to get an authentication key, which allows them to download images from NASA and also contribute with our database by uploading pictures to our database of [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microservice architecture, users will only be able to download images, which will come directly from [APOD](https://github.com/nasa/apod-api)(one of the most famous NASA's Open API).  
+Space Fan Art is a working API prototype created with Flask REST-Plus to showcase the OWASP Top Ten Proactive Controls in two different architectures: a monolith and a microservice. In the monolithic architecture, users have to register to get an authentication key, which allows them to download images from NASA and also contribute to our database by uploading pictures to our database of [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microservice architecture, users will only be able to download images, which will come directly from [APOD](https://github.com/nasa/apod-api)(one of the most famous NASA's Open API).  
 
 :arrow_forward: Duration : 3 months
 <br>
@@ -43,7 +43,7 @@ Space Fan Art is a working API prototype created with Flask REST-Plus to showcas
  
 ## 1. Overview 
 
-This API, called SFA (Space Fan Art), is an API created with Flask REST-Plus with two Prototypes: a monolithic architecture and a microsservice architecture. [Astronomy Picture Of The Day (APOD)](https://api.nasa.gov/), which is a NASA open API that returns the picture of the day, has been used as a model thoughout the development of both Prototypes:  
+This API, called SFA (Space Fan Art), is an API created with Flask REST-Plus with two Prototypes: a monolithic architecture and a microservice architecture. [Astronomy Picture Of The Day (APOD)](https://api.nasa.gov/), which is a NASA open API that returns the picture of the day, has been used as a model thoughout the development of both Prototypes:  
  
 :arrow_forward: In the monolithic architecture, APOD was used as an API model in various aspects, such as user authorisation key and rate limits. 
 <br>
@@ -68,7 +68,7 @@ into three main logical components: model (data), view (user interface), and con
 
 ## 2.2. Microservice Architecture
 
-> :small_orange_diamond: Design based on a microservice architecture, using MVC (Model-View-Controller) pattern. SFA-API is connected to a NASA Open API APOD, which returns the picture of the day. For this, we had to sign up for a NASA developer key, which you find [here](https://api.nasa.gov/). 
+> :small_orange_diamond: Design based on a microservice architecture, using MVC (Model-View-Controller) pattern. SFA-API is connected to a NASA Open API APOD, which returns the picture of the day. For this, we had to sign up for a NASA developer key, which you can find [here](https://api.nasa.gov/). 
 
 * [Microsservice Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.pdf) 
  
@@ -79,7 +79,7 @@ into three main logical components: model (data), view (user interface), and con
 Swagger enabled the development across the entire API lifecycle, from design and documentation, to test and deployment. It has also been used as an interface. 
 > :radio_button: We have 6 endpoints, with the following features: 
 > * :arrow_forward: 1 - user registration (generates an authentication key)
-> * :arrow_forward: 2 - download images (user can download images with their authentication key and also with a demo key)
+> * :arrow_forward: 2 - download images (users can download images with their authentication key and also with a demo key)
 > * :arrow_forward: 3 - upload images (users can upload images to increment our database)
 > * :arrow_forward: 4 - demo key (the demo key is: Demo_Key_SFA_Trial and can only be used to download images)
 > * :arrow_forward: 5 - GDPR1 (to comply with GDPR, the system allows users to see their data)
@@ -100,7 +100,7 @@ Swagger enabled the development across the entire API lifecycle, from design and
 
 ## 3.1. How to use SFA
 
-The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_) contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here is asummary showing how to use them step-by-step:
+The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_) contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here is a summary showing how to use them step-by-step:
 
  :round_pushpin: Monolithics Architecture Step-by-step:
 >  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
@@ -112,13 +112,13 @@ The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controller
  :round_pushpin: Microservice Architecture Step-by-step:
 >  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
 >  * STEP 2 - REGISTRATION: For user registration there are four parameters: first name, last name, email and password.  
->  * STEP 3 - AUTHENTICATION KEY: After registration, user receives an authentication key.
->  * STEP 4 - CONSUME THE API: With the authentication key, the user is only able to download pictures. In this case, the returns JSON-formatted data. 
+>  * STEP 3 - AUTHENTICATION KEY: After registration, users receive an authentication key.
+>  * STEP 4 - CONSUME THE API: With the authentication key, the user is only able to download pictures. In this case returns JSON-formatted data. 
 >  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance) 
 
 ## 3.2. Activity Diagrams
 
-Click in the links below to see the activity diagrams:
+Click the links below to see the activity diagrams:
 
 * [Monolithic Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.pdf) 
 * [Microservive Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram_microservice.pdf) 
@@ -149,7 +149,7 @@ This is the second version of SFA-API. It contains one more endpoint that allows
 ```
 :paperclip:VERSION 3 - In the file: [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_)
 
-This is the first version of SFA-API. It contains one more endpoint that allows you to register a new user.
+This is the third version of SFA-API. It contains one more endpoint that allows you to register a new user.
 
 ```
 * Description:
@@ -160,7 +160,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 ```
 :paperclip:VERSION 4 - In the file: [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py_)
 
-This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key: Demo_Key_SFA_Trial
+This is the fourth version of SFA-API. It contains one more endpoint that allows you to use a demo key: Demo_Key_SFA_Trial
 ```
 * Description:
 * HTTP Request Type -> GET
@@ -252,7 +252,9 @@ app/
 * `common_passwords.py` [common_passwords.py](https://github.com/alicevillar/sfa_api/blob/main/useful/common_passwords) - File containing the 1000 most common passwords. 
 * `application_structure.py` [application_structure.py](https://github.com/alicevillar/sfa_api/blob/main/application_structure.py) - Directory tree structure in Python.
 * `requirements.txt` [requirements.txt](https://github.com/alicevillar/sfa_api/blob/main/requirements.txt) - The list of Python (PyPi) requirements. Script: 1) pip install pipreqs; 2) pipreqs --encoding=utf8 C:\Users\Alice\PycharmProjects\SFA_DB 
-* `automation_anywhere_testing.txt` [automation_anywhere_testing.txt](https://github.com/alicevillar/sfa_api/blob/main/useful/automation_anywhere_testing.txt) - File containing our automated tesing script generated by Automation Anywhere. 
+* `sqlserver_db_script.sql`[sqlserver_db_script.sql](https://github.com/alicevillar/sfa_api/blob/main/useful/sqlserver_db_script.sql) - File containing the script of our database created with SQL Server.
+* `automation_anywhere_testing.txt` [automation_anywhere_testing.txt](https://github.com/alicevillar/sfa_api/blob/main/useful/automation_anywhere_testing.txt) - File containing our automated tesing script generated by Automation Anywhere.  
+
 
 ## 7. Python Dependencies
 
@@ -260,7 +262,7 @@ app/
   [*flask*](http://flask.pocoo.org/))  
 * [**Werkzeug**](https://pypi.org/project/Werkzeug/) - for password hashing RESTful API documentation.
 * [**Secrets**](https://pypi.org/project/python-secrets/) - for generating cryptographically strong pseudo-random numbers for managing user authentication.
-* [**Pyodbc**](https://pypi.org/project/pyodbc/) - for accessing the database and carry our user registration.
+* [**Pyodbc**](https://pypi.org/project/pyodbc/) - for accessing the database and carry out user registration.
 * [**Requests**](https://pypi.org/project/requests/) - for making HTTP requests in Python. 
 * [**Flask Cors**](https://flask-cors.readthedocs.io/en/latest/) - A Flask extension for handling Cross Origin Resource Sharing (CORS), making cross-origin AJAX possible. 
 * [**Flask Limiters**](https://flask-limiter.readthedocs.io/en/stable/) - Flask-Limiter provides rate limiting features to flask routes.
@@ -306,8 +308,7 @@ $ pip install requirements.txt
 ## 10. Quick Start  
  
  <br>
- Check our monolithic architecture with the following link:
- [Swagger - SFA - Monolithic Architecture](http://2fd1c56adc74.ngrok.io/docs)
+ Check our monolithic architecture on Swagger with the following link: http://2fd1c56adc74.ngrok.io/docs 
  <br>
 
 ## 11. Authentication Details
@@ -370,7 +371,7 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 >  * Protect Security Misconfiguration: all operating systems, frameworks, libraries, and applications must be securely configured and patched/upgraded in a timely fashion. This is done on the Microservice Architecture (Beam Stalk - AWS). 
 >  * Key exchange communication - only happens in the microservice architecture, where AWS cloud services are used. We hold a private key which enabled us to access our VM in EC2. 
 >  * Protect against Cross-Site Scripting (XSS): We protect against XSS in our web page, using javascript. 
->  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any. 
+>  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any
 >   published vulnerabilities. 
 >  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised, a request is received and then returned. In  FlasK-Rest-Plus loggins are very simple, they are not
 >  very informative (thus, it is not possible to know details about each request). Using docker loogs, it is possible to query, store and analyse the loggins.
@@ -418,32 +419,32 @@ OWASP provides several recommendations for secure implementation of Digital Iden
 * Level 3 : Cryptographic Based Authentication => requires authentication that is "based on proof of possession of a key through a cryptographic protocol.” This type of authentication is used to achieve the strongest level of authentication assurance.  
 
 > :white_check_mark: SFA-API applies digital identity, authentication and session management recommendation. We use libraries werkzeug (for password hashing) and secrets (to
-> generate authentication key). However, we're only scratching the surface. We are maximizing the security in our API. Following the above OWASP recommendations, here are the
-> basic security measures we apply to maximize the security in our AP:  
+> generate authentication key). However, we're only scratching the surface. We are maximising the security in our API. Following the above OWASP recommendations, here are the
+> basic security measures we apply to maximise the security in our API:  
 > * Level 1 : Passwords => 
 > * a) In SFA-API, passwords have at least 8 characters in length; 
 > * b) All printing ASCII characters as well as the space character are acceptable in memorized secrets. 
-> * c) We follow the the OWASP recommedation, which is to remove complexity requirements as these have been found to be of limited effectiveness. OWASP recommends the adoption of MFA or longer password lengths instead. What we do it to encourage the use of long passwords and passphrases by recommending this action in the interface. 
-> * d) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt); c) we securely store user credentials, so is a password is compromised, the attacker does not immediately have access to this information. 
+> * c) We follow the the OWASP recommedation, which is to remove complexity requirements as these have been found to be of limited effectiveness. OWASP recommends the adoption of MFA or longer password lengths instead. We encourage the use of long passwords and passphrases by recommending this action in the interface. 
+> * d) we ensure that passwords used are not commonly used passwords by blocking the [top 1000 most common passwords](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt); c) we securely store user credentials, so if a password is compromised, the attacker does not immediately have access to this information. 
 > * Level 2 : Multi-Factor Authentication (MFA) => SFA-API applies 2 layers of protection: passwords and authentication key (which works as a token).
 > * Level 3 : Cryptographic Based Authentication => Once the initial successful user authentication has taken place, the application tracks this user (this is called Session Management) so it can store details about usage. Flask does it through encrypted cookies. This is implemented on top of cookies for you and signs the cookies cryptographically. What this means is that the user could look at the contents of your cookie but not modify it, unless they know the secret key used for signing. 
 
  <h3>C7: Enforce Access Controls</h3>
  
-Access Control functionality often spans many areas of software depending on the complexity of the access control system. In SFA-API, we apply two of the OWASP recommends: a) all request go through some kind of access control verification layer; a) all access control failures should be logged as these may be indicative of a malicious user probing the application for vulnerabilities.
+Access Control functionality often spans many areas of software depending on the complexity of the access control system. In SFA-API, we apply two of the OWASP recommendations: a) all requests go through some kind of access control verification layer; a) all access control failures should be logged as these may be indicative of a malicious user probing the application for vulnerabilities.
 
-> :white_check_mark: In SFA-API, we maximize the security by using multi-factor authentication in 2 layers of protection: hashing passwords and authentication key.
+> :white_check_mark: In SFA-API, we maximise the security by using multi-factor authentication in 2 layers of protection: hashing passwords and authentication key.
 > Authentication key is given to users after their registration (to registrate, users have give: first name, last name, email and password). The authentication key is monitored
 > in three different ways: 
 > * a) expiration date – SFA-API has an expiration date, which is done using pyodbc; 
-> * b) rate limits - We implement rate limits with flask limiter. The requests per IP address have the following limits: 30 per day/30 per hour. 
-> * c) user IP – The system creates a key that corresponds the client’s IP. If the same client changes IP and tries to authenticate, the system does not allow it and will ask the client to authenticate again. This is done with pyodbc. We count the number of requests per key so the sysmtem can recognize when the same IP uses the API more than our rate limits allow.
+> * b) rate limits - We implement rate limits with flask limiter. The requests per IP address have the following limits: 80 per day/80 per hour. 
+> * c) user IP – The system creates a key that corresponds with the client’s IP. If the same client changes IP and tries to authenticate, the system does not allow it and will ask the client to authenticate again. This is done with pyodbc. We count the number of requests per key so the system can recognise when the same IP uses the API more than our rate limits allow.
  
 <h3>C8: Protect Data Everywhere</h3>
 
-Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here we describe how we have folloed OWAS recommendations.
+Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here we describe how we have followed OWASP recommendations.
 
-> :white_check_mark: In SFA-API, we protect data with warametrized queries to protect against SQL injection. OWASP recommends stored procedures but  is not done in SFA-API because the queries are small, so this measure is unecessary. OWASP also recommends escaping, which we didn't need to do in our API because it wasn't necessary.
+> :white_check_mark: In SFA-API, we protect data with parametrised queries to protect against SQL injection. OWASP recommends stored procedures but this is not done in SFA-API because the queries are small, so this measure is unecessary. OWASP also recommends escaping, which we didn't need to do in our API because it wasn't necessary.
  
 <h3>C9: Implement Security Logging and Monitoring</h3>
   
@@ -458,10 +459,10 @@ Exception handling is a programming concept that allows an application to respon
 
 > :white_check_mark: In SFA-API, we use the try-except statement in the following files: 
 > * a) to check input validation. This is done in the files [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_), [picture_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/picture_controller.py_) and [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)
-> * b) to check the number of requests per Key, in the file [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py_) while  
+> * b) to check the number of requests per Key, in the file [limiters_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/limiters_controller.py_) 
 ## 13. Automated Testing
 
-The file [automation_anywhere_testing.txt](https://github.com/alicevillar/sfa_api/blob/main/useful/automation_anywhere_testing.txt) - File containing our automated tesing script generated by Automation Anywhere.  contains our automated tesing script generated by [Automation Anywhere](https://www.automationanywhere.com/).
+The file [automation_anywhere_testing.txt](https://github.com/alicevillar/sfa_api/blob/main/useful/automation_anywhere_testing.txt) contains our automated tesing script generated by [Automation Anywhere](https://www.automationanywhere.com/).
 
 <h3>Here is our testing plan:</h3>  
  
@@ -478,7 +479,7 @@ The file [automation_anywhere_testing.txt](https://github.com/alicevillar/sfa_ap
 > :heavy_check_mark: Scenario 2a: Testing a valid Authentication Key - trying to download an image.   
 > Expected response:  HTTP - 200 OK Success status
 > 
-> :heavy_check_mark: Scenario 2b: Testing an valid Authentication Key - trying to download an image.  
+> :heavy_check_mark: Scenario 2b: Testing an invalid Authentication Key - trying to download an image.  
 > Expected response:  HTTP - 401 Unauthorised  
 > 
 > :heavy_check_mark: Scenario 3a: Testing input validation in the endpoint GDPR1 - trying to retrieve user data with an invalid email (michaelgmail.com).
