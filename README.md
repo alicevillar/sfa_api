@@ -79,7 +79,7 @@ into three main logical components: model (data), view (user interface), and con
 Swagger enabled the development across the entire API lifecycle, from design and documentation, to test and deployment. It has also been used as an interface. 
 > :radio_button: We have 6 endpoints, with the following features: 
 > * :arrow_forward: 1 - user registration (generates an authentication key)
-> * :arrow_forward: 2 - download images (user can download images with their authentication key and also with a demo key)
+> * :arrow_forward: 2 - download images (users can download images with their authentication key and also with a demo key)
 > * :arrow_forward: 3 - upload images (users can upload images to increment our database)
 > * :arrow_forward: 4 - demo key (the demo key is: Demo_Key_SFA_Trial and can only be used to download images)
 > * :arrow_forward: 5 - GDPR1 (to comply with GDPR, the system allows users to see their data)
