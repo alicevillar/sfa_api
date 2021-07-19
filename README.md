@@ -1,6 +1,6 @@
  <h1>Space Fan Art (SFA - API)</h1>
 
-Space Fan Art is a working API prototype created with Flask REST-Plus to showcase the OWASP Top Ten Proactive Controls in two different architectures: a monolith and a microservice. In the monolithic architecture, users have to register to get an authentication key, which allows them to download images from NASA and also contribute with our database by uploading pictures to our database of [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microservice architecture, users will only be able to download images, which will come directly from [APOD](https://github.com/nasa/apod-api)(one of the most famous NASA's Open API).  
+Space Fan Art is a working API prototype created with Flask REST-Plus to showcase the OWASP Top Ten Proactive Controls in two different architectures: a monolith and a microservice. In the monolithic architecture, users have to register to get an authentication key, which allows them to download images from NASA and also contribute to our database by uploading pictures to our database of [365 images from NASA](https://github.com/alicevillar/sfa_api/blob/main/APOD_365). In the microservice architecture, users will only be able to download images, which will come directly from [APOD](https://github.com/nasa/apod-api)(one of the most famous NASA's Open API).  
 
 :arrow_forward: Duration : 3 months
 <br>
