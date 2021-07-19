@@ -105,7 +105,7 @@ The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controller
  :round_pushpin: Monolithics Architecture Step-by-step:
 >  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
 >  * STEP 2 - REGISTRATION: For user registration there are four parameters: first name, last name, email and password.  
->  * STEP 3 - AUTHENTICATION KEY: After registration, user receives an authentication key.
+>  * STEP 3 - AUTHENTICATION KEY: After registration, users receives an authentication key.
 >  * STEP 4 - CONSUME THE API: With the authentication key, the user is able to download and upload pictures.
 >  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance) 
 
@@ -123,7 +123,7 @@ Click the links below to see the activity diagrams:
 * [Monolithic Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.pdf) 
 * [Microservive Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram_microservice.pdf) 
 
-Notice that both prototypes allows users to download images, but only in the monolith users can also upload images to contribute with our database. In both, we save only basic user's data in our database and comply with GDPR by allowing them to see their stored data and delete it. 
+Notice that both prototypes allows users to download images, but only in the monolith users can also upload images to contribute to our database. In both, we save only basic user data in our database and comply with GDPR by allowing them to see their stored data and delete it. 
 
 ## 4. Development timeline 
 
@@ -273,14 +273,14 @@ app/
 ## 8. Tools
 
 * [**Docker**](https://www.docker.com/) - for storing the database and the API in a container. 
-* [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - used for documentation and to allow development team to visualize and interact with the API's. 
+* [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - used for documentation and to allow the development team to visualise and interact with the API's. 
 * [**SQL Server**](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) - to create the database of Prototype 1 (monolithic architecture)
 * [**Ngrok**](https://ngrok.com/) - enabled the exposure of the a local development server to the Internet with minimal effort. 
 * [**AWS EC2**](https://aws.amazon.com/pt/ec2/) - cloud computing service used in both prototypes to host and run the applications  
 * [**Github**](https://github.com/alicevillar/sfa_api) - to document the project. 
 * [**Insomnia**](https://insomnia.rest/) - used to consume APOD and retrieve the 365 images for our dataset (monolithic architecture). 
 * [**NASA APOD**](https://api.nasa.gov/) - In the monolithic architecture it was used as an API model. In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
-* [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
+* [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing SFA-API (both prototypes). 
 
 ## 9. Installation  
  
@@ -331,7 +331,7 @@ The request body must follow the following structure:
 
 That is it! 
 
-After regitration, the system will generate the API Key.
+After registration, the system will generate the API Key.
 
  
 :large_blue_circle: USER REGISTRATION:
@@ -374,7 +374,7 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 >  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any
 >   published vulnerabilities. 
 >  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised, a request is received and then returned. In  FlasK-Rest-Plus loggins are very simple, they are not
->  very informative (thus, it is not possible to know details about each request). Using docker loogs, it is possible to query, store and analyse the loggins.
+>  very informative (thus, it is not possible to know details about each request). Using docker it is possible to query, store and analyse the loggins.
  
    
  <h3>C2: Leverage Security Frameworks and Libraries</h3>
@@ -434,7 +434,7 @@ OWASP provides several recommendations for secure implementation of Digital Iden
 Access Control functionality often spans many areas of software depending on the complexity of the access control system. In SFA-API, we apply two of the OWASP recommendations: a) all requests go through some kind of access control verification layer; a) all access control failures should be logged as these may be indicative of a malicious user probing the application for vulnerabilities.
 
 > :white_check_mark: In SFA-API, we maximise the security by using multi-factor authentication in 2 layers of protection: hashing passwords and authentication key.
-> Authentication key is given to users after their registration (to registrate, users have give: first name, last name, email and password). The authentication key is monitored
+> Authentication key is given to users after their registration (to registrate, users have to give: first name, last name, email and password). The authentication key is monitored
 > in three different ways: 
 > * a) expiration date – SFA-API has an expiration date, which is done using pyodbc; 
 > * b) rate limits - We implement rate limits with flask limiter. The requests per IP address have the following limits: 80 per day/80 per hour. 
