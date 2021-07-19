@@ -479,7 +479,7 @@ The file [automation_anywhere_testing.txt](https://github.com/alicevillar/sfa_ap
 > :heavy_check_mark: Scenario 2a: Testing a valid Authentication Key - trying to download an image.   
 > Expected response:  HTTP - 200 OK Success status
 > 
-> :heavy_check_mark: Scenario 2b: Testing an valid Authentication Key - trying to download an image.  
+> :heavy_check_mark: Scenario 2b: Testing an invalid Authentication Key - trying to download an image.  
 > Expected response:  HTTP - 401 Unauthorised  
 > 
 > :heavy_check_mark: Scenario 3a: Testing input validation in the endpoint GDPR1 - trying to retrieve user data with an invalid email (michaelgmail.com).
