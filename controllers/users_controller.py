@@ -32,7 +32,7 @@ APP, SFA = sfa_app.app,sfa_app.api
 users_namespace = SFA.namespace('Users', description='User operations')
 
 # Here we create a namespace for users' operations.
-# Namespaces are intended for organizing REST endpoints within the API.
+# Namespaces are intended for organising REST endpoints within the API.
 
 #########################################################################################
 # Creating user model
