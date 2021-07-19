@@ -374,7 +374,7 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 >  * Protect against Components with Known Vulnerabilities: use [Project Dependency](https://pypi.org/project/dependency-check/) to scan application dependencies and check if they contain any
 >   published vulnerabilities. 
 >  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised, a request is received and then returned. In  FlasK-Rest-Plus loggins are very simple, they are not
->  very informative (thus, it is not possible to know details about each request). Using docker loogs, it is possible to query, store and analyse the loggins.
+>  very informative (thus, it is not possible to know details about each request). Using docker it is possible to query, store and analyse the loggins.
  
    
  <h3>C2: Leverage Security Frameworks and Libraries</h3>
