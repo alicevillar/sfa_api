@@ -43,11 +43,11 @@ Space Fan Art is a working API prototype created with Flask REST-Plus to showcas
  
 ## 1. Overview 
 
-This API, called SFA (Space Fan Art), is an API created with Flask REST-Plus following the best practices proven to secure a REST-API and showcasing the OWASP Top Ten Proactive Controls. This project contains two Prototypes: a monolithic architecture and a microsservice architecture. APOD, one of NASA's most famous Open API's, has been used as a model thoughout the development of both Prototypes:  
+This API, called SFA (Space Fan Art), is an API created with Flask REST-Plus with two Prototypes: a monolithic architecture and a microsservice architecture. [Astronomy Picture Of The Day (APOD)](https://api.nasa.gov/), which is a NASA open API that returns the picture of the day, has been used as a model thoughout the development of both Prototypes:  
  
-:arrow_forward: In the monolithic architecture APOD was used as an API model, user authentication and Rate Limits. 
+:arrow_forward: In the monolithic architecture, APOD was used as an API model in various aspects, such as user authorisation key and rate limits. 
 <br>
-:arrow_forward:In the microservice architecture, SFA-API is connected with APOD, which is a NASA open API that returns the picture of the day. 
+:arrow_forward:In the microservice architecture, SFA-API is connected with APOD. Thus, our microservive returns a picture that comes directly from APOD. 
 
 <br> 
  
@@ -62,13 +62,13 @@ into three main logical components: model (data), view (user interface), and con
  
 ## 2.1. Monolithic Architecture
 
-> :small_blue_diamond: Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we used APOD. 
+> :small_blue_diamond: Design based on a monolithic architecture, using MVC (Model-View-Controller) pattern. The images are taken from a local database. Here a small NASA dataset of images is used (365 pictures). To create this dataset we consumed APOD through [insomnia](https://insomnia.rest/). 
 
 * [Monolithic Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/monolithic_architecture.pdf) 
 
 ## 2.2. Microservice Architecture
 
-> :small_orange_diamond: Design based on a microservice architecture. The SFA-API is connected to a NASA Open API called Astronomy Picture Of The Day (APOD), which returns the picture of the day. For this, we have to sign up for a NASA developer key. 
+> :small_orange_diamond: Design based on a microservice architecture, using MVC (Model-View-Controller) pattern. SFA-API is connected to a NASA Open API APOD, which returns the picture of the day. For this, we had to sign up for a NASA developer key, which you find [here](https://api.nasa.gov/). 
 
 * [Microsservice Architecture - High level system design (HLD) diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/microservice_architecture.pdf) 
  
@@ -80,8 +80,8 @@ Swagger enabled the development across the entire API lifecycle, from design and
 > :radio_button: We have 6 endpoints, with the following features: 
 > * :arrow_forward: 1 - user registration (generates an authentication key)
 > * :arrow_forward: 2 - download images (user can download images with their authentication key and also with a demo key)
-> * :arrow_forward: 3 - upload images (users can increment our database uploading new images)
-> * :arrow_forward: 4 - demo key (the demo key is: Demo_Key_SFA_Trial)
+> * :arrow_forward: 3 - upload images (users can upload images to increment our database)
+> * :arrow_forward: 4 - demo key (the demo key is: Demo_Key_SFA_Trial and can only be used to download images)
 > * :arrow_forward: 5 - GDPR1 (to comply with GDPR, the system allows users to see their data)
 > * :arrow_forward: 6 - GDPR2 (to comply with GDPR, the system allows users to delete their data)
 
@@ -91,20 +91,16 @@ Swagger enabled the development across the entire API lifecycle, from design and
 > :radio_button: We have 5 endpoints, with the following features: 
 > * :arrow_forward: 1 - user registration (generates an authentication key)
 > * :arrow_forward: 2 - download images (user can download images with their authentication key and also with a demo key)
-> * :arrow_forward: 3 - demo key (the demo key is: Demo_Key_SFA_Trial)
+> * :arrow_forward: 3 - demo key (the demo key is: Demo_Key_SFA_Trial and can only be used to download images)
 > * :arrow_forward: 4 - GDPR1 (to comply with GDPR, the system allows users to see their data)
 > * :arrow_forward: 5 - GDPR2 (to comply with GDPR, the system allows users to delete their data)
 
 ![print](/readme_img/swagger_print_microservice.PNG)
  
 
-:large_blue_circle: WEB INTERFACE (to be developed in the near future!) 
-
-The Web Interface was built with HTML/CSS and Javascript and our future goal is to give it an additional feature: users will be able to automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
-
 ## 3.1. How to use SFA
 
-The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_) contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here is asummary showing how to use them step-by-step.
+The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/server.py_) contains simple instructions on how to switch the system to run the monolithic and microservice architecture. Here is asummary showing how to use them step-by-step:
 
  :round_pushpin: Monolithics Architecture Step-by-step:
 >  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
@@ -182,7 +178,7 @@ This is the fifth version of SFA-API. It contains the first endpoint for GDPR co
 * HTTP Request Type -> POST
 * Response -> Retrieve user data     
 * URL POST Parameters -> email / password
-* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr
+* Request URL (temporary): -> http://127.0.0.1:5000/pictures/api/v1/gdpr1
 ```
 
 :paperclip:VERSION 6 - In the file: [gdpr_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/gdpr_controller.py_)  
@@ -211,7 +207,7 @@ This is the seventh version of SFA-API. It contains one endpoint exclusively cre
 
 ## 5. Project Structure
 
-The following directory diagram was generated with the comand "tree /F"
+The following directory diagram was generated with the following command in the terminal: "tree /F"
 
 ```
 app/
@@ -311,14 +307,14 @@ $ pip install requirements.txt
  
  <br>
  Check our monolithic architecture with the following link:
- [Swagger - SFA - Monolithic Architecture](http://0c117db5110a.ngrok.io/docs)
-  <br>
+ [Swagger - SFA - Monolithic Architecture](http://2fd1c56adc74.ngrok.io/docs)
+ <br>
 
 ## 11. Authentication Details
 
 ## 11.1. Request Structure 
  
-In APOD, you do not need to authenticate in order to explore the NASA data. However, if you will be intensively using the APIs to, say, support a mobile application, then you should sign up for a NASA developer key. 
+In APOD, you do not need to authenticate in order to explore the NASA data. However, if you will be intensively using the APIs to, say, support a mobile application, then you should sign up for a [ASA developer key](https://api.nasa.gov/). 
 
 The request body must follow the following structure: 
 
@@ -378,8 +374,7 @@ The [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/
 >   published vulnerabilities. 
 >  * Logging & Monitoring: The logging from FlasK-Rest-Plus is standardised, a request is received and then returned. In  FlasK-Rest-Plus loggins are very simple, they are not
 >  very informative (thus, it is not possible to know details about each request). Using docker loogs, it is possible to query, store and analyse the loggins.
-
-  - upload só com usuário registrado pq é rastreavel.
+ 
    
  <h3>C2: Leverage Security Frameworks and Libraries</h3>
 
@@ -484,19 +479,19 @@ The file [automation_anywhere_testing.txt](https://github.com/alicevillar/sfa_ap
 > Expected response:  HTTP - 200 OK Success status
 > 
 > :heavy_check_mark: Scenario 2b: Testing an valid Authentication Key - trying to download an image.  
-> Expected response:  HTTP - 401 Unauthorized  
+> Expected response:  HTTP - 401 Unauthorised  
 > 
 > :heavy_check_mark: Scenario 3a: Testing input validation in the endpoint GDPR1 - trying to retrieve user data with an invalid email (michaelgmail.com).
 > Expected response:  HTTP - 422 Unprocessable  entity  
 > 
 > :heavy_check_mark: Scenario 3b: Testing input validation in the endpoint GDPR2 - trying to delete user with invalid password.
-> Expected response:  HTTP - 401 Unauthorized 
+> Expected response:  HTTP - 401 Unauthorised 
 > 
 > :heavy_check_mark: Scenario 4a: Testing demo key endpoint.
 > Expected response:  HTTP - 200 OK Success status
 > 
 > :heavy_check_mark: Scenario 4b: Testing demo key - trying to download a picture without a demo key.  
-> Expected response:  HTTP - 401 Unauthorized 
+> Expected response:  HTTP - 401 Unauthorised 
 > 
 > :heavy_check_mark: Scenario 4c: Testing demo key - trying to download a picture with the right demo key. 
 > Expected response:  HTTP - 200 OK Success status
@@ -512,10 +507,10 @@ The file [automation_anywhere_testing.txt](https://github.com/alicevillar/sfa_ap
 
 To take this project further: 
 
-* Create a webpage for SAF-API using HTML/CSS and Javascript. 
-* Host the project in AWS, which offers reliable, scalable, and inexpensive cloud computing services.
+* WEB INTERFACE: Create a webpage for SAF-API using HTML/CSS and Javascript. The Web Interface will be built with HTML/CSS and Javascript. The goal is to give it an additional feature: users will be able to automaticaly change users' wallpaper with [Python](https://stackoverflow.com/questions/1977694/how-can-i-change-my-desktop-background-with-python)
+* AWS: Host the project in AWS, which offers reliable, scalable, and inexpensive cloud computing services.
 
-
+ 
  ## 15. Useful Links  
  
 [OWASP Proactive Controls](https://owasp.org/www-project-proactive-controls/)
