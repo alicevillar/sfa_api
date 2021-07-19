@@ -434,7 +434,7 @@ OWASP provides several recommendations for secure implementation of Digital Iden
 Access Control functionality often spans many areas of software depending on the complexity of the access control system. In SFA-API, we apply two of the OWASP recommendations: a) all requests go through some kind of access control verification layer; a) all access control failures should be logged as these may be indicative of a malicious user probing the application for vulnerabilities.
 
 > :white_check_mark: In SFA-API, we maximise the security by using multi-factor authentication in 2 layers of protection: hashing passwords and authentication key.
-> Authentication key is given to users after their registration (to registrate, users have give: first name, last name, email and password). The authentication key is monitored
+> Authentication key is given to users after their registration (to registrate, users have to give: first name, last name, email and password). The authentication key is monitored
 > in three different ways: 
 > * a) expiration date – SFA-API has an expiration date, which is done using pyodbc; 
 > * b) rate limits - We implement rate limits with flask limiter. The requests per IP address have the following limits: 80 per day/80 per hour. 
