@@ -149,7 +149,7 @@ This is the second version of SFA-API. It contains one more endpoint that allows
 ```
 :paperclip:VERSION 3 - In the file: [users_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/users_controller.py_)
 
-This is the first version of SFA-API. It contains one more endpoint that allows you to register a new user.
+This is the third version of SFA-API. It contains one more endpoint that allows you to register a new user.
 
 ```
 * Description:
@@ -160,7 +160,7 @@ This is the first version of SFA-API. It contains one more endpoint that allows 
 ```
 :paperclip:VERSION 4 - In the file: [demo_key_controller.py](https://github.com/alicevillar/sfa_api/blob/main/controllers/demo_key_controller.py_)
 
-This is the first version of SFA-API. It contains one more endpoint that allows you to use a demo key: Demo_Key_SFA_Trial
+This is the fourth version of SFA-API. It contains one more endpoint that allows you to use a demo key: Demo_Key_SFA_Trial
 ```
 * Description:
 * HTTP Request Type -> GET
