@@ -431,20 +431,20 @@ OWASP provides several recommendations for secure implementation of Digital Iden
 
  <h3>C7: Enforce Access Controls</h3>
  
-Access Control functionality often spans many areas of software depending on the complexity of the access control system. In SFA-API, we apply two of the OWASP recommends: a) all request go through some kind of access control verification layer; a) all access control failures should be logged as these may be indicative of a malicious user probing the application for vulnerabilities.
+Access Control functionality often spans many areas of software depending on the complexity of the access control system. In SFA-API, we apply two of the OWASP recommendations: a) all requests go through some kind of access control verification layer; a) all access control failures should be logged as these may be indicative of a malicious user probing the application for vulnerabilities.
 
-> :white_check_mark: In SFA-API, we maximize the security by using multi-factor authentication in 2 layers of protection: hashing passwords and authentication key.
+> :white_check_mark: In SFA-API, we maximise the security by using multi-factor authentication in 2 layers of protection: hashing passwords and authentication key.
 > Authentication key is given to users after their registration (to registrate, users have give: first name, last name, email and password). The authentication key is monitored
 > in three different ways: 
 > * a) expiration date – SFA-API has an expiration date, which is done using pyodbc; 
-> * b) rate limits - We implement rate limits with flask limiter. The requests per IP address have the following limits: 30 per day/30 per hour. 
-> * c) user IP – The system creates a key that corresponds the client’s IP. If the same client changes IP and tries to authenticate, the system does not allow it and will ask the client to authenticate again. This is done with pyodbc. We count the number of requests per key so the sysmtem can recognize when the same IP uses the API more than our rate limits allow.
+> * b) rate limits - We implement rate limits with flask limiter. The requests per IP address have the following limits: 80 per day/80 per hour. 
+> * c) user IP – The system creates a key that corresponds with the client’s IP. If the same client changes IP and tries to authenticate, the system does not allow it and will ask the client to authenticate again. This is done with pyodbc. We count the number of requests per key so the system can recognise when the same IP uses the API more than our rate limits allow.
  
 <h3>C8: Protect Data Everywhere</h3>
 
-Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here we describe how we have folloed OWAS recommendations.
+Sensitive data such as passwords, credit card numbers, health records, personal information and business secrets require extra protection, particularly if that data falls under privacy laws (EU’s General Data Protection Regulation GDPR), financial data protection rules such as PCI Data Security Standard (PCI DSS) or other regulations. Here we describe how we have followed OWASP recommendations.
 
-> :white_check_mark: In SFA-API, we protect data with warametrized queries to protect against SQL injection. OWASP recommends stored procedures but  is not done in SFA-API because the queries are small, so this measure is unecessary. OWASP also recommends escaping, which we didn't need to do in our API because it wasn't necessary.
+> :white_check_mark: In SFA-API, we protect data with parametrised queries to protect against SQL injection. OWASP recommends stored procedures but this is not done in SFA-API because the queries are small, so this measure is unecessary. OWASP also recommends escaping, which we didn't need to do in our API because it wasn't necessary.
  
 <h3>C9: Implement Security Logging and Monitoring</h3>
   
