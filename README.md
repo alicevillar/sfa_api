@@ -105,7 +105,7 @@ The file [server.py](https://github.com/alicevillar/sfa_api/blob/main/controller
  :round_pushpin: Monolithics Architecture Step-by-step:
 >  * STEP 1 - USER NAVIGATION: Users can consume the API using the demo key (Demo_Key_SFA_Trial) even when they are not registered. 
 >  * STEP 2 - REGISTRATION: For user registration there are four parameters: first name, last name, email and password.  
->  * STEP 3 - AUTHENTICATION KEY: After registration, user receives an authentication key.
+>  * STEP 3 - AUTHENTICATION KEY: After registration, users receives an authentication key.
 >  * STEP 4 - CONSUME THE API: With the authentication key, the user is able to download and upload pictures.
 >  * STEP 5 - GDPR: Registered users are able to see his or her stored personal details and delete it from our database (for GDPR compliance) 
 
@@ -123,7 +123,7 @@ Click the links below to see the activity diagrams:
 * [Monolithic Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram.pdf) 
 * [Microservive Architecture - Activity Diagram](https://github.com/alicevillar/sfa_api/blob/main/readme_img/activity_diagram_microservice.pdf) 
 
-Notice that both prototypes allows users to download images, but only in the monolith users can also upload images to contribute with our database. In both, we save only basic user's data in our database and comply with GDPR by allowing them to see their stored data and delete it. 
+Notice that both prototypes allows users to download images, but only in the monolith users can also upload images to contribute to our database. In both, we save only basic user data in our database and comply with GDPR by allowing them to see their stored data and delete it. 
 
 ## 4. Development timeline 
 
