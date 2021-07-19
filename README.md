@@ -308,8 +308,7 @@ $ pip install requirements.txt
 ## 10. Quick Start  
  
  <br>
- Check our monolithic architecture with the following link:
- [Swagger - SFA - Monolithic Architecture](http://2fd1c56adc74.ngrok.io/docs)
+ Check our monolithic architecture with the following link: [monolithic_architecture_ngrok](http://2fd1c56adc74.ngrok.io/docs)
  <br>
 
 ## 11. Authentication Details
