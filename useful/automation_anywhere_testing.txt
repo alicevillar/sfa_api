@@ -39,7 +39,7 @@ null{
 (17/7/21 14:54:04) Scenario 2a: Testing a valid Authentication Key - trying to download an image 
 (17/7/21 14:54:04) image/jpegattachment; filename=MareFrigorisMattSmith1024.jpg 
 (17/7/21 14:54:04) HTTP/ 200 OK
-(17/7/21 14:54:04) Scenario 2b: Testing an valid Authentication Key - trying to download an image
+(17/7/21 14:54:04) Scenario 2b: Testing an invalid Authentication Key - trying to download an image
 (17/7/21 14:54:04) application/jsonnull 
 (17/7/21 14:54:04)  HTTP/ 401 UNAUTHORIZED
 (17/7/21 14:54:04) Scenario 3a: Testing input validation in the endpoint GDPR1 - trying to retrieve user data with an invalid email 
