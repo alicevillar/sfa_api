@@ -280,7 +280,7 @@ app/
 * [**Github**](https://github.com/alicevillar/sfa_api) - to document the project. 
 * [**Insomnia**](https://insomnia.rest/) - used to consume APOD and retrieve the 365 images for our dataset (monolithic architecture). 
 * [**NASA APOD**](https://api.nasa.gov/) - In the monolithic architecture it was used as an API model. In the microservice architecture it was connected to SFA-API, so our API could therefore provide APOD's functionality which is to return the picture of the day. 
-* [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing STF-API (both prototypes). 
+* [**Automation Anywhere**](https://www.automationanywhere.com/) - for testing SFA-API (both prototypes). 
 
 ## 9. Installation  
  
