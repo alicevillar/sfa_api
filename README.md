@@ -273,7 +273,7 @@ app/
 ## 8. Tools
 
 * [**Docker**](https://www.docker.com/) - for storing the database and the API in a container. 
-* [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - used for documentation and to allow development team to visualize and interact with the API's. 
+* [**Swagger-UI**](https://github.com/swagger-api/swagger-ui) - used for documentation and to allow the development team to visualise and interact with the API's. 
 * [**SQL Server**](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) - to create the database of Prototype 1 (monolithic architecture)
 * [**Ngrok**](https://ngrok.com/) - enabled the exposure of the a local development server to the Internet with minimal effort. 
 * [**AWS EC2**](https://aws.amazon.com/pt/ec2/) - cloud computing service used in both prototypes to host and run the applications  
