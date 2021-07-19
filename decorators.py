@@ -1,6 +1,6 @@
 from datetime import date
 from flask import request
-from functools import wraps #os decoradores do python
+from functools import wraps # python decorators
 import pyodbc as p
 from senhas import *
 
@@ -136,7 +136,7 @@ def api_or_demo_key_required(func):
                 cursor.execute(sql,
                                (api_key))
                 result = cursor.fetchone()
-                #print("imprimindo resultado api key")
+                #print("checking out api key result")
                 #print(result)
                 if result == None:
                     return {

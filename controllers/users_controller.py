@@ -127,7 +127,7 @@ class Registration(Resource):
         access_ip=request.remote_addr
         # Before storing the IP, it is necessary to see if it is in the list
         password_hash= generate_password_hash(new_user['Password'])
-        #para verificar se está correta a senha será: check_password_hash(hash," - senha recebida p/ verificação - ")
+        # to check is the password is correct what we do is: check_password_hash(hash," - senha recebida p/ verificação - ")
 
         #########################################################################################################
         # ==> OWASP C3:Secure Database Access
