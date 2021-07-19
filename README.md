@@ -331,7 +331,7 @@ The request body must follow the following structure:
 
 That is it! 
 
-After regitration, the system will generate the API Key.
+After registration, the system will generate the API Key.
 
  
 :large_blue_circle: USER REGISTRATION:
