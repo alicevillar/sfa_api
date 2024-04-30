@@ -6,11 +6,7 @@ Space Fan Art is a working API prototype created with Flask REST-Plus to showcas
 <br>
 :arrow_forward: Team : Teamwork of 3
 
-<h3>Currently in progress ! 💻</h3>
-
-> :round_pushpin: Goals to be achieved: 
-> * "Os resumos da coleção MedSíntese são muito organizados e claros, o que me ajudou a obter ótimos resultados nas provas. Como alguém que trabalha em plantões, acho maravilhoso ter acesso a um material tão didático, claro e objetivo." - Gislane Cabral - Aluna de Medicina, UCB - Segundo Período
-> * The RESTful API server should be self-documented using [Swagger](https://swagger.io/), therefore with interactive documentation UI. 
+ 
  
 <h1>Table of Contents</h1>
 
