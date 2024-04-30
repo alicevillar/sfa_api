@@ -9,10 +9,8 @@ Space Fan Art is a working API prototype created with Flask REST-Plus to showcas
 <h3>Currently in progress ! 💻</h3>
 
 > :round_pushpin: Goals to be achieved: 
-> * Create two working prototypes with [Flask REST-Plus](https://flask-restplus.readthedocs.io/en/stable/), an extension for Flask that adds support for quickly building REST APIs. 
+> * "Os resumos da coleção MedSíntese são muito organizados e claros, o que me ajudou a obter ótimos resultados nas provas. Como alguém que trabalha em plantões, acho maravilhoso ter acesso a um material tão didático, claro e objetivo." - Gislane Cabral - Aluna de Medicina, UCB - Segundo Período
 > * The RESTful API server should be self-documented using [Swagger](https://swagger.io/), therefore with interactive documentation UI. 
-> * Showcase the [OWASP Top Ten Proactive Controls](https://owasp.org/www-project-proactive-controls/), security techniques that should be included in every software development project.  
-> * Implement automated testing using [Automation Anywhere](https://www.automationanywhere.com/).
  
 <h1>Table of Contents</h1>
 
